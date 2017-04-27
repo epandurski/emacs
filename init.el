@@ -138,7 +138,7 @@
   :ensure t
   :init
   (add-hook 'rust-mode-hook #'flycheck-rust-setup)
-  (add-hook 'flycheck-mode-hook 'my-rust-mode-hook))
+  (add-hook 'rust-mode-hook 'my-rust-mode-hook))
 (defun my-rust-mode-hook ()
   (electric-pair-mode 1)
   (cargo-minor-mode 1))

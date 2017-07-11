@@ -1,3 +1,5 @@
+;; -*-no-byte-compile: t; -*-
+
 ;; Set the defalut browser:
 (setq browse-url-browser-function 'browse-url-chromium)
 

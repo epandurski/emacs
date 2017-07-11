@@ -1,3 +1,5 @@
+;; -*-no-byte-compile: t; -*-
+
 ;;; my-abbrevs.el --- Define my abbreviations.
 
 ;;; Commentary:

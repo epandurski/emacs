@@ -1,3 +1,5 @@
+;; -*-no-byte-compile: t; -*-
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -48,6 +50,7 @@
 
 
 (add-to-list 'load-path "~/src/emacs")
+(byte-recompile-directory "~/src/emacs" 0)
 (defalias 'yes-or-no-p 'y-or-n-p)
 (require 'jka-compr)
 (require 'dired-x)

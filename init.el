@@ -120,6 +120,7 @@
   :bind (:map js2-mode-map
 	      ("M-7" . nodejs-repl)
 	      ("M-j" . backward-char)
+	      ("C-n" . js2-next-error)
 	      ))
 (defun my-js2-mode-hook ()
   (electric-pair-mode 1))

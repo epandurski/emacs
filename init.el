@@ -57,6 +57,7 @@
 (setq uniquify-buffer-name-style 'post-forward)
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+;; (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
 (require 'my-abbrevs)
 (require 'my-base-bindings)
@@ -135,6 +136,10 @@
   (electric-pair-mode 1))
 
 
+(use-package json-reformat
+  :ensure t)
+
+
 (use-package rust-mode
   :ensure t
   :init
@@ -143,3 +148,16 @@
 (defun my-rust-mode-hook ()
   (electric-pair-mode 1)
   (cargo-minor-mode 1))
+
+
+(use-package cargo
+  :ensure t)
+
+
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "markdown"))

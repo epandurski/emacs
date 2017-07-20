@@ -63,6 +63,9 @@
     ;; javascript
     ("8metjs" "/*global Mongo, Meteor, Template, Session, Accounts*/")
     
+    ;; python
+    ("8pdb" "import pdb; pdb.set_trace()")
+    
     ))
 
 ;; stop asking whether to save newly added abbrev when quitting emacs

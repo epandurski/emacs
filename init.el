@@ -27,7 +27,8 @@
  '(js2-basic-offset 2)
  '(js2-strict-trailing-comma-warning nil)
  '(json-reformat:indent-width 2)
- '(python-shell-interpreter "python3")
+ '(python-environment-directory "~/virtualenvs")
+ '(python-shell-interpreter "~/virtualenvs/EBAG_STORE/bin/python")
  '(rust-rustfmt-bin "~/.cargo/bin/rustfmt")
  '(safe-local-variable-values
    (quote
@@ -157,3 +158,21 @@
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "markdown"))
+
+
+(use-package company-jedi
+  :ensure t
+  :init
+  ;; (add-hook 'python-mode-hook 'jedi:setup)
+  (add-hook 'python-mode-hook 'my-python-mode-hook))
+
+
+(defun my-python-mode-hook ()
+  ;; (jedi:setup)
+  ;; (setq jedi:complete-on-dot t)
+  (add-to-list 'company-backends 'company-jedi))
+
+(setq python-environment-directory "~/virtualenvs")
+(add-hook 'html-mode-hook (lambda () (set (make-local-variable 'sgml-basic-offset) 4)))
+(setq-default indent-tabs-mode nil)
+(global-company-mode)

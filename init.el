@@ -132,11 +132,6 @@
   :ensure t)
 
 
-(use-package jsx-mode
-  :ensure t
-  :mode ("\\.jsx\\'" . jsx-mode))
-
-
 (use-package rust-mode
   :ensure t
   :init

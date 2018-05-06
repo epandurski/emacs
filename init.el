@@ -22,6 +22,7 @@
  '(global-subword-mode t)
  '(help-at-pt-display-when-idle (quote (flymake-overlay)) nil (help-at-pt))
  '(help-at-pt-timer-delay 0.9)
+ '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(js-indent-level 2)

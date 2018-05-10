@@ -99,10 +99,11 @@
 (use-package sgml-mode
   :ensure t
   :bind
-  ("M-7" . sgml-tag)
-  ("M-O" . sgml-skip-tag-forward)
-  ("M-U" . sgml-skip-tag-backward)
-  )
+  (:map html-mode-map
+        ("M-7" . sgml-tag)
+        ("M-O" . sgml-skip-tag-forward)
+        ("M-U" . sgml-skip-tag-backward)
+        ))
 
 
 (use-package magit

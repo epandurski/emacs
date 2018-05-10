@@ -102,6 +102,7 @@
 (use-package virtualenvwrapper
   :ensure t
   :init
+  (venv-initialize-interactive-shells)
   (venv-initialize-eshell))
 
 

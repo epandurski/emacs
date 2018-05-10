@@ -190,14 +190,6 @@
   )
 (eval-after-load "shell" '(my-shell-mode-keys))
 
-(defun my-html-mode-keys ()
-  "My keybindings for `html' mode."
-  (define-key html-mode-map (kbd "M-7") 'sgml-tag)
-  (define-key html-mode-map (kbd "M-O") 'sgml-skip-tag-forward)
-  (define-key html-mode-map (kbd "M-U") 'sgml-skip-tag-backward)
-  )
-(eval-after-load "sgml-mode" '(my-html-mode-keys))
-
 (provide 'my-base-bindings)
 
 ;;; my-base-bindings.el ends here

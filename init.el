@@ -96,6 +96,15 @@
         ))
 
 
+(use-package sgml-mode
+  :ensure t
+  :bind
+  ("M-7" . sgml-tag)
+  ("M-O" . sgml-skip-tag-forward)
+  ("M-U" . sgml-skip-tag-backward)
+  )
+
+
 (use-package magit
   :ensure t
   :config

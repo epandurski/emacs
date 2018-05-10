@@ -76,6 +76,26 @@
 (require 'bind-key)
 
 
+(use-package python
+  :ensure t
+  :config
+  (unbind-key "C-c <" python-mode-map)
+  (unbind-key "C-c >" python-mode-map)
+  :bind
+  (:map python-mode-map
+        ("M-7" . python-shell-switch-to-shell)
+        ("C-," . python-indent-shift-left)
+        ("C-." . python-indent-shift-right)
+        ("M-U" . beginning-of-defun)
+        ("M-O" . end-of-defun)
+        )
+  :bind
+  (:map inferior-python-mode-map
+        ("M-r" . kill-word)
+        ("C-r" . comint-history-isearch-backward-regexp)
+        ))
+
+
 (use-package magit
   :ensure t
   :config

@@ -190,18 +190,6 @@
   )
 (eval-after-load "shell" '(my-shell-mode-keys))
 
-(defun my-python-mode-keys ()
-  "My keybindings for `python' mode."
-  (define-key python-mode-map (kbd "M-7") 'python-shell-switch-to-shell)
-  (define-key python-mode-map (kbd "C-,") 'python-indent-shift-left)
-  (define-key python-mode-map (kbd "C-.") 'python-indent-shift-right)
-  (define-key python-mode-map (kbd "M-U") 'beginning-of-defun)
-  (define-key python-mode-map (kbd "M-O") 'end-of-defun)
-  (dolist (key '("C-c <" "C-c >"))
-    (define-key python-mode-map (kbd key) nil))
-  )
-(eval-after-load "python" '(my-python-mode-keys))
-
 (defun my-html-mode-keys ()
   "My keybindings for `html' mode."
   (define-key html-mode-map (kbd "M-7") 'sgml-tag)

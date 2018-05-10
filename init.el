@@ -1,5 +1,11 @@
 ;; -*-no-byte-compile: t; -*-
 
+;;; Commentary:
+;;;
+;;; This is my main Emacs configuration file.
+
+;;; Code:
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -29,7 +35,6 @@
  '(js2-basic-offset 2)
  '(js2-strict-trailing-comma-warning nil)
  '(json-reformat:indent-width 2)
- '(python-shell-interpreter "python3")
  '(rust-rustfmt-bin "~/.cargo/bin/rustfmt")
  '(safe-local-variable-values
    (quote
@@ -81,29 +86,33 @@
   :config
   (unbind-key "C-c <" python-mode-map)
   (unbind-key "C-c >" python-mode-map)
-  :bind
-  (:map python-mode-map
-        ("M-7" . python-shell-switch-to-shell)
-        ("C-," . python-indent-shift-left)
-        ("C-." . python-indent-shift-right)
-        ("M-U" . beginning-of-defun)
-        ("M-O" . end-of-defun)
-        )
-  :bind
-  (:map inferior-python-mode-map
-        ("M-r" . kill-word)
-        ("C-r" . comint-history-isearch-backward-regexp)
-        ))
+  :bind (
+         ("<f9>" . python-shell-switch-to-shell)
+         :map python-mode-map
+         ("M-7" . python-shell-switch-to-shell)
+         ("C-," . python-indent-shift-left)
+         ("C-." . python-indent-shift-right)
+         ("M-U" . beginning-of-defun)
+         ("M-O" . end-of-defun)
+         :map inferior-python-mode-map
+         ("M-r" . kill-word)
+         ("C-r" . comint-history-isearch-backward-regexp)))
+
+
+(use-package virtualenvwrapper
+  :ensure t
+  :init
+  (venv-initialize-interactive-shells)
+  (venv-initialize-eshell))
 
 
 (use-package sgml-mode
   :ensure t
-  :bind
-  (:map html-mode-map
-        ("M-7" . sgml-tag)
-        ("M-O" . sgml-skip-tag-forward)
-        ("M-U" . sgml-skip-tag-backward)
-        ))
+  :bind (
+         :map html-mode-map
+              ("M-7" . sgml-tag)
+              ("M-O" . sgml-skip-tag-forward)
+              ("M-U" . sgml-skip-tag-backward)))
 
 
 (use-package magit
@@ -115,18 +124,17 @@
   (unbind-key "M-4" magit-mode-map)
   (unbind-key "M-w" magit-mode-map)
   (unbind-key "C-w" magit-mode-map)
-  :bind
-  ("<f8>" . magit-status)
-  ("C-x g" . magit-status)
-  ("C-x C-g" . magit-dispatch-popup)
-  (:map magit-mode-map
-	       ("1" . magit-section-show-level-1-all)
-	       ("2" . magit-section-show-level-2-all)
-	       ("3" . magit-section-show-level-3-all)
-	       ("4" . magit-section-show-level-4-all)
-	       ("M-c" . magit-copy-buffer-revision)
-	       ("M-x" . magit-copy-section-value)
-	       ))
+  :bind (
+         ("<f8>" . magit-status)
+         ("C-x g" . magit-status)
+         ("C-x C-g" . magit-dispatch-popup)
+         :map magit-mode-map
+         ("1" . magit-section-show-level-1-all)
+         ("2" . magit-section-show-level-2-all)
+         ("3" . magit-section-show-level-3-all)
+         ("4" . magit-section-show-level-4-all)
+         ("M-c" . magit-copy-buffer-revision)
+         ("M-x" . magit-copy-section-value)))
 
 
 (use-package flycheck
@@ -138,14 +146,14 @@
   :ensure t
   :mode ("\\.js\\'" . js2-mode)
   :init
-  (add-hook 'js2-mode-hook 'my-js2-mode-hook) 
+  (add-hook 'js2-mode-hook 'my-js2-mode-hook)
   :config
   (unbind-key "M-j" js2-mode-map)
-  :bind (:map js2-mode-map
-	      ("M-7" . nodejs-repl)
-	      ("M-j" . backward-char)
-	      ("C-n" . js2-next-error)
-	      ))
+  :bind (
+         :map js2-mode-map
+              ("M-7" . nodejs-repl)
+              ("M-j" . backward-char)
+              ("C-n" . js2-next-error)))
 (defun my-js2-mode-hook ()
   (electric-pair-mode 1))
 
@@ -184,3 +192,15 @@
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "markdown"))
+
+
+;; A workaround for a bug that has been fixed in Emacs 25.2
+(with-eval-after-load 'python
+  (defun python-shell-completion-native-try ()
+    "Return non-nil if can trigger native completion."
+    (let ((python-shell-completion-native-enable t)
+          (python-shell-completion-native-output-timeout
+           python-shell-completion-native-try-output-timeout))
+      (python-shell-completion-native-get-completions
+       (get-buffer-process (current-buffer))
+       nil "_"))))

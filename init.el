@@ -125,6 +125,7 @@
 (use-package company-jedi
   :ensure t
   :init
+  (setq company-idle-delay nil)
   (add-hook 'python-mode-hook 'my-company-jedi-configuration-hook))
 (defun my-company-jedi-configuration-hook ()
   (define-key python-mode-map (kbd "C-v") 'jedi:show-doc)

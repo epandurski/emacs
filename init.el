@@ -81,13 +81,30 @@
 (require 'bind-key)
 
 
+(use-package projectile
+  :ensure t
+  :bind (
+         ("C-f" . projectile-commander))
+  :init
+  (setq projectile-switch-project-action 'projectile-dired)
+  (projectile-global-mode))
+
+
+;; `flx-ido` is extremely highly recommended by `projectile`.
+(use-package flx-ido
+  :ensure t
+  :init
+  (flx-ido-mode 1)
+  (setq ido-enable-flex-matching t)
+  (setq ido-use-faces nil))
+
+
 (use-package python
   :ensure t
   :config
   (unbind-key "C-c <" python-mode-map)
   (unbind-key "C-c >" python-mode-map)
   :bind (
-         ("<f9>" . python-shell-switch-to-shell)
          :map python-mode-map
          ("M-7" . python-shell-switch-to-shell)
          ("C-," . python-indent-shift-left)
@@ -97,15 +114,6 @@
          :map inferior-python-mode-map
          ("M-r" . kill-word)
          ("C-r" . comint-history-isearch-backward-regexp)))
-
-
-(use-package projectile
-  :ensure t
-  :bind (
-         ("C-f" . projectile-commander))
-  :init
-  (setq projectile-switch-project-action 'projectile-dired)
-  (projectile-global-mode))
 
 
 (use-package virtualenvwrapper
@@ -134,7 +142,6 @@
   (unbind-key "M-w" magit-mode-map)
   (unbind-key "C-w" magit-mode-map)
   :bind (
-         ("<f8>" . magit-status)
          ("C-x g" . magit-status)
          ("C-x C-g" . magit-dispatch-popup)
          :map magit-mode-map

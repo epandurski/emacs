@@ -86,8 +86,7 @@
   :bind (
          ("C-f" . projectile-commander))
   :init
-  (setq projectile-switch-project-action 'projectile-dired)
-  (projectile-global-mode))
+  (setq projectile-switch-project-action 'projectile-dired))
 
 
 ;; `flx-ido` is extremely highly recommended by `projectile`.
@@ -121,6 +120,19 @@
   :init
   (venv-initialize-interactive-shells)
   (venv-initialize-eshell))
+
+
+(use-package company-jedi
+  :ensure t
+  :init
+  (add-hook 'python-mode-hook 'my-company-jedi-configuration-hook))
+(defun my-company-jedi-configuration-hook ()
+  (define-key python-mode-map (kbd "C-v") 'jedi:show-doc)
+  (define-key python-mode-map (kbd "M-.") 'jedi:goto-definition)
+  (define-key python-mode-map (kbd "M->") 'jedi:goto-definition-pop-marker)
+  (define-key python-mode-map (kbd "M-/") 'company-complete)
+  (company-mode)
+  (add-to-list 'company-backends 'company-jedi))
 
 
 (use-package sgml-mode

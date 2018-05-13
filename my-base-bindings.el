@@ -60,8 +60,6 @@
 (global-set-key (kbd "M-0") 'my-bookmark-bmenu-list)
 (global-set-key (kbd "M-<return>") 'indent-new-comment-line)  ;; "C-M-j" does the same
 (global-set-key (kbd "C-SPC") 'my-set-mark-command-with-prefix)
-(global-set-key (kbd "C-v") 'scroll-up-command)
-(global-set-key (kbd "C-f") 'scroll-down-command)
 (global-set-key (kbd "C-a") 'mark-whole-buffer)
 (global-set-key (kbd "C-y") 'rgrep)
 (global-set-key (kbd "C-r") 'revert-buffer)
@@ -73,10 +71,10 @@
 (global-set-key (kbd "C-p") 'previous-error)
 (global-set-key (kbd "C-n") 'next-error)
 (global-set-key (kbd "C-2") 'server-edit)
-(global-set-key (kbd "<f7>") 'shell)
+(global-set-key (kbd "<f7>") 'eshell)
 
 ;; Unbind unused keys:
-(dolist (key '("C-x 1" "C-x 2" "C-x 3" "C-x u" "C-x C-b" "C-e" "C-b" "C-_"))
+(dolist (key '("C-x 1" "C-x 2" "C-x 3" "C-x u" "C-x C-b" "C-e" "C-f" "C-v" "C-b" "C-_"))
   (global-unset-key (kbd key)))
 
 ;; Use "C-z" when not on text terminal:
@@ -117,9 +115,11 @@
 
 (defun my-ido-keys ()
   "My keybindings for ido."
-  ;; Use "M-y" and "M-Y" for switching between the matching items.
+  ;; Use "M-y", "M-Y", "M-j", "M-l" for switching between the matching items.
   (define-key ido-common-completion-map (kbd "M-y") 'ido-next-match)
   (define-key ido-common-completion-map (kbd "M-Y") 'ido-prev-match)
+  (define-key ido-common-completion-map (kbd "M-l") 'ido-next-match)
+  (define-key ido-common-completion-map (kbd "M-j") 'ido-prev-match)
   ;; When finding files, ido uses "M-s" as a search prefix -- make it
   ;; switch to other window instead.
   (define-key ido-file-completion-map (kbd "M-s") 'other-window)
@@ -129,15 +129,12 @@
   (define-key ido-file-completion-map (kbd "M-d") 'delete-backward-char)
   (define-key ido-file-completion-map (kbd "M-r") 'kill-word)
   (define-key ido-file-completion-map (kbd "M-e") 'backward-kill-word)
-  (define-key ido-file-completion-map (kbd "M-l") 'forward-char)
-  (define-key ido-file-completion-map (kbd "M-j") 'backward-char)
-  (define-key ido-file-completion-map (kbd "M-o") 'forward-word)
-  (define-key ido-file-completion-map (kbd "M-u") 'backward-word)
+  (define-key ido-file-completion-map (kbd "M-l") 'ido-next-match)
+  (define-key ido-file-completion-map (kbd "M-j") 'ido-prev-match)
+  (define-key ido-file-completion-map (kbd "M-o") 'ido-next-work-file)
+  (define-key ido-file-completion-map (kbd "M-u") 'ido-prev-work-file)
   (define-key ido-file-completion-map (kbd "M-v") 'yank)
   (define-key ido-file-completion-map (kbd "M-V") 'yank-pop)
-  ;; Use "M-j" and "M-l" for switching buffers (very convenient).
-  (define-key ido-buffer-completion-map (kbd "M-l") 'ido-next-match)
-  (define-key ido-buffer-completion-map (kbd "M-j") 'ido-prev-match)
   ;; Use "C-o" to enter find-file mode ("C-f" does this too). Press
   ;; "C-o" again to fallback to the classic find-file.
   (define-key ido-buffer-completion-map (kbd "C-o") 'ido-enter-find-file)

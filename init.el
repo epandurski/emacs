@@ -99,6 +99,15 @@
          ("C-r" . comint-history-isearch-backward-regexp)))
 
 
+(use-package projectile
+  :ensure t
+  :bind (
+         ("C-f" . projectile-commander))
+  :init
+  (setq projectile-switch-project-action 'projectile-dired)
+  (projectile-global-mode))
+
+
 (use-package virtualenvwrapper
   :ensure t
   :init

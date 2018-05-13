@@ -81,13 +81,29 @@
 (require 'bind-key)
 
 
+(use-package projectile
+  :ensure t
+  :bind (
+         ("C-f" . projectile-commander))
+  :init
+  (setq projectile-switch-project-action 'projectile-dired))
+
+
+;; `flx-ido` is extremely highly recommended by `projectile`.
+(use-package flx-ido
+  :ensure t
+  :init
+  (flx-ido-mode 1)
+  (setq ido-enable-flex-matching t)
+  (setq ido-use-faces nil))
+
+
 (use-package python
   :ensure t
   :config
   (unbind-key "C-c <" python-mode-map)
   (unbind-key "C-c >" python-mode-map)
   :bind (
-         ("<f9>" . python-shell-switch-to-shell)
          :map python-mode-map
          ("M-7" . python-shell-switch-to-shell)
          ("C-," . python-indent-shift-left)
@@ -104,6 +120,19 @@
   :init
   (venv-initialize-interactive-shells)
   (venv-initialize-eshell))
+
+
+(use-package company-jedi
+  :ensure t
+  :init
+  (add-hook 'python-mode-hook 'my-company-jedi-configuration-hook))
+(defun my-company-jedi-configuration-hook ()
+  (define-key python-mode-map (kbd "C-v") 'jedi:show-doc)
+  (define-key python-mode-map (kbd "M-.") 'jedi:goto-definition)
+  (define-key python-mode-map (kbd "M->") 'jedi:goto-definition-pop-marker)
+  (define-key python-mode-map (kbd "M-/") 'company-complete)
+  (company-mode)
+  (add-to-list 'company-backends 'company-jedi))
 
 
 (use-package sgml-mode
@@ -125,7 +154,6 @@
   (unbind-key "M-w" magit-mode-map)
   (unbind-key "C-w" magit-mode-map)
   :bind (
-         ("<f8>" . magit-status)
          ("C-x g" . magit-status)
          ("C-x C-g" . magit-dispatch-popup)
          :map magit-mode-map

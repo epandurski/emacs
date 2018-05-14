@@ -86,7 +86,8 @@
   :bind (
          ("C-f" . projectile-commander))
   :init
-  (setq projectile-switch-project-action 'projectile-dired))
+  (setq projectile-switch-project-action 'projectile-dired)
+  (projectile-global-mode))
 
 
 ;; `flx-ido` is extremely highly recommended by `projectile`.

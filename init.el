@@ -101,8 +101,7 @@
 
 (use-package company
   :ensure t
-  :bind (
-         ("M-/" . company-complete-common-or-cycle))
+  :bind ("M-/" . company-complete-common-or-cycle)
   :init
   (setq company-idle-delay nil)
   (add-hook 'after-init-hook 'global-company-mode))

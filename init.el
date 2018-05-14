@@ -137,6 +137,7 @@
   :init
   (add-hook 'python-mode-hook 'my-company-jedi-configuration-hook))
 (defun my-company-jedi-configuration-hook ()
+  (jedi:setup)
   (define-key python-mode-map (kbd "<f1>") 'jedi:show-doc)
   (define-key python-mode-map (kbd "M-.") 'jedi:goto-definition)
   (define-key python-mode-map (kbd "M->") 'jedi:goto-definition-pop-marker)

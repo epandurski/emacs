@@ -7,6 +7,10 @@
 (require 'my-util-funcs)
 (require 'ido)
 (ido-mode 'buffer)
+(require 'recentf)
+(recentf-mode t)
+(setq recentf-max-saved-items 100)
+(setq ido-use-virtual-buffers t)
 
 ;; Configure ergoemacs-like global keys:
 (global-set-key (kbd "M-SPC") 'set-mark-command)

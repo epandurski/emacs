@@ -98,6 +98,15 @@
   (setq ido-use-faces nil))
 
 
+(use-package company
+  :ensure t
+  :bind (
+         ("M-/" . company-complete-common-or-cycle))
+  :init
+  (setq company-idle-delay nil)
+  (add-hook 'after-init-hook 'global-company-mode))
+
+
 (use-package python
   :ensure t
   :config
@@ -125,14 +134,11 @@
 (use-package company-jedi
   :ensure t
   :init
-  (setq company-idle-delay nil)
   (add-hook 'python-mode-hook 'my-company-jedi-configuration-hook))
 (defun my-company-jedi-configuration-hook ()
-  (define-key python-mode-map (kbd "C-v") 'jedi:show-doc)
+  (define-key python-mode-map (kbd "<f1>") 'jedi:show-doc)
   (define-key python-mode-map (kbd "M-.") 'jedi:goto-definition)
   (define-key python-mode-map (kbd "M->") 'jedi:goto-definition-pop-marker)
-  (define-key python-mode-map (kbd "M-/") 'company-complete)
-  (company-mode)
   (add-to-list 'company-backends 'company-jedi))
 
 

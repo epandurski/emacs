@@ -127,8 +127,10 @@
   ;; When finding files, ido uses "M-s" as a search prefix -- make it
   ;; switch to other window instead.
   (define-key ido-file-completion-map (kbd "M-s") 'other-window)
-  ;; When finding files, ido overrides many of the navigation keys --
-  ;; bring the most important of them back.
+  ;; When finding files, `ido` overrides many of the navigation keys.
+  ;; For example, "C-k" deletes the current file, "M-m" creates a new
+  ;; directory. Here we bring the back those bindings that we really
+  ;; need.
   (define-key ido-file-completion-map (kbd "M-f") 'delete-char)
   (define-key ido-file-completion-map (kbd "M-d") 'delete-backward-char)
   (define-key ido-file-completion-map (kbd "M-r") 'kill-word)
@@ -137,10 +139,11 @@
   (define-key ido-file-completion-map (kbd "M-j") 'ido-prev-match)
   (define-key ido-file-completion-map (kbd "M-o") 'ido-next-work-file)
   (define-key ido-file-completion-map (kbd "M-u") 'ido-prev-work-file)
+  (define-key ido-file-completion-map (kbd "M-b") 'toggle-input-method)
   (define-key ido-file-completion-map (kbd "M-v") 'yank)
-  (define-key ido-file-completion-map (kbd "M-V") 'yank-pop)
-  ;; Use "C-o" to enter find-file mode ("C-f" does this too). Press
-  ;; "C-o" again to fallback to the classic find-file.
+  ;; Use "C-o" to enter `ido-find-file` mode from `ido-switch-buffer`
+  ;; mode ("C-f" does this too). Press "C-o" again to fallback to the
+  ;; classic `find-file` mode.
   (define-key ido-buffer-completion-map (kbd "C-o") 'ido-enter-find-file)
   (define-key ido-file-completion-map (kbd "C-o") 'ido-fallback-command)
   )

@@ -128,9 +128,9 @@
   ;; switch to other window instead.
   (define-key ido-file-completion-map (kbd "M-s") 'other-window)
   ;; When finding files, `ido` overrides many of the navigation keys.
-  ;; For example, "C-k" deletes the current file, "M-m" creates a new
-  ;; directory. Here we bring the back those bindings that we really
-  ;; need.
+  ;; For example, "C-e" enters edit mode, "C-k" deletes the current
+  ;; file, "M-m" creates a new directory. Here we bring the back those
+  ;; bindings that we really need.
   (define-key ido-file-completion-map (kbd "M-f") 'delete-char)
   (define-key ido-file-completion-map (kbd "M-d") 'delete-backward-char)
   (define-key ido-file-completion-map (kbd "M-r") 'kill-word)

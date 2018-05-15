@@ -81,6 +81,14 @@
 (require 'bind-key)
 
 
+(use-package flx-ido
+  :ensure t
+  :init
+  (flx-ido-mode 1)
+  (setq ido-enable-flex-matching t)
+  (setq ido-use-faces nil))
+
+
 (use-package projectile
   :ensure t
   :bind (
@@ -88,15 +96,6 @@
   :init
   (setq projectile-switch-project-action 'projectile-dired)
   (projectile-global-mode))
-
-
-;; `flx-ido` is extremely highly recommended by `projectile`.
-(use-package flx-ido
-  :ensure t
-  :init
-  (flx-ido-mode 1)
-  (setq ido-enable-flex-matching t)
-  (setq ido-use-faces nil))
 
 
 (use-package company

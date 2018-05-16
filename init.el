@@ -56,6 +56,11 @@
  '(region ((t (:background "LightGoldenrod2")))))
 
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Configure build-in packages ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (add-to-list 'load-path "~/src/emacs")
 (byte-recompile-directory "~/src/emacs" 0)
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -65,17 +70,31 @@
 (setq dired-omit-files (concat dired-omit-files "\\|^\\..+$"))
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward)
-(require 'package)
-;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-(package-initialize)
 (require 'my-abbrevs)
 (require 'my-base-bindings)
 (require 'my-server)
 (require 'my-workarounds)
 
 
-;; Configure use-package:
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Configure package archives ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'package)
+
+;; Comment/uncomment lines to enable/disable archives as desired:
+;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+
+(package-initialize)
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Configure use-package ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (eval-when-compile
   (require 'use-package))
 (require 'diminish)

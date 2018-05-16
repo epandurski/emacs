@@ -65,7 +65,8 @@
     
     ;; python
     ("8pdb" "import pdb; pdb.set_trace()")
-    
+    ("8pu" "from pudb import set_trace; set_trace()")
+
     ))
 
 ;; stop asking whether to save newly added abbrev when quitting emacs

@@ -72,6 +72,7 @@
 (require 'my-abbrevs)
 (require 'my-base-bindings)
 (require 'my-server)
+(require 'my-workarounds)
 
 
 ;; Configure use-package:
@@ -230,18 +231,6 @@
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "markdown"))
-
-
-;; A workaround for a bug that has been fixed in Emacs 25.2
-(with-eval-after-load 'python
-  (defun python-shell-completion-native-try ()
-    "Return non-nil if can trigger native completion."
-    (let ((python-shell-completion-native-enable t)
-          (python-shell-completion-native-output-timeout
-           python-shell-completion-native-try-output-timeout))
-      (python-shell-completion-native-get-completions
-       (get-buffer-process (current-buffer))
-       nil "_"))))
 
 
 (provide 'my-init)

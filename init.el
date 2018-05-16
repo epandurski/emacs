@@ -24,7 +24,6 @@
  '(ediff-split-window-function (quote split-window-horizontally))
  '(ediff-window-setup-function (quote ediff-setup-windows-plain))
  '(fringe-mode (quote (nil . 0)) nil (fringe))
- '(global-flycheck-mode t)
  '(global-subword-mode t)
  '(help-at-pt-display-when-idle (quote (flymake-overlay)) nil (help-at-pt))
  '(help-at-pt-timer-delay 0.9)

@@ -66,7 +66,7 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (require 'jka-compr)
 (require 'dired-x)
-(setq-default dired-omit-files-p t) ;; (dired-omit-mode)
+(setq-default dired-omit-mode t)
 (require 'recentf)
 (recentf-mode t)
 (setq recentf-max-saved-items 100)

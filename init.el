@@ -91,8 +91,7 @@
 
 (use-package projectile
   :ensure t
-  :bind (
-         ("C-f" . projectile-commander))
+  :bind ("C-f" . projectile-commander)
   :init
   (setq projectile-switch-project-action 'projectile-dired)
   (projectile-global-mode))
@@ -135,6 +134,7 @@
   :init
   (add-hook 'python-mode-hook 'my-company-jedi-configuration-hook))
 (defun my-company-jedi-configuration-hook ()
+  "My `company-jedi` initializations."
   (jedi:setup)
   (define-key python-mode-map (kbd "<f1>") 'jedi:show-doc)
   (define-key python-mode-map (kbd "M-.") 'jedi:goto-definition)
@@ -190,6 +190,7 @@
               ("M-j" . backward-char)
               ("C-n" . js2-next-error)))
 (defun my-js2-mode-hook ()
+  "My `js2-mode` initializations."
   (electric-pair-mode 1))
 
 
@@ -199,6 +200,7 @@
   :init
   (add-hook 'json-mode-hook 'my-json-mode-hook))
 (defun my-json-mode-hook ()
+  "My `json-mode` initializations."
   (electric-pair-mode 1))
 
 
@@ -212,6 +214,7 @@
   (add-hook 'rust-mode-hook #'flycheck-rust-setup)
   (add-hook 'rust-mode-hook 'my-rust-mode-hook))
 (defun my-rust-mode-hook ()
+  "My `rust-mode` initializations."
   (electric-pair-mode 1)
   (cargo-minor-mode 1))
 
@@ -239,3 +242,8 @@
       (python-shell-completion-native-get-completions
        (get-buffer-process (current-buffer))
        nil "_"))))
+
+
+(provide 'my-init)
+
+;;; init.el ends here

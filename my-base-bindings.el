@@ -7,9 +7,6 @@
 (require 'my-util-funcs)
 (require 'ido)
 (ido-mode 'buffer)
-(require 'recentf)
-(recentf-mode t)
-(setq recentf-max-saved-items 100)
 (setq ido-use-virtual-buffers t)
 
 ;; Configure ergoemacs-like global keys:
@@ -84,6 +81,12 @@
 ;; Use "C-z" when not on text terminal:
 (when window-system
   (global-set-key (kbd "C-z") 'undo))
+
+(defun my-dired-keys ()
+  "My keybindings for dired."
+  (define-key dired-mode-map (kbd "h") 'dired-omit-mode)
+  )
+(eval-after-load "dired" '(my-dired-keys))
 
 (defun my-minibuffer-keys ()
   "My keybindings for the minibuffer."

@@ -35,12 +35,6 @@
  '(js2-strict-trailing-comma-warning nil)
  '(json-reformat:indent-width 2)
  '(rust-rustfmt-bin "~/.cargo/bin/rustfmt")
- '(safe-local-variable-values
-   (quote
-    ((test-case-name . twisted\.test\.test_abstract)
-     (test-case-name . twisted\.test\.test_fdesc)
-     (test-case-name . twisted\.internet\.test\.test_inotify)
-     (test-case-name . twisted\.test\.test_udp))))
  '(scroll-bar-mode (quote right))
  '(show-paren-mode t)
  '(tool-bar-mode nil))

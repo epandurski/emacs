@@ -32,7 +32,6 @@
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(js-indent-level 2)
  '(js2-basic-offset 2)
- '(js2-strict-trailing-comma-warning nil)
  '(json-reformat:indent-width 2)
  '(rust-rustfmt-bin "~/.cargo/bin/rustfmt")
  '(scroll-bar-mode (quote right))

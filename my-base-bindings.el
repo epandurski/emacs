@@ -150,7 +150,7 @@
   (define-key ido-buffer-completion-map (kbd "C-o") 'ido-enter-find-file)
   (define-key ido-file-completion-map (kbd "C-o") 'ido-fallback-command)
   )
-(eval-after-load "ido" '(my-ido-keys))
+(add-hook 'ido-setup-hook 'my-ido-keys)
 
 (defun my-Buffer-menu-mode-keys ()
   "My keybindings for `Buffer-menu' mode."

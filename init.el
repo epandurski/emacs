@@ -191,21 +191,31 @@
   :init (global-flycheck-mode))
 
 
-(use-package js2-mode
+(use-package js
   :ensure t
-  :mode ("\\.js\\'" . js2-mode)
   :init
-  (add-hook 'js2-mode-hook 'my-js2-mode-hook)
-  :config
-  (unbind-key "M-j" js2-mode-map)
+  (add-hook 'js-mode-hook 'my-js-mode-hook)
   :bind (
-         :map js2-mode-map
-              ("M-7" . nodejs-repl)
-              ("M-j" . backward-char)
-              ("C-n" . js2-next-error)))
-(defun my-js2-mode-hook ()
-  "My `js2-mode` initializations."
+         :map js-mode-map
+              ("M-7" . nodejs-repl)))
+(defun my-js-mode-hook ()
+  "My `js-mode` initializations."
   (electric-pair-mode 1))
+
+
+(use-package company-tern
+  :ensure t
+  :defer t
+  :init
+  (add-hook 'js-mode-hook 'my-tern-configuration-hook))
+(defun my-tern-configuration-hook ()
+  "My `tern` initializations."
+  (tern-mode t))
+
+
+(use-package vue-mode
+  :ensure t
+  :defer t)
 
 
 (use-package json-mode

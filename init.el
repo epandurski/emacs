@@ -108,7 +108,7 @@
   :bind ("C-f" . projectile-commander)
   :init
   (setq projectile-switch-project-action 'projectile-dired)
-  (projectile-global-mode))
+  (add-hook 'after-init-hook 'projectile-global-mode))
 
 
 (use-package company

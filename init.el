@@ -193,13 +193,24 @@
 (use-package js
   :ensure t
   :init
-  (add-hook 'js-mode-hook 'my-js-mode-hook)
-  :bind (
-         :map js-mode-map
-              ("M-7" . nodejs-repl)))
+  (add-hook 'js-mode-hook 'my-js-mode-hook))
 (defun my-js-mode-hook ()
   "My `js-mode` initializations."
   (electric-pair-mode 1))
+
+
+(use-package nodejs-repl
+  :ensure t
+  :bind (:map js-mode-map
+              ("M-7" . nodejs-repl-switch-to-repl)
+              ("C-c C-c" . nodejs-repl-send-buffer)
+              ("C-c C-e" . nodejs-repl-send-last-expression)
+              ("C-c C-j" . nodejs-repl-send-line)
+              ("C-c C-r" . nodejs-repl-send-region)
+              ("C-c C-l" . nodejs-repl-load-file)
+         :map nodejs-repl-mode-map
+              ("M-r" . kill-word)
+              ("C-r" . comint-history-isearch-backward-regexp)))
 
 
 (use-package company-tern
@@ -208,10 +219,16 @@
   (add-hook 'js-mode-hook 'my-company-tern-configuration-hook)
   :config
   (unbind-key "M-," tern-mode-keymap)
+  (unbind-key "C-c C-r" tern-mode-keymap)
+  (unbind-key "C-c C-c" tern-mode-keymap)
   :bind (:map tern-mode-keymap
               ("<f1>" . tern-get-docs)
               ("M-." . tern-find-definition)
-              ("M->" . tern-pop-find-definition)))
+              ("M->" . tern-pop-find-definition)
+              ("C-c ?" . tern-get-type)  ;; TODO: choose better keys
+              ("C-c C-v" . tern-rename-variable)))
+
+
 (defun my-company-tern-configuration-hook ()
   "My `company-tern` initializations."
   (tern-mode t)

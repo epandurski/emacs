@@ -225,10 +225,8 @@
               ("<f1>" . tern-get-docs)
               ("M-." . tern-find-definition)
               ("M->" . tern-pop-find-definition)
-              ("C-c ?" . tern-get-type)  ;; TODO: choose better keys
-              ("C-c C-v" . tern-rename-variable)))
-
-
+              ("C-c ?" . tern-get-type)
+              ("C-c C-y" . tern-rename-variable)))
 (defun my-company-tern-configuration-hook ()
   "My `company-tern` initializations."
   (tern-mode t)

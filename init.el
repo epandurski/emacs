@@ -124,16 +124,15 @@
   :config
   (unbind-key "C-c <" python-mode-map)
   (unbind-key "C-c >" python-mode-map)
-  :bind (
-         :map python-mode-map
-         ("M-7" . python-shell-switch-to-shell)
-         ("C-," . python-indent-shift-left)
-         ("C-." . python-indent-shift-right)
-         ("M-U" . beginning-of-defun)
-         ("M-O" . end-of-defun)
+  :bind (:map python-mode-map
+              ("M-7" . python-shell-switch-to-shell)
+              ("C-," . python-indent-shift-left)
+              ("C-." . python-indent-shift-right)
+              ("M-U" . beginning-of-defun)
+              ("M-O" . end-of-defun)
          :map inferior-python-mode-map
-         ("M-r" . kill-word)
-         ("C-r" . comint-history-isearch-backward-regexp)))
+              ("M-r" . kill-word)
+              ("C-r" . comint-history-isearch-backward-regexp)))
 
 
 (use-package virtualenvwrapper
@@ -175,8 +174,7 @@
   (unbind-key "M-4" magit-mode-map)
   (unbind-key "M-w" magit-mode-map)
   (unbind-key "C-w" magit-mode-map)
-  :bind (
-         ("C-x g" . magit-status)
+  :bind (("C-x g" . magit-status)
          ("C-x C-g" . magit-dispatch-popup)
          :map magit-mode-map
          ("1" . magit-section-show-level-1-all)

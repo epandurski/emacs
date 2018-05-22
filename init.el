@@ -146,13 +146,14 @@
 (use-package company-jedi
   :ensure t
   :init
-  (add-hook 'python-mode-hook 'my-company-jedi-configuration-hook))
+  (add-hook 'python-mode-hook 'my-company-jedi-configuration-hook)
+  :bind (:map python-mode-map
+              ("<f1>" . jedi:show-doc)
+              ("M-." . jedi:goto-definition)
+              ("M->" . jedi:goto-definition-pop-marker)))
 (defun my-company-jedi-configuration-hook ()
   "My `company-jedi` initializations."
   (jedi:setup)
-  (define-key python-mode-map (kbd "<f1>") 'jedi:show-doc)
-  (define-key python-mode-map (kbd "M-.") 'jedi:goto-definition)
-  (define-key python-mode-map (kbd "M->") 'jedi:goto-definition-pop-marker)
   (add-to-list 'company-backends 'company-jedi))
 
 
@@ -205,12 +206,18 @@
 
 (use-package company-tern
   :ensure t
-  :defer t
   :init
-  (add-hook 'js-mode-hook 'my-tern-configuration-hook))
-(defun my-tern-configuration-hook ()
-  "My `tern` initializations."
-  (tern-mode t))
+  (add-hook 'js-mode-hook 'my-company-tern-configuration-hook)
+  :config
+  (unbind-key "M-," tern-mode-keymap)
+  :bind (:map tern-mode-keymap
+              ("<f1>" . tern-get-docs)
+              ("M-." . tern-find-definition)
+              ("M->" . tern-pop-find-definition)))
+(defun my-company-tern-configuration-hook ()
+  "My `company-tern` initializations."
+  (tern-mode t)
+  (add-to-list 'company-backends 'company-tern))
 
 
 (use-package vue-mode

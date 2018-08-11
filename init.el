@@ -282,6 +282,10 @@
   :init (setq markdown-command "markdown"))
 
 
+(use-package dockerfile-mode
+  :ensure t)
+
+
 (provide 'my-init)
 
 ;;; init.el ends here

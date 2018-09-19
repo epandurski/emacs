@@ -286,6 +286,14 @@
   :ensure t)
 
 
+(use-package jinja2-mode
+  :ensure t)
+
+
+(use-package po-mode
+  :ensure t)
+
+
 (provide 'my-init)
 
 ;;; init.el ends here

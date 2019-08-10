@@ -239,11 +239,6 @@
   (add-to-list 'company-backends 'company-tern))
 
 
-(use-package vue-mode
-  :ensure t
-  :defer t)
-
-
 (use-package json-mode
   :ensure t
   :mode ("\\.json\\'" . json-mode)
@@ -293,10 +288,6 @@
 
 
 (use-package jinja2-mode
-  :ensure t)
-
-
-(use-package po-mode
   :ensure t)
 
 

@@ -6,7 +6,7 @@
 
 (require 'my-util-funcs)
 (require 'ido)
-(ido-mode 'buffer)
+(ido-mode 'both)
 (setq ido-use-virtual-buffers t)
 
 ;; Configure ergoemacs-like global keys:

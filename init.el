@@ -76,6 +76,9 @@
 
 (require 'package)
 
+;; Circumvent a bug in Emacs 26.1.
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+
 ;; Comment/uncomment lines to enable/disable archives as desired:
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 ;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -83,6 +86,13 @@
 
 (package-initialize)
 
+;; Ensure packages in my-package-list are installed.
+(setq my-package-list '(use-package))
+(unless package-archive-contents
+  (package-refresh-contents))
+(dolist (package my-package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -217,26 +227,6 @@
          :map nodejs-repl-mode-map
               ("M-r" . kill-word)
               ("C-r" . comint-history-isearch-backward-regexp)))
-
-
-(use-package company-tern
-  :ensure t
-  :init
-  (add-hook 'js-mode-hook 'my-company-tern-configuration-hook)
-  :config
-  (unbind-key "M-," tern-mode-keymap)
-  (unbind-key "C-c C-r" tern-mode-keymap)
-  (unbind-key "C-c C-c" tern-mode-keymap)
-  :bind (:map tern-mode-keymap
-              ("<f1>" . tern-get-docs)
-              ("M-." . tern-find-definition)
-              ("M->" . tern-pop-find-definition)
-              ("C-c ?" . tern-get-type)
-              ("C-c C-y" . tern-rename-variable)))
-(defun my-company-tern-configuration-hook ()
-  "My `company-tern` initializations."
-  (tern-mode t)
-  (add-to-list 'company-backends 'company-tern))
 
 
 (use-package json-mode

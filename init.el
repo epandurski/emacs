@@ -76,7 +76,7 @@
 
 (require 'package)
 
-;; Circumvent a bug in Emacs 26.1.
+;; Circumvent a bug in Emacs 26.1 (fixed in 27.1).
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
 ;; Comment/uncomment lines to enable/disable archives as desired:
@@ -287,6 +287,10 @@
   :hook ((typescript-mode . tide-setup)
          (typescript-mode . tide-hl-identifier-mode)
          (before-save . tide-format-before-save)))
+
+
+(use-package add-node-modules-path
+  :ensure t)
 
 
 (provide 'my-init)

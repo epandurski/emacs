@@ -286,7 +286,9 @@
   :after (typescript-mode company flycheck)
   :hook ((typescript-mode . tide-setup)
          (typescript-mode . tide-hl-identifier-mode)
-         (before-save . tide-format-before-save)))
+         (before-save . tide-format-before-save))
+  :bind (:map tide-mode-map
+              ("M-," . 'my-toggle-end-beginning-of-buffer)))
 
 
 (use-package add-node-modules-path

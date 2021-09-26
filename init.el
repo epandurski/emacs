@@ -36,7 +36,8 @@
  '(rust-rustfmt-bin "~/.cargo/bin/rustfmt")
  '(scroll-bar-mode (quote right))
  '(show-paren-mode t)
- '(tool-bar-mode nil))
+ '(tool-bar-mode nil)
+ '(typescript-indent-level 2))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -81,7 +82,7 @@
 
 ;; Comment/uncomment lines to enable/disable archives as desired:
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 ;; (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/") t)
 
 (package-initialize)
@@ -281,18 +282,27 @@
   :ensure t)
 
 
-(use-package tide
-  :ensure t
-  :after (typescript-mode company flycheck)
-  :hook ((typescript-mode . tide-setup)
-         (typescript-mode . tide-hl-identifier-mode)
-         (before-save . tide-format-before-save))
-  :bind (:map tide-mode-map
-              ("M-," . 'my-toggle-end-beginning-of-buffer)))
-
-
 (use-package add-node-modules-path
   :ensure t)
+
+
+(use-package lsp-mode
+  :ensure t
+  :init (setq lsp-keymap-prefix "C-v")
+  :hook ((svelte-mode . lsp-deferred)
+         (typescript-mode . lsp-deferred))
+  :commands (lsp lsp-deferred))
+
+
+(use-package lsp-treemacs
+  :init (lsp-treemacs-sync-mode 1)
+  :ensure t
+  :commands lsp-treemacs-errors-list)
+
+
+(use-package which-key
+  :ensure t
+  :config (which-key-mode))
 
 
 (provide 'my-init)

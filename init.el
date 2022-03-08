@@ -204,6 +204,7 @@
 
 (use-package flycheck
   :ensure t
+  :bind ("C-e" . flycheck-explain-error-at-point)
   :init (global-flycheck-mode))
 
 

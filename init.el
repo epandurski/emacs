@@ -287,6 +287,14 @@
   :ensure t)
 
 
+(use-package typescript-mode
+  :ensure t)
+
+
+(use-package svelte-mode
+  :ensure t)
+
+
 (use-package lsp-mode
   :ensure t
   :init (setq lsp-keymap-prefix "C-v")

@@ -157,20 +157,6 @@
   (venv-initialize-eshell))
 
 
-(use-package company-jedi
-  :ensure t
-  :init
-  (add-hook 'python-mode-hook 'my-company-jedi-configuration-hook)
-  :bind (:map python-mode-map
-              ("<f1>" . jedi:show-doc)
-              ("M-." . jedi:goto-definition)
-              ("M->" . jedi:goto-definition-pop-marker)))
-(defun my-company-jedi-configuration-hook ()
-  "My `company-jedi` initializations."
-  (jedi:setup)
-  (add-to-list 'company-backends 'company-jedi))
-
-
 (use-package sgml-mode
   :ensure t
   :bind (
@@ -293,10 +279,13 @@
   :ensure t)
 
 
+; Run "pip install -U 'python-lsp-server'" to install the pylsp server
+; for python.
 (use-package lsp-mode
   :ensure t
   :init (setq lsp-keymap-prefix "C-v")
   :hook ((svelte-mode . lsp-deferred)
+         (python-mode . lsp-deferred)
          (typescript-mode . lsp-deferred))
   :commands (lsp lsp-deferred))
 

@@ -79,9 +79,14 @@
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
 ;; Comment/uncomment lines to enable/disable archives as desired:
-(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-;; (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/") t)
+(setq package-archives
+      '(("gnu"     . "https://elpa.gnu.org/packages/")
+        ("melpa-stable" . "https://stable.melpa.org/packages/")
+        ("melpa"        . "https://melpa.org/packages/")))
+(setq package-archive-priorities
+      '(("melpa-stable" . 10)
+        ("gnu" . 5)
+        ("melpa" . 0)))
 
 (package-initialize)
 
@@ -283,11 +288,12 @@
 ; for python.
 (use-package lsp-mode
   :ensure t
-  :init (setq lsp-keymap-prefix "C-v")
-  :hook ((svelte-mode . lsp-deferred)
-         (python-mode . lsp-deferred)
-         (typescript-mode . lsp-deferred))
-  :commands (lsp lsp-deferred))
+  :commands (lsp lsp-deferred)
+  :init
+  (setq lsp-keymap-prefix "C-v")
+  (add-hook 'lsp-deferred #'svelte-mode)
+  (add-hook 'lsp-deferred #'python-mode)
+  (add-hook 'lsp-deferred #'typescript-mode))
 
 
 (use-package lsp-treemacs

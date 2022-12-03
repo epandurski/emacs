@@ -93,7 +93,7 @@
 (package-initialize)
 
 ;; Ensure packages in my-package-list are installed.
-(setq my-package-list '(use-package))
+(setq my-package-list '(use-package bind-key diminish))
 (unless package-archive-contents
   (package-refresh-contents))
 (dolist (package my-package-list)

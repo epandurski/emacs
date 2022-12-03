@@ -44,8 +44,8 @@
 (global-set-key (kbd "M-Y") 'isearch-backward)
 (global-set-key (kbd "M-t") 'my-toggle-letter-case)
 (global-set-key (kbd "M-T") 'my-upcase-letter-case)
-(global-set-key (kbd "M-,") 'my-toggle-end-beginning-of-buffer)
-(global-set-key (kbd "M-*") 'tags-loop-continue) ;; substitution for the original "M-,"
+(global-set-key (kbd "M-,") 'my-toggle-end-beginning-of-buffer) ;; no binding for the original "M-," command (!)
+(global-set-key (kbd "M-*") 'mark-paragraph)
 (global-set-key (kbd "M->") 'pop-tag-mark) ;; related to "M-." (find-tag)
 (global-set-key (kbd "M-\\") 'cycle-spacing)
 (global-set-key (kbd "M-1") 'kmacro-end-and-call-macro)

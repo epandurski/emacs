@@ -12,7 +12,7 @@
 ;; Configure ergoemacs-like global keys:
 (global-set-key (kbd "M-SPC") 'set-mark-command)
 (global-set-key (kbd "M-w") 'my-open-previous-line)
-(global-set-key (kbd "M-s") 'other-window)
+(global-set-key (kbd "M-'") 'other-window)
 (global-set-key (kbd "M-a") 'execute-extended-command)
 (global-set-key (kbd "M-m") 'ido-switch-buffer)
 (global-set-key (kbd "M-M") 'list-buffers)
@@ -90,9 +90,6 @@
 
 (defun my-minibuffer-keys ()
   "My keybindings for the minibuffer."
-  ;; By default "M-s" is used as a search prefix -- make it switch to
-  ;; other window instead.
-  (define-key minibuffer-local-map (kbd "M-s") 'other-window)
   ;; By default, "M-r" in minibuffer searches in history -- restore it
   ;; to "kill-word", and use "C-r" for searching in history.
   (define-key minibuffer-local-map (kbd "M-r") 'kill-word)
@@ -106,9 +103,6 @@
 
 (defun my-isearch-mode-keys ()
   "My keybindings for `isearch' mode."
-  ;; By default Buffer-menu-mode uses "M-s" as a search prefix -- make
-  ;; it switch to other window instead.
-  (define-key isearch-mode-map (kbd "M-s") 'other-window)
   ;; Add some conveniences.
   (define-key isearch-mode-map (kbd "M-y") 'isearch-repeat-forward)
   (define-key isearch-mode-map (kbd "M-Y") 'isearch-repeat-backward)
@@ -127,12 +121,9 @@
   (define-key ido-common-completion-map (kbd "M-Y") 'ido-prev-match)
   (define-key ido-common-completion-map (kbd "M-l") 'ido-next-match)
   (define-key ido-common-completion-map (kbd "M-j") 'ido-prev-match)
-  ;; When finding files, ido uses "M-s" as a search prefix -- make it
-  ;; switch to other window instead.
-  (define-key ido-file-completion-map (kbd "M-s") 'other-window)
   ;; When finding files, `ido` overrides many of the navigation keys.
   ;; For example, "C-e" enters edit mode, "C-k" deletes the current
-  ;; file, "M-m" creates a new directory. Here we bring the back those
+  ;; file, "M-m" creates a new directory. Here we bring back those
   ;; bindings that we really need.
   (define-key ido-file-completion-map (kbd "M-f") 'delete-char)
   (define-key ido-file-completion-map (kbd "M-d") 'delete-backward-char)
@@ -154,9 +145,6 @@
 
 (defun my-Buffer-menu-mode-keys ()
   "My keybindings for `Buffer-menu' mode."
-  ;; By default Buffer-menu-mode uses "M-s" as a search prefix -- make
-  ;; it switch to other window instead.
-  (define-key Buffer-menu-mode-map (kbd "M-s") 'other-window)
   ;; By default, "C-o" in Buffer-menu-mode displays a file in another
   ;; window -- make it run "find-file" instead, and use "M-f" for
   ;; displaying a file in another window.
@@ -182,9 +170,6 @@
   ;; a file in another window.
   (define-key dired-mode-map (kbd "C-o") 'find-file)
   (define-key dired-mode-map (kbd "M-f") 'dired-display-file)
-  ;; By default dired-mode uses "M-s" as a search prefix -- make it
-  ;; switch to other window instead.
-  (define-key dired-mode-map (kbd "M-s") 'other-window)
   )
 (eval-after-load "dired" '(my-dired-mode-keys))
 

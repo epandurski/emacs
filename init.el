@@ -80,11 +80,13 @@
 
 ;; Comment/uncomment lines to enable/disable archives as desired:
 (setq package-archives
-      '(("gnu"     . "https://elpa.gnu.org/packages/")
+      '(("gnu" . "https://elpa.gnu.org/packages/")
         ("melpa-stable" . "https://stable.melpa.org/packages/")
-        ("melpa"        . "https://melpa.org/packages/")))
+        ("melpa" . "https://melpa.org/packages/")
+        ("myelpa" . "~/myelpa/")))
 (setq package-archive-priorities
-      '(("melpa-stable" . 10)
+      '(("myelpa" . 15)
+        ("melpa-stable" . 10)
         ("gnu" . 5)
         ("melpa" . 0)))
 
@@ -97,6 +99,13 @@
 (dolist (package my-package-list)
   (unless (package-installed-p package)
     (package-install package)))
+
+;; `elpa-mirror` is a module that creates a local Emacs package
+;; repository from installed packages, so that package upgrade never
+;; breaks (see https://github.com/redguardtoo/elpa-mirror). Use `M-x
+;; elpamr-create-mirror-for-installed` to (re)create the local
+;; repository.
+(require 'elpa-mirror)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;

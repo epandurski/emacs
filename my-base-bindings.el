@@ -175,8 +175,9 @@
 
 (defun my-Buffer-menu-mode-keys ()
   "My keybindings for `Buffer-menu' mode."
-  ;; By default Buffer-menu-mode uses "M-s" as a search prefix (quite
-  ;; useless, in fact). Make it do what it is supposed to do instead.
+  ;; `Buffer-menu-mode` uses "M-s" as a key prefix. Make it do what it
+  ;; is supposed to do, and use "M-6" as a key prefix instead.
+  (define-key Buffer-menu-mode-map (kbd "M-6") (lookup-key Buffer-menu-mode-map (kbd "M-s")))
   (define-key Buffer-menu-mode-map (kbd "M-s") 'other-window)
   ;; By default, "C-o" in Buffer-menu-mode displays a file in another
   ;; window -- make it run "find-file" instead, and use "M-f" for

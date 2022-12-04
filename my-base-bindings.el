@@ -9,10 +9,21 @@
 (ido-mode 'both)
 (setq ido-use-virtual-buffers t)
 
-;; Configure ergoemacs-like global keys:
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Configure ergoemacs-like global keys: ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Bind the original M-s to M-6.
+(global-set-key (kbd "M-6") (lookup-key (current-global-map) (kbd "M-s")))
+
+;; Bind the original M-g to M-'.
+(global-set-key (kbd "M-'") (lookup-key (current-global-map) (kbd "M-g")))
+
 (global-set-key (kbd "M-SPC") 'set-mark-command)
 (global-set-key (kbd "M-w") 'my-open-previous-line)
-(global-set-key (kbd "M-'") 'other-window)
+(global-set-key (kbd "M-s") 'other-window)
 (global-set-key (kbd "M-a") 'execute-extended-command)
 (global-set-key (kbd "M-m") 'ido-switch-buffer)
 (global-set-key (kbd "M-M") 'list-buffers)
@@ -45,6 +56,7 @@
 (global-set-key (kbd "M-t") 'my-toggle-letter-case)
 (global-set-key (kbd "M-T") 'my-upcase-letter-case)
 (global-set-key (kbd "M-,") 'my-toggle-end-beginning-of-buffer) ;; no binding for the original "M-," command (!)
+(global-set-key (kbd "M-=") 'abbrev-prefix-mark)
 (global-set-key (kbd "M-*") 'mark-paragraph)
 (global-set-key (kbd "M->") 'pop-tag-mark) ;; related to "M-." (find-tag)
 (global-set-key (kbd "M-\\") 'cycle-spacing)
@@ -54,7 +66,7 @@
 (global-set-key (kbd "M-4") 'delete-other-windows)
 (global-set-key (kbd "M-5") 'query-replace)
 (global-set-key (kbd "M-%") 'query-replace-regexp)
-(global-set-key (kbd "M-6") 'goto-line)
+(global-set-key (kbd "M-6") search-map)
 (global-unset-key (kbd "M-7")) ;; Every mode can use this as a fast shortcut.
 (global-set-key (kbd "M-8") 'my-mark-current-symbol)
 (global-set-key (kbd "M-9") 'my-dired-at-home)
@@ -90,12 +102,15 @@
 
 (defun my-minibuffer-keys ()
   "My keybindings for the minibuffer."
-  ;; By default, "M-r" in minibuffer searches in history -- restore it
-  ;; to "kill-word", and use "C-r" for searching in history.
+  ;; Minibuffer uses "M-s" and "M-r" to search in history. Make them
+  ;; do what they are supposed to do, and use "C-s" and "C-r" to
+  ;; search in history instead.
+  (define-key minibuffer-local-map (kbd "M-s") 'other-window)
   (define-key minibuffer-local-map (kbd "M-r") 'kill-word)
+  (define-key minibuffer-local-map (kbd "C-s") 'next-matching-history-element)
   (define-key minibuffer-local-map (kbd "C-r") 'previous-matching-history-element)
-  ;; By default "M-v" in the minibuffer switches to the completion
-  ;; buffer -- make it do yank instead.
+  ;; Minibuffer uses "M-v" to switch to the completion buffer. Make it
+  ;; do what it is supposed to do instead.
   (define-key minibuffer-local-completion-map (kbd "M-v") 'yank)
   (define-key minibuffer-local-completion-map (kbd "M-V") 'yank-pop)
   )
@@ -103,14 +118,24 @@
 
 (defun my-isearch-mode-keys ()
   "My keybindings for `isearch' mode."
-  ;; Add some conveniences.
+  ;; By default `buffer-menu-mode` uses "M-s" as a key prefix. Make it
+  ;; do what it is supposed to do, and use "M-i" as a key prefix
+  ;; instead.
+  (define-key isearch-mode-map (kbd "M-i") (lookup-key isearch-mode-map (kbd "M-s")))
+  (define-key isearch-mode-map (kbd "M-s") 'other-window)
+  ;; Add conveniences.
+  (define-key isearch-mode-map (kbd "C-s") nil)
+  (define-key isearch-mode-map (kbd "C-r") nil)
+  (define-key isearch-mode-map (kbd "C-w") nil)
+  (define-key isearch-mode-map (kbd "C-y") nil)
   (define-key isearch-mode-map (kbd "M-y") 'isearch-repeat-forward)
   (define-key isearch-mode-map (kbd "M-Y") 'isearch-repeat-backward)
   (define-key isearch-mode-map (kbd "M-5") 'isearch-query-replace)
   (define-key isearch-mode-map (kbd "M-%") 'isearch-query-replace-regexp)
   (define-key isearch-mode-map (kbd "M-v") 'isearch-yank-kill)
   (define-key isearch-mode-map (kbd "M-V") 'isearch-yank-pop)
-  (define-key isearch-mode-map (kbd "C-y") 'isearch-occur)
+  (define-key isearch-mode-map (kbd "M-x") 'isearch-yank-word-or-char)
+  (define-key isearch-mode-map (kbd "M-b") 'isearch-toggle-input-method)
   )
 (eval-after-load "isearch" '(my-isearch-mode-keys))
 
@@ -121,6 +146,10 @@
   (define-key ido-common-completion-map (kbd "M-Y") 'ido-prev-match)
   (define-key ido-common-completion-map (kbd "M-l") 'ido-next-match)
   (define-key ido-common-completion-map (kbd "M-j") 'ido-prev-match)
+  ;; Change the original "M-s" binding for the file manager to "M-6",
+  ;; and make sure "M-s" does what it is supposed to do.
+  (define-key ido-file-completion-map (kbd "M-6") (lookup-key ido-file-completion-map (kbd "M-s")))
+  (define-key ido-file-completion-map (kbd "M-s") 'other-window)
   ;; When finding files, `ido` overrides many of the navigation keys.
   ;; For example, "C-e" enters edit mode, "C-k" deletes the current
   ;; file, "M-m" creates a new directory. Here we bring back those
@@ -141,10 +170,14 @@
   (define-key ido-buffer-completion-map (kbd "C-o") 'ido-enter-find-file)
   (define-key ido-file-completion-map (kbd "C-o") 'ido-fallback-command)
   )
-(add-hook 'ido-setup-hook 'my-ido-keys)
+;; (add-hook 'ido-setup-hook 'my-ido-keys)
+(eval-after-load "ido" '(my-ido-keys))
 
 (defun my-Buffer-menu-mode-keys ()
   "My keybindings for `Buffer-menu' mode."
+  ;; By default Buffer-menu-mode uses "M-s" as a search prefix (quite
+  ;; useless, in fact). Make it do what it is supposed to do instead.
+  (define-key Buffer-menu-mode-map (kbd "M-s") 'other-window)
   ;; By default, "C-o" in Buffer-menu-mode displays a file in another
   ;; window -- make it run "find-file" instead, and use "M-f" for
   ;; displaying a file in another window.
@@ -170,6 +203,10 @@
   ;; a file in another window.
   (define-key dired-mode-map (kbd "C-o") 'find-file)
   (define-key dired-mode-map (kbd "M-f") 'dired-display-file)
+  ;; `dired-mode` uses "M-s" as a key prefix. Make it do what it is
+  ;; supposed to do, and use "M-6" as a key prefix instead.
+  (define-key dired-mode-map (kbd "M-6") (lookup-key dired-mode-map (kbd "M-s")))
+  (define-key dired-mode-map (kbd "M-s") 'other-window)
   )
 (eval-after-load "dired" '(my-dired-mode-keys))
 

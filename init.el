@@ -156,9 +156,6 @@
               ("C-." . python-indent-shift-right)
               ("M-U" . beginning-of-defun)
               ("M-O" . end-of-defun)
-              ("M-'" . hs-toggle-hiding)
-              ("M-\"" . hs-hide-level)
-              ("C-'" . hs-show-all)
          :map inferior-python-mode-map
               ("M-r" . kill-word)
               ("C-r" . comint-history-isearch-backward-regexp)))

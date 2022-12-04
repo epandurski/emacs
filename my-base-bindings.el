@@ -55,7 +55,7 @@
 (global-set-key (kbd "M-Y") 'isearch-backward)
 (global-set-key (kbd "M-t") 'my-toggle-letter-case)
 (global-set-key (kbd "M-T") 'my-upcase-letter-case)
-(global-set-key (kbd "M-,") 'my-toggle-end-beginning-of-buffer) ;; no binding for the original "M-," command (!)
+(global-set-key (kbd "M-,") 'my-toggle-end-beginning-of-buffer)
 (global-set-key (kbd "M-=") 'abbrev-prefix-mark)
 (global-set-key (kbd "M-*") 'mark-paragraph)
 (global-set-key (kbd "M->") 'pop-tag-mark) ;; related to "M-." (find-tag)

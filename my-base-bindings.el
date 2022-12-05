@@ -155,10 +155,11 @@
   (define-key ido-file-completion-map (kbd "M-b") 'toggle-input-method)
   (define-key ido-file-completion-map (kbd "M-v") 'yank)
   (define-key ido-file-completion-map (kbd "M-w") 'ido-forget-work-directory)
-  (define-key ido-file-completion-map (kbd "M-y") 'ido-merge-work-directories)
-  (define-key ido-file-completion-map (kbd "M-Y") 'ido-merge-work-directories)
   (define-key ido-file-completion-map (kbd "M-f") 'ido-wide-find-file-or-pop-dir)
   (define-key ido-file-completion-map (kbd "M-r") 'ido-wide-find-dir-or-delete-dir)
+  (define-key ido-file-completion-map (kbd "M-y") 'ido-merge-work-directories)
+  (define-key ido-file-completion-map (kbd "M-Y") 'ido-merge-work-directories)
+  (define-key ido-file-completion-map (kbd "C-y") 'ido-merge-work-directories)
   ;; Use "C-o" to enter `ido-find-file` mode from `ido-switch-buffer`
   ;; mode ("C-f" does this too). Press "C-o" again to fallback to the
   ;; classic `find-file` mode.

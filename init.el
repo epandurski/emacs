@@ -123,6 +123,7 @@
   :init
   (ido-mode 'both)
   (add-to-list 'completion-ignored-extensions ".ignore_this_extension")
+  (setq ido-case-fold t)
   (setq ido-use-virtual-buffers t)
   (setq ido-ignore-extensions t)
   (setq ido-enable-flex-matching t)

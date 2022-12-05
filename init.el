@@ -118,12 +118,25 @@
 (require 'bind-key)
 
 
+(use-package ido
+  :ensure t
+  :init
+  (ido-mode 'both)
+  (add-to-list 'completion-ignored-extensions ".ignore_this_extension")
+  (setq ido-use-virtual-buffers t)
+  (setq ido-ignore-extensions t)
+  (setq ido-enable-flex-matching t)
+  (setq ido-file-extensions-order
+        '(".org" ".txt" ".py" ".js" ".ts" ".rs" ".c" ".json" ".md" ".rst"
+          ".emacs" ".xml" ".el" ".ini" ".cfg" ".cnf"))
+  (setq ido-auto-merge-work-directories-length -1) ;; disable auto-merge
+  (setq ido-use-faces t))
+
+
 (use-package flx-ido
   :ensure t
   :init
-  (flx-ido-mode 1)
-  (setq ido-enable-flex-matching t)
-  (setq ido-use-faces nil))
+  (flx-ido-mode 1))
 
 
 (use-package projectile

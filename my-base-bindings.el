@@ -79,7 +79,8 @@
 (global-set-key (kbd "<f7>") 'eshell)
 
 ;; Unbind unused keys:
-(dolist (key '("C-x 1" "C-x 2" "C-x 3" "C-x u" "C-x C-b" "C-e" "C-f" "C-v" "C-b" "C-_"))
+(dolist (key '("C-x 1" "C-x 2" "C-x 3" "C-x u" "C-x C-b"
+               "C-e" "C-f" "C-v" "C-b" "C-_" "C-\\"))
   (global-unset-key (kbd key)))
 
 ;; Use "C-z" when not on text terminal:

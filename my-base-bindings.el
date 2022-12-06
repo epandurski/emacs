@@ -111,9 +111,10 @@
 (defun my-isearch-mode-keys ()
   "My keybindings for `isearch' mode."
   ;; By default `buffer-menu-mode` uses "M-s" as a key prefix. Make it
-  ;; do what it is supposed to do, and use "M-i" as a key prefix
-  ;; instead.
+  ;; do what it is supposed to do, and use "M-i" or "M-6" as a key
+  ;; prefix instead.
   (define-key isearch-mode-map (kbd "M-i") (lookup-key isearch-mode-map (kbd "M-s")))
+  (define-key isearch-mode-map (kbd "M-6") (lookup-key isearch-mode-map (kbd "M-s")))
   (define-key isearch-mode-map (kbd "M-s") 'other-window)
   ;; Add conveniences.
   (define-key isearch-mode-map (kbd "C-s") nil)

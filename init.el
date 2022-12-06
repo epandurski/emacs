@@ -66,6 +66,7 @@
 (require 'my-base-bindings)
 (require 'my-server)
 (require 'my-workarounds)
+(setq grep-program "egrep")
 
 
 

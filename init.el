@@ -14,8 +14,8 @@
  '(column-number-mode t)
  '(cua-remap-control-v nil)
  '(default-input-method "bulgarian-phonetic")
- '(dired-listing-switches "-al --time-style=long-iso --group-directories-first")
- '(dired-omit-files "^\\.?#\\|^\\.$\\|^\\.\\.$\\|^\\..+$")
+ '(dired-listing-switches "-alho --time-style=long-iso --group-directories-first")
+ '(dired-omit-files "^[#]\\|^[.]$\\|^[.]\\(?:[^.]\\|[.].+\\)")
  '(dired-recursive-copies 'top)
  '(dired-recursive-deletes 'top)
  '(dired-use-ls-dired t)
@@ -107,6 +107,11 @@
 ;; elpamr-create-mirror-for-installed` to (re)create the local
 ;; repository.
 (require 'elpa-mirror)
+
+;; Configure dired file associations.
+(setq dired-guess-shell-alist-user
+      '(("\\.\\(mp3\\|ogg\\|wav\\)\\'" "audacious")
+        ("\\.\\(mp4\\|webm\\|mov\\|avi)\\'" "vlc"))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;

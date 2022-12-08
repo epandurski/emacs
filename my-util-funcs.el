@@ -3,6 +3,7 @@
 ;;; Commentary:
 
 ;;; Code:
+(require 'dired)
 
 (defun my-open-previous-line (arg)
   "Open a new line before the current one.
@@ -107,6 +108,43 @@ Toggles between: “all lower”, “Init Caps”, “ALL CAPS”."
   (interactive)
   (let ((current-prefix-arg 4)) ;; emulate C-u
     (call-interactively 'set-mark-command)))
+
+(defun my-dired-mouse-find-file (event &optional find-file-func find-dir-func)
+  "In Dired, visit the file or directory name you click on.
+The optional arguments FIND-FILE-FUNC and FIND-DIR-FUNC specify
+functions to visit the file and directory, respectively.  If
+omitted or nil, these arguments default to `find-file' and
+`find-alternate-file', respectively.  See dired-mouse-find-file."
+  (interactive "e")
+  (or find-file-func (setq find-file-func 'find-file-other-window))
+  (or find-dir-func (setq find-dir-func 'find-alternate-file))
+  (let (window pos file)
+    (save-excursion
+      (setq window (posn-window (event-end event))
+            pos (posn-point (event-end event)))
+      (if (not (windowp window))
+          (error "No file chosen"))
+      (set-buffer (window-buffer window))
+      (goto-char pos)
+      (setq file (dired-get-file-for-visit)))
+    (if (file-directory-p file)
+        (or (and (cdr dired-subdir-alist)
+                 (dired-goto-subdir file))
+            (progn
+              (select-window window)
+              (funcall find-dir-func file)))
+      (select-window window)
+      (funcall find-file-func (file-name-sans-versions file t)))))
+
+(defun my-dired-display-file ()
+  "In Dired, display this file in another window. If it is a
+directory, display it in the same window."
+  (interactive)
+  (let (file)
+    (setq file (dired-get-file-for-visit))
+    (if (file-directory-p file)
+        (find-alternate-file file)
+      (display-buffer (find-file-noselect file) t))))
 
 (provide 'my-util-funcs)
 

@@ -87,12 +87,6 @@
 ;; (when window-system
 ;;   (global-set-key (kbd "C-z") 'undo))
 
-(defun my-dired-keys ()
-  "My keybindings for dired."
-  (define-key dired-mode-map (kbd "h") 'dired-omit-mode)
-  )
-(eval-after-load "dired" '(my-dired-keys))
-
 (defun my-minibuffer-keys ()
   "My keybindings for the minibuffer."
   ;; Minibuffer uses "M-s" and "M-r" to search in history. Make them
@@ -205,11 +199,16 @@
 
 (defun my-dired-mode-keys ()
   "My keybindings for `dired' mode."
+  (define-key dired-mode-map (kbd "h") 'dired-omit-mode)
+  ;; Make so that when the left button is clicked (dired translates
+  ;; the left to <mouse-2>) directories are open in-place, and files
+  ;; are open in other window.
+  (define-key dired-mode-map (kbd "<mouse-2>") 'my-dired-mouse-find-file)
   ;; By default, "C-o" in dired-mode displays a file in another window
   ;; -- make it run "find-file" instead, and use "M-f" for displaying
   ;; a file in another window.
   (define-key dired-mode-map (kbd "C-o") 'find-file)
-  (define-key dired-mode-map (kbd "M-f") 'dired-display-file)
+  (define-key dired-mode-map (kbd "M-f") 'my-dired-display-file)
   ;; `dired-mode` uses "M-s" as a key prefix. Make it do what it is
   ;; supposed to do, and use "M-6" as a key prefix instead.
   (define-key dired-mode-map (kbd "M-6") (lookup-key dired-mode-map (kbd "M-s")))

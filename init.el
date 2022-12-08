@@ -113,6 +113,12 @@
       '(("\\.\\(mp3\\|ogg\\|wav\\)\\'" "audacious")
         ("\\.\\(mp4\\|webm\\|mov\\|avi)\\'" "vlc")))
 
+;; Add code navigation commands to the Edit menu. This makes easier
+;; navigating the code using only the mouse.
+(easy-menu-add-item nil '("edit") ["--" nil t])
+(easy-menu-add-item nil '("edit") ["Jump to Definition" xref-find-definitions t])
+(easy-menu-add-item nil '("edit") ["Jump Back from Definition" xref-pop-marker-stack t])
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configure use-package ;;

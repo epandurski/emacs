@@ -50,7 +50,7 @@
 (global-set-key (kbd "M-,") 'my-toggle-end-beginning-of-buffer)
 (global-set-key (kbd "M-=") 'abbrev-prefix-mark)
 (global-set-key (kbd "M-*") 'mark-paragraph)
-(global-set-key (kbd "M->") 'pop-tag-mark) ;; related to "M-." (find-tag)
+(global-set-key (kbd "M->") 'xref-pop-marker-stack) ;; related to "M-." (xref-find-definitions)
 (global-set-key (kbd "M-\\") 'cycle-spacing)
 (global-set-key (kbd "M-1") 'kmacro-end-and-call-macro)
 (global-set-key (kbd "M-2") 'split-window-below)

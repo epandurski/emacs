@@ -140,7 +140,7 @@
   )
 (eval-after-load "isearch" '(my-isearch-mode-keys))
 
-(defun my-ido-keys ()
+(defun my-ido-mode-keys ()
   "My keybindings for ido."
   ;; Use "M-y", "M-Y", "M-j", "M-l" for switching between the matching items.
   (define-key ido-common-completion-map (kbd "M-y") 'ido-next-match)
@@ -177,8 +177,7 @@
   ;; Press "M-m" again to fallback to the classic `switch-to-buffer`.
   (define-key ido-buffer-completion-map (kbd "M-m") 'ido-fallback-command)
   )
-;; (add-hook 'ido-setup-hook 'my-ido-keys)
-(eval-after-load "ido" '(my-ido-keys))
+(eval-after-load "ido" '(my-ido-mode-keys))
 
 (defun my-Buffer-menu-mode-keys ()
   "My keybindings for `Buffer-menu' mode."

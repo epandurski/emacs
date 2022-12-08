@@ -111,7 +111,7 @@
 ;; Configure dired file associations.
 (setq dired-guess-shell-alist-user
       '(("\\.\\(mp3\\|ogg\\|wav\\)\\'" "audacious")
-        ("\\.\\(mp4\\|webm\\|mov\\|avi)\\'" "vlc"))
+        ("\\.\\(mp4\\|webm\\|mov\\|avi)\\'" "vlc")))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;

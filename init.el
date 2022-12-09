@@ -14,7 +14,8 @@
  '(column-number-mode t)
  '(cua-remap-control-v nil)
  '(default-input-method "bulgarian-phonetic")
- '(dired-listing-switches "-alho --time-style=long-iso --group-directories-first")
+ '(dired-dwim-target 'dired-dwim-target-next)
+ '(dired-listing-switches "-alh --time-style=long-iso --group-directories-first")
  '(dired-omit-files "^[#]\\|^[.]$\\|^[.]\\(?:[^.]\\|[.].+\\)")
  '(dired-recursive-copies 'top)
  '(dired-recursive-deletes 'top)
@@ -57,6 +58,10 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (require 'jka-compr)
 (require 'dired-x)
+(require 'find-dired)
+(setq find-ls-option
+      '("-exec ls -ldhb --time-style=long-iso --group-directories-first {} +" .
+        "-ldhb --time-style=long-iso --group-directories-first"))
 (setq-default dired-omit-mode t)
 (require 'recentf)
 (recentf-mode t)

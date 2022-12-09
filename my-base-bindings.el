@@ -199,7 +199,9 @@
 
 (defun my-dired-mode-keys ()
   "My keybindings for `dired' mode."
-  (define-key dired-mode-map (kbd "h") 'dired-omit-mode)
+  (define-key dired-mode-map (kbd "a") 'dired-omit-mode)
+  (define-key dired-mode-map (kbd "M-5") 'find-name-dired)
+  (define-key dired-mode-map (kbd "M-%") 'find-dired)
   ;; Make so that when the left button is clicked (dired translates
   ;; the left to <mouse-2>) directories are open in-place, and files
   ;; are open in other window.

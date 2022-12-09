@@ -7,15 +7,33 @@
 (require 'my-util-funcs)
 (require 'ido)
 
-;; Bind the original M-s to M-6.
-(global-set-key (kbd "M-6") (lookup-key (current-global-map) (kbd "M-s")))
+;; =====================
+;; Swap "M-s" and "M-6"!
+;; =====================
+;;
+;; What we really want is to use "M-s" to switch to other window. But
+;; "M-s" is quite hard to rebind correctly. For example: it turns out
+;; that "dired", for some strange reason, sometimes tries to add an
+;; "M-s f f" binding to the isearch-mode-map keymap. For this reason,
+;; the simplest solution seems to be to bind "M-6" to other-window,
+;; and swap "M-s" and "M-6".
+(define-key key-translation-map (kbd "M-s") (kbd "M-6"))
+(define-key key-translation-map (kbd "M-6") (kbd "M-s"))
+(global-set-key (kbd "M-6") 'other-window) ;; "M-6" and "M-s" are swapped now!
 
-;; Bind the original M-g to M-'.
-(global-set-key (kbd "M-'") (lookup-key (current-global-map) (kbd "M-g")))
+;; =====================
+;; Swap "M-g" and "M-'"!
+;; =====================
+;;
+;; What we really want is to use "M-g" to kill a line. For the reasons
+;; explained above, the safest solution seems to be to bind "M-'" to
+;; kill-line, and swap "M-g" and "M-'".
+(define-key key-translation-map (kbd "M-g") (kbd "M-'"))
+(define-key key-translation-map (kbd "M-'") (kbd "M-g"))
+(global-set-key (kbd "M-'") 'kill-line) ;; "M-'" and "M-g" are swapped now!
 
 (global-set-key (kbd "M-SPC") 'set-mark-command)
 (global-set-key (kbd "M-w") 'my-open-previous-line)
-(global-set-key (kbd "M-s") 'other-window)
 (global-set-key (kbd "M-a") 'execute-extended-command)
 (global-set-key (kbd "M-m") 'ido-switch-buffer)
 (global-set-key (kbd "M-M") 'list-buffers)
@@ -36,7 +54,6 @@
 (global-set-key (kbd "M-d") 'delete-backward-char)
 (global-set-key (kbd "M-r") 'kill-word)
 (global-set-key (kbd "M-e") 'backward-kill-word)
-(global-set-key (kbd "M-g") 'kill-line)
 (global-set-key (kbd "M-b") 'toggle-input-method)
 (global-set-key (kbd "M-z") 'undo)
 (global-set-key (kbd "M-x") 'kill-region)
@@ -58,7 +75,6 @@
 (global-set-key (kbd "M-4") 'delete-other-windows)
 (global-set-key (kbd "M-5") 'query-replace)
 (global-set-key (kbd "M-%") 'query-replace-regexp)
-(global-set-key (kbd "M-6") search-map)
 (global-unset-key (kbd "M-7")) ;; Every mode can use this as a fast shortcut.
 (global-set-key (kbd "M-8") 'my-mark-current-symbol)
 (global-set-key (kbd "M-9") 'my-dired-at-home)
@@ -89,10 +105,10 @@
 
 (defun my-minibuffer-keys ()
   "My keybindings for the minibuffer."
-  ;; Minibuffer uses "M-s" and "M-r" to search in history. Make them
-  ;; do what they are supposed to do, and use "C-s" and "C-r" to
-  ;; search in history instead.
-  (define-key minibuffer-local-map (kbd "M-s") 'other-window)
+  ;; Minibuffer uses "M-s" (which is swapped with "M-6") and "M-r" to
+  ;; search in history. Make them do what they are supposed to do, and
+  ;; use "C-s" and "C-r" to search in history instead.
+  (define-key minibuffer-local-map (kbd "M-s") nil)
   (define-key minibuffer-local-map (kbd "M-r") 'kill-word)
   (define-key minibuffer-local-map (kbd "C-s") 'next-matching-history-element)
   (define-key minibuffer-local-map (kbd "C-r") 'previous-matching-history-element)
@@ -105,12 +121,9 @@
 
 (defun my-isearch-mode-keys ()
   "My keybindings for `isearch' mode."
-  ;; By default `buffer-menu-mode` uses "M-s" as a key prefix. Make it
-  ;; do what it is supposed to do, and use "M-i" or "M-6" as a key
-  ;; prefix instead.
+  ;; Add "M-i" as a more convienent alternative to "M-6" (that is: the
+  ;; original "M-s" prefix key).
   (define-key isearch-mode-map (kbd "M-i") (lookup-key isearch-mode-map (kbd "M-s")))
-  (define-key isearch-mode-map (kbd "M-6") (lookup-key isearch-mode-map (kbd "M-s")))
-  (define-key isearch-mode-map (kbd "M-s") 'other-window)
   ;; Add conveniences.
   (define-key isearch-mode-map (kbd "C-s") nil)
   (define-key isearch-mode-map (kbd "C-r") nil)
@@ -119,7 +132,7 @@
   (define-key isearch-mode-map (kbd "C-\\") nil)
   (define-key isearch-mode-map (kbd "M-k") 'isearch-yank-until-char)
   (define-key isearch-mode-map (kbd "M-d") 'isearch-del-char)
-  (define-key isearch-mode-map (kbd "M-g") 'isearch-yank-line)
+  (define-key isearch-mode-map (kbd "M-'") 'isearch-yank-line) ;; This is "M-g" really!
   (define-key isearch-mode-map (kbd "M-t") 'isearch-toggle-case-fold)
   (define-key isearch-mode-map (kbd "M-c") 'isearch-yank-char)
   (define-key isearch-mode-map (kbd "M-w") 'isearch-yank-word-or-char)
@@ -141,10 +154,6 @@
   (define-key ido-common-completion-map (kbd "M-Y") 'ido-prev-match)
   (define-key ido-common-completion-map (kbd "M-l") 'ido-next-match)
   (define-key ido-common-completion-map (kbd "M-j") 'ido-prev-match)
-  ;; Change the original "M-s" binding for the file manager to "M-6",
-  ;; and make sure "M-s" does what it is supposed to do.
-  (define-key ido-file-completion-map (kbd "M-6") (lookup-key ido-file-completion-map (kbd "M-s")))
-  (define-key ido-file-completion-map (kbd "M-s") 'other-window)
   ;; When finding files, `ido` overrides many of the navigation keys.
   ;; For example, "C-e" enters edit mode, "C-k" deletes the current
   ;; file, "M-m" creates a new directory. Here we bring back those
@@ -175,10 +184,6 @@
 
 (defun my-Buffer-menu-mode-keys ()
   "My keybindings for `Buffer-menu' mode."
-  ;; `Buffer-menu-mode` uses "M-s" as a key prefix. Make it do what it
-  ;; is supposed to do, and use "M-6" as a key prefix instead.
-  (define-key Buffer-menu-mode-map (kbd "M-6") (lookup-key Buffer-menu-mode-map (kbd "M-s")))
-  (define-key Buffer-menu-mode-map (kbd "M-s") 'other-window)
   ;; By default, "C-o" in Buffer-menu-mode displays a file in another
   ;; window -- make it run "find-file" instead, and use "M-f" for
   ;; displaying a file in another window.
@@ -211,10 +216,6 @@
   ;; a file in another window.
   (define-key dired-mode-map (kbd "C-o") 'find-file)
   (define-key dired-mode-map (kbd "M-f") 'my-dired-display-file)
-  ;; `dired-mode` uses "M-s" as a key prefix. Make it do what it is
-  ;; supposed to do, and use "M-6" as a key prefix instead.
-  (define-key dired-mode-map (kbd "M-6") (lookup-key dired-mode-map (kbd "M-s")))
-  (define-key dired-mode-map (kbd "M-s") 'other-window)
   )
 (eval-after-load "dired" '(my-dired-mode-keys))
 

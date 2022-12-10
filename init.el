@@ -15,6 +15,7 @@
  '(cua-remap-control-v nil)
  '(default-input-method "bulgarian-phonetic")
  '(dired-dwim-target 'dired-dwim-target-next)
+ '(dired-isearch-filenames t)
  '(dired-listing-switches "-alh --time-style=long-iso --group-directories-first")
  '(dired-omit-files "^[#]\\|^[.]$\\|^[.]\\(?:[^.]\\|[.].+\\)")
  '(dired-recursive-copies 'top)

@@ -12,6 +12,7 @@
 
 ;; Bind the original M-g to M-'.
 (global-set-key (kbd "M-'") (lookup-key (current-global-map) (kbd "M-g")))
+(global-set-key (kbd "M-' M-'") 'goto-line) ;; much easier than "M-' M-g"
 
 (global-set-key (kbd "M-SPC") 'set-mark-command)
 (global-set-key (kbd "M-w") 'my-open-previous-line)

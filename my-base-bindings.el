@@ -62,8 +62,6 @@
 (global-set-key (kbd "M-6") search-map)
 (global-unset-key (kbd "M-7")) ;; Every mode can use this as a fast shortcut.
 (global-set-key (kbd "M-8") 'my-mark-current-symbol)
-(global-set-key (kbd "M-9") 'my-dired-at-home)
-(global-set-key (kbd "M-0") 'my-bookmark-bmenu-list)
 (global-set-key (kbd "M-<return>") 'indent-new-comment-line)  ;; "C-M-j" does the same
 (global-set-key (kbd "C-SPC") 'my-set-mark-command-with-prefix)
 (global-set-key (kbd "C-a") 'mark-whole-buffer)
@@ -79,6 +77,11 @@
 (global-set-key (kbd "C-2") 'server-edit)
 (global-set-key (kbd "<f7>") 'eshell)
 (global-set-key (kbd "<f6>") 'proced)
+(global-set-key (kbd "C-c d h") 'my-dired-at-home)
+(global-set-key (kbd "C-c d d") 'ido-dired)
+(global-set-key (kbd "C-c d b") 'my-bookmark-bmenu-list)
+(global-set-key (kbd "C-c d p") 'dired-at-point)
+(global-set-key (kbd "C-c d j") 'dired-jump)
 
 ;; Unbind unused keys:
 (dolist (key '("C-x 1" "C-x 2" "C-x 3" "C-x u" "C-x C-b"

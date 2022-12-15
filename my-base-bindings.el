@@ -60,8 +60,10 @@
 (global-set-key (kbd "M-5") 'query-replace)
 (global-set-key (kbd "M-%") 'query-replace-regexp)
 (global-set-key (kbd "M-6") search-map)
-(global-unset-key (kbd "M-7")) ;; Every mode can use this as a fast shortcut.
+(global-unset-key (kbd "M-7")) ;; Every major-mode can define this as a fast shortcut.
 (global-set-key (kbd "M-8") 'my-mark-current-symbol)
+(global-unset-key (kbd "M-9")) ;; Every major-mode can define this as a fast shortcut.
+(global-unset-key (kbd "M-0")) ;; Every major-mode can define this as a fast shortcut.
 (global-set-key (kbd "M-<return>") 'indent-new-comment-line)  ;; "C-M-j" does the same
 (global-set-key (kbd "C-SPC") 'my-set-mark-command-with-prefix)
 (global-set-key (kbd "C-a") 'mark-whole-buffer)

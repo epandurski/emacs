@@ -66,6 +66,7 @@
 (global-unset-key (kbd "M-0")) ;; Every major-mode can define this as a fast shortcut.
 (global-set-key (kbd "M-<return>") 'indent-new-comment-line)  ;; "C-M-j" does the same
 (global-set-key (kbd "C-SPC") 'my-set-mark-command-with-prefix)
+(global-set-key (kbd "C-@") 'my-set-mark-command-with-prefix)
 (global-set-key (kbd "C-a") 'mark-whole-buffer)
 (global-set-key (kbd "C-y") 'rgrep)
 (global-set-key (kbd "C-r") 'revert-buffer)

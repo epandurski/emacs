@@ -136,6 +136,14 @@
 (require 'bind-key)
 
 
+(use-package use-package-chords
+  :ensure t
+  :config
+  (key-chord-mode 1)
+  (setq key-chord-one-key-delay 0.4) ;; the default is 0.2
+  (key-chord-define-global "jj" (lookup-key (current-global-map) (kbd "C-c"))))
+
+
 (use-package ido
   :ensure t
   :init

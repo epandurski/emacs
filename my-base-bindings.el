@@ -78,6 +78,7 @@
 (global-set-key (kbd "C-n") 'next-error)
 (global-set-key (kbd "C-2") 'server-edit)
 (global-set-key (kbd "<f7>") 'eshell)
+(global-set-key (kbd "<f6>") 'proced)
 
 ;; Unbind unused keys:
 (dolist (key '("C-x 1" "C-x 2" "C-x 3" "C-x u" "C-x C-b"

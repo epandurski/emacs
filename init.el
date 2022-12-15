@@ -215,8 +215,9 @@
   (unbind-key "M-4" magit-mode-map)
   (unbind-key "M-w" magit-mode-map)
   (unbind-key "C-w" magit-mode-map)
-  :bind (("C-x g" . magit-status)
-         ("C-x C-g" . magit-dispatch-popup)
+  :bind (("C-x g" . magit-status) ;; an old habit, use "C-c g" intead
+         ("C-c g" . magit-status)
+         ("C-c G" . magit-file-dispatch)
          :map magit-mode-map
          ("1" . magit-section-show-level-1-all)
          ("2" . magit-section-show-level-2-all)

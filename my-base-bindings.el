@@ -78,13 +78,22 @@
 (global-set-key (kbd "C-p") 'previous-error)
 (global-set-key (kbd "C-n") 'next-error)
 (global-set-key (kbd "<f5>") 'server-edit)
-(global-set-key (kbd "<f6>") 'proced)
-(global-set-key (kbd "<f7>") 'eshell)
+
 (global-set-key (kbd "C-c d d") 'my-dired-at-home)
 (global-set-key (kbd "C-c d j") 'dired-jump)
 (global-set-key (kbd "C-c d SPC") 'ido-dired)
 (global-set-key (kbd "C-c d p") 'dired-at-point)
+
 (global-set-key (kbd "C-c b") 'my-bookmark-bmenu-list)
+
+(global-set-key (kbd "C-c s s") 'shell)
+(global-set-key (kbd "C-c s SPC") 'my-new-shell)
+(global-set-key (kbd "C-c s c") 'shell-command)
+(global-set-key (kbd "C-c s r") 'shell-command-on-region)
+(global-set-key (kbd "C-c s e") 'eshell)
+
+(global-set-key (kbd "C-c u p") 'proced)
+(global-set-key (kbd "C-c u c") 'calendar)
 
 ;; Unbind unused keys:
 (dolist (key '("C-x 1" "C-x 2" "C-x 3" "C-x u" "C-x C-b"

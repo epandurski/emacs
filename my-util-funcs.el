@@ -146,6 +146,12 @@ directory, display it in the same window."
         (find-alternate-file file)
       (display-buffer (find-file-noselect file) t))))
 
+(defun my-new-shell ()
+  "Start an inferior shell in a new buffer"
+  (interactive)
+  (let ((current-prefix-arg 4)) ;; emulate C-u
+    (call-interactively 'shell)))
+
 (provide 'my-util-funcs)
 
 ;;; my-util-funcs.el ends here

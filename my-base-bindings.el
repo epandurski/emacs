@@ -81,7 +81,8 @@
 
 ;; Unbind unused keys:
 (dolist (key '("C-x 1" "C-x 2" "C-x 3" "C-x u" "C-x C-b"
-               "C-e" "C-f" "C-v" "C-b" "C-_" "C-\\"))
+               "C-e" "C-f" "C-v" "C-b" "C-_" "C-\\"
+               "M-{" "M-}"))
   (global-unset-key (kbd key)))
 
 ;; Use "C-z" when not on text terminal:

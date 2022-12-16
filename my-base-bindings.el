@@ -79,6 +79,11 @@
 (global-set-key (kbd "C-n") 'next-error)
 (global-set-key (kbd "<f5>") 'server-edit)
 
+(global-set-key (kbd "<C-down>") 'shrink-window)
+(global-set-key (kbd "<C-up>") 'enlarge-window)
+(global-set-key (kbd "<C-left>") 'shrink-window-horizontally)
+(global-set-key (kbd "<C-right>") 'enlarge-window-horizontally)
+
 (global-set-key (kbd "C-c d d") 'my-dired-at-home)
 (global-set-key (kbd "C-c d j") 'dired-jump)
 (global-set-key (kbd "C-c d SPC") 'ido-dired)

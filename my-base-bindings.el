@@ -7,19 +7,27 @@
 (require 'my-util-funcs)
 (require 'ido)
 
-;; Bind the original M-s to M-6.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Throw away the awful Emacs defaults, and define new ;;
+;; "Ergoemacs"-like key-bindings.                      ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Bind the original M-s to M-6. Use M-s to move the cursor to other
+;; window.
 (global-set-key (kbd "M-6") (lookup-key (current-global-map) (kbd "M-s")))
-
-;; Bind the original M-g to M-'.
-(global-set-key (kbd "M-'") (lookup-key (current-global-map) (kbd "M-g")))
-(global-set-key (kbd "M-' M-'") 'goto-line) ;; much easier than "M-' M-g"
-
-(global-set-key (kbd "M-SPC") 'set-mark-command)
-(global-set-key (kbd "M-w") 'my-open-previous-line)
 (global-set-key (kbd "M-s") 'other-window)
+
+;; Bind the original M-g to M-'. Use M-g to kill everything from the
+;; point to the end of the current line.
+(global-set-key (kbd "M-'") (lookup-key (current-global-map) (kbd "M-g")))
+(global-set-key (kbd "M-' M-'") 'goto-line) ;; easier than "M-' M-g"
+(global-set-key (kbd "M-g") 'kill-line)
+
+;; Use M-a (instead of M-x) to execute commands.
 (global-set-key (kbd "M-a") 'execute-extended-command)
-(global-set-key (kbd "M-m") 'ido-switch-buffer)
-(global-set-key (kbd "M-M") 'list-buffers)
+
+;; Moving the cursor. Use the "i", "k", "j", "l" and their neighbors
+;; to move around.
 (global-set-key (kbd "M-i") 'previous-line)
 (global-set-key (kbd "M-k") 'next-line)
 (global-set-key (kbd "M-j") 'backward-char)
@@ -33,83 +41,109 @@
 (global-set-key (kbd "M-U") 'backward-paragraph)
 (global-set-key (kbd "M-O") 'forward-paragraph)
 (global-set-key (kbd "M-h") 'move-beginning-of-line)
+(global-set-key (kbd "M-,") 'my-toggle-end-beginning-of-buffer)
+(global-set-key (kbd "M->") 'xref-pop-marker-stack) ;; jump back after "M-."
+(global-set-key (kbd "C-p") 'previous-error)
+(global-set-key (kbd "C-n") 'next-error)
+
+;; Deleting (killing) text:
 (global-set-key (kbd "M-f") 'delete-char)
 (global-set-key (kbd "M-d") 'delete-backward-char)
 (global-set-key (kbd "M-r") 'kill-word)
 (global-set-key (kbd "M-e") 'backward-kill-word)
-(global-set-key (kbd "M-g") 'kill-line)
-(global-set-key (kbd "M-b") 'toggle-input-method)
-(global-set-key (kbd "M-z") 'undo)
-(global-set-key (kbd "M-x") 'kill-region)
+
+;; Selecting (marking) text:
+(global-set-key (kbd "M-8") 'my-mark-current-symbol)
+(global-set-key (kbd "M-*") 'mark-paragraph)
+(global-set-key (kbd "C-a") 'mark-whole-buffer)
+
+;; Manipulate the mark, copy, cut, paste, undo:
+(global-set-key (kbd "M-SPC") 'set-mark-command)
+(global-set-key (kbd "C-SPC") 'my-set-mark-command-with-prefix)
+(global-set-key (kbd "C-@") 'my-set-mark-command-with-prefix)
 (global-set-key (kbd "M-c") 'kill-ring-save)
+(global-set-key (kbd "M-x") 'kill-region)
 (global-set-key (kbd "M-v") 'yank)
 (global-set-key (kbd "M-V") 'yank-pop)
-(global-set-key (kbd "M-y") 'isearch-forward)
-(global-set-key (kbd "M-Y") 'isearch-backward)
+(global-set-key (kbd "M-z") 'undo)
+
+;; Common text-editing actions:
+(global-set-key (kbd "M-b") 'toggle-input-method)
+(global-set-key (kbd "M-1") 'kmacro-end-and-call-macro)
+(global-set-key (kbd "M-\\") 'cycle-spacing)
+(global-set-key (kbd "M-w") 'my-open-previous-line)
 (global-set-key (kbd "M-t") 'my-toggle-letter-case)
 (global-set-key (kbd "M-T") 'my-upcase-letter-case)
-(global-set-key (kbd "M-,") 'my-toggle-end-beginning-of-buffer)
 (global-set-key (kbd "M-=") 'abbrev-prefix-mark)
-(global-set-key (kbd "M-*") 'mark-paragraph)
-(global-set-key (kbd "M->") 'xref-pop-marker-stack) ;; related to "M-." (xref-find-definitions)
-(global-set-key (kbd "M-\\") 'cycle-spacing)
-(global-set-key (kbd "M-1") 'kmacro-end-and-call-macro)
-(global-set-key (kbd "M-2") 'split-window-below)
-(global-set-key (kbd "M-3") 'split-window-right)
-(global-set-key (kbd "M-4") 'delete-other-windows)
+(global-set-key (kbd "M-<return>") 'indent-new-comment-line) ;; also "C-M-j"
+(global-set-key (kbd "C-k") 'zap-to-char)
+
+;; Text search/replace:
+(global-set-key (kbd "M-y") 'isearch-forward)
+(global-set-key (kbd "M-Y") 'isearch-backward)
 (global-set-key (kbd "M-5") 'query-replace)
 (global-set-key (kbd "M-%") 'query-replace-regexp)
 (global-set-key (kbd "M-6") search-map)
-(global-unset-key (kbd "M-7")) ;; Every major-mode can define this as a fast shortcut.
-(global-set-key (kbd "M-8") 'my-mark-current-symbol)
-(global-unset-key (kbd "M-9")) ;; Every major-mode can define this as a fast shortcut.
-(global-unset-key (kbd "M-0")) ;; Every major-mode can define this as a fast shortcut.
-(global-set-key (kbd "M-<return>") 'indent-new-comment-line)  ;; "C-M-j" does the same
-(global-set-key (kbd "C-SPC") 'my-set-mark-command-with-prefix)
-(global-set-key (kbd "C-@") 'my-set-mark-command-with-prefix)
-(global-set-key (kbd "C-a") 'mark-whole-buffer)
 (global-set-key (kbd "C-y") 'rgrep)
-(global-set-key (kbd "C-r") 'revert-buffer)
+
+;; Manipulate buffers:
+(global-set-key (kbd "M-m") 'ido-switch-buffer)
+(global-set-key (kbd "M-M") 'list-buffers)
+(global-set-key (kbd "C-o") 'find-file)
 (global-set-key (kbd "C-s") 'my-save-buffer)
 (global-set-key (kbd "C-w") 'kill-this-buffer)
-(global-set-key (kbd "C-o") 'find-file)
-(global-set-key (kbd "C-d") 'bookmark-set)
-(global-set-key (kbd "C-k") 'zap-to-char)
-(global-set-key (kbd "C-p") 'previous-error)
-(global-set-key (kbd "C-n") 'next-error)
+(global-set-key (kbd "C-r") 'revert-buffer)
 (global-set-key (kbd "<f5>") 'server-edit)
 
+;; Manipulate windows:
+(global-set-key (kbd "M-2") 'split-window-below)
+(global-set-key (kbd "M-3") 'split-window-right)
+(global-set-key (kbd "M-4") 'delete-other-windows)
 (global-set-key (kbd "<C-down>") 'shrink-window)
 (global-set-key (kbd "<C-up>") 'enlarge-window)
 (global-set-key (kbd "<C-left>") 'shrink-window-horizontally)
 (global-set-key (kbd "<C-right>") 'enlarge-window-horizontally)
 
+;; Unbind unused keys:
+(dolist (key '("C-x 1" "C-x 2" "C-x 3" "C-x u" "C-x C-b"
+               ;; These are especially convinient. Every major-mode
+               ;; can define these as fast shortcuts.
+               "C-d" "C-e" "C-f" "C-v" "C-b" "C-_" "C-\\"
+               "M-0" "M-7" "M-0" "M-{" "M-}"))
+  (global-unset-key (kbd key)))
+
+;; Use "C-z" as "redo" when not on text terminal. Hide the menu bar on
+;; text terminal.
+(if window-system
+    (global-set-key (kbd "C-z") 'undo)
+  (menu-bar-mode -1))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;
+;; Command shortcuts ;;
+;;;;;;;;;;;;;;;;;;;;;;;
+
+;; bookmarks
+(global-set-key (kbd "C-c b SPC") 'bookmark-set)
+(global-set-key (kbd "C-c b b") 'my-bookmark-bmenu-list)
+
+;; dired
 (global-set-key (kbd "C-c d d") 'my-dired-at-home)
 (global-set-key (kbd "C-c d j") 'dired-jump)
 (global-set-key (kbd "C-c d SPC") 'ido-dired)
 (global-set-key (kbd "C-c d p") 'dired-at-point)
 
-(global-set-key (kbd "C-c b") 'my-bookmark-bmenu-list)
-
+;; shell
 (global-set-key (kbd "C-c s s") 'shell)
 (global-set-key (kbd "C-c s SPC") 'my-new-shell)
 (global-set-key (kbd "C-c s c") 'shell-command)
 (global-set-key (kbd "C-c s r") 'shell-command-on-region)
 (global-set-key (kbd "C-c s e") 'eshell)
 
+;; utilities
 (global-set-key (kbd "C-c u p") 'proced)
 (global-set-key (kbd "C-c u c") 'calendar)
 
-;; Unbind unused keys:
-(dolist (key '("C-x 1" "C-x 2" "C-x 3" "C-x u" "C-x C-b"
-               "C-e" "C-f" "C-v" "C-b" "C-_" "C-\\"
-               "M-{" "M-}"))
-  (global-unset-key (kbd key)))
-
-;; Use "C-z" when not on text terminal:
-(if window-system
-    (global-set-key (kbd "C-z") 'undo)
-  (menu-bar-mode -1))
 
 (defun my-minibuffer-keys ()
   "My keybindings for the minibuffer."

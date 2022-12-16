@@ -102,8 +102,9 @@
   (global-unset-key (kbd key)))
 
 ;; Use "C-z" when not on text terminal:
-(when window-system
-  (global-set-key (kbd "C-z") 'undo))
+(if window-system
+    (global-set-key (kbd "C-z") 'undo)
+  (menu-bar-mode -1))
 
 (defun my-minibuffer-keys ()
   "My keybindings for the minibuffer."

@@ -189,8 +189,8 @@
   (add-hook 'python-mode-hook 'imenu-add-menubar-index)
   :bind (:map python-mode-map
               ("M-7" . python-shell-switch-to-shell)
-              ("M-{" . python-indent-shift-left)
-              ("M-}" . python-indent-shift-right)
+              ("M-9" . python-indent-shift-left)
+              ("M-0" . python-indent-shift-right)
               ("M-U" . beginning-of-defun)
               ("M-O" . end-of-defun)
          :map inferior-python-mode-map

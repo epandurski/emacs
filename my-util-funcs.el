@@ -152,6 +152,13 @@ directory, display it in the same window."
   (let ((current-prefix-arg 4)) ;; emulate C-u
     (call-interactively 'shell)))
 
+(defun my-save-buffer (arg)
+  "Save the current buffer, ask for filename if prefixed with C-u."
+  (interactive "p")
+  (if (eq arg 4)
+      (ido-write-file)
+    (save-buffer)))
+
 (provide 'my-util-funcs)
 
 ;;; my-util-funcs.el ends here

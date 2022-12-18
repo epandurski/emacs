@@ -5,7 +5,6 @@
 ;;; Code:
 
 (require 'my-util-funcs)
-(require 'ido)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Throw away the awful Emacs defaults, and define new ;;
@@ -87,7 +86,7 @@
 (global-set-key (kbd "C-y") 'rgrep)
 
 ;; Manipulate buffers:
-(global-set-key (kbd "M-m") 'ido-switch-buffer)
+(global-set-key (kbd "M-m") 'switch-to-buffer)
 (global-set-key (kbd "M-M") 'list-buffers)
 (global-set-key (kbd "C-o") 'find-file)
 (global-set-key (kbd "C-s") 'my-save-buffer)
@@ -130,7 +129,7 @@
 ;; dired
 (global-set-key (kbd "C-c d d") 'my-dired-at-home)
 (global-set-key (kbd "C-c d j") 'dired-jump)
-(global-set-key (kbd "C-c d SPC") 'ido-dired)
+(global-set-key (kbd "C-c d SPC") 'dired)
 (global-set-key (kbd "C-c d p") 'dired-at-point)
 
 ;; shell

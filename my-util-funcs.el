@@ -3,7 +3,6 @@
 ;;; Commentary:
 
 ;;; Code:
-(require 'dired)
 
 (defun my-open-previous-line (arg)
   "Open a new line before the current one.

@@ -138,16 +138,27 @@
 
 (use-package use-package-chords
   :ensure t
-  :config
+  :init
   (key-chord-mode 1)
   (setq key-chord-one-key-delay 0.4) ;; the default is 0.2
   (key-chord-define-global "jj" (lookup-key (current-global-map) (kbd "C-c"))))
+
+
+(use-package which-key
+  :ensure t
+  :init (which-key-mode))
+
+
+(use-package flx-ido
+  :defer t
+  :ensure t)
 
 
 (use-package ido
   :ensure t
   :init
   (ido-mode 'both)
+  (flx-ido-mode 1)
   (add-to-list 'completion-ignored-extensions ".ignore_this_extension")
   (setq ido-case-fold t)
   (setq ido-use-virtual-buffers t)
@@ -157,13 +168,12 @@
         '(".org" ".txt" ".py" ".js" ".ts" ".rs" ".c" ".json" ".md" ".rst"
           ".emacs" ".xml" ".el" ".ini" ".cfg" ".cnf"))
   (setq ido-auto-merge-work-directories-length -1) ;; disable auto-merge
-  (setq ido-use-faces t))
-
-
-(use-package flx-ido
-  :ensure t
-  :init
-  (flx-ido-mode 1))
+  (setq ido-use-faces t)
+  :config
+  (my-ido-mode-keys)
+  :bind
+  ("M-m" . ido-switch-buffer)
+  ("C-c d SPC" . ido-dired))
 
 
 (use-package projectile
@@ -171,22 +181,29 @@
   :bind ("C-f" . projectile-commander)
   :init
   (setq projectile-switch-project-action 'projectile-dired)
-  (add-hook 'after-init-hook 'projectile-global-mode))
+  (add-hook 'after-init-hook #'projectile-global-mode))
 
 
 (use-package company
   :ensure t
-  :bind ("M-/" . company-complete-common-or-cycle)
   :init
   (setq company-idle-delay nil)
-  (add-hook 'after-init-hook 'global-company-mode))
+  (add-hook 'after-init-hook #'global-company-mode)
+  :bind (("M-/" . company-complete-common-or-cycle)
+         :map company-active-map
+         ;; Magit binds some keys that we may need. Unbind them, and
+         ;; define our own.
+         ("C-s" . nil)
+         ("C-w" . nil)
+         ("M-y" . company-search-candidates)
+         ("M-." . company-show-location)))
 
 
 (use-package python
   :ensure t
-  :init
-  (add-hook 'python-mode-hook 'hs-minor-mode)
-  (add-hook 'python-mode-hook 'imenu-add-menubar-index)
+  :config
+  (add-hook 'python-mode-hook #'hs-minor-mode)
+  (add-hook 'python-mode-hook #'imenu-add-menubar-index)
   :bind (:map python-mode-map
               ("M-7" . python-shell-switch-to-shell)
               ("M-9" . python-indent-shift-left)
@@ -207,26 +224,30 @@
 
 (use-package sgml-mode
   :ensure t
-  :bind (
-         :map html-mode-map
-              ("M-7" . sgml-tag)
+  :config
+  (setq sgml-validate-command "tidy --gnu-emacs yes -utf8 -e -q")
+  :bind (:map html-mode-map
+              ("M-7" . sgml-delete-tag)
+              ("M-9" . sgml-tag)
+              ("M-0" . sgml-close-tag)
               ("M-O" . sgml-skip-tag-forward)
               ("M-U" . sgml-skip-tag-backward)))
 
 
 (use-package magit
   :ensure t
-  :config
-  (unbind-key "M-1" magit-mode-map)
-  (unbind-key "M-2" magit-mode-map)
-  (unbind-key "M-3" magit-mode-map)
-  (unbind-key "M-4" magit-mode-map)
-  (unbind-key "M-w" magit-mode-map)
-  (unbind-key "C-w" magit-mode-map)
   :bind (("C-x g" . magit-status) ;; an old habit, use "C-c g" intead
          ("C-c g" . magit-status)
          ("C-c G" . magit-file-dispatch)
          :map magit-mode-map
+         ;; Magit binds some keys that we need. Unbind them, and
+         ;; define our own.
+         ("M-1" . nil)
+         ("M-2" . nil)
+         ("M-3" . nil)
+         ("M-4" . nil)
+         ("M-w" . nil)
+         ("C-w" . nil)
          ("1" . magit-section-show-level-1-all)
          ("2" . magit-section-show-level-2-all)
          ("3" . magit-section-show-level-3-all)
@@ -237,14 +258,14 @@
 
 (use-package flycheck
   :ensure t
-  :bind ("C-e" . flycheck-explain-error-at-point)
+  :bind ("C-e" . flycheck-display-error-at-point)
   :init (global-flycheck-mode))
 
 
 (use-package js
   :ensure t
   :init
-  (add-hook 'js-mode-hook 'my-js-mode-hook))
+  (add-hook 'js-mode-hook #'my-js-mode-hook))
 (defun my-js-mode-hook ()
   "My `js-mode` initializations."
   (electric-pair-mode 1))
@@ -266,29 +287,19 @@
 
 (use-package json-mode
   :ensure t
-  :mode ("\\.json\\'" . json-mode)
-  :init
-  (add-hook 'json-mode-hook 'my-json-mode-hook))
-(defun my-json-mode-hook ()
-  "My `json-mode` initializations."
-  (electric-pair-mode 1))
-
-
-(use-package json-reformat
-  :ensure t)
+  :mode "\\.json\\'")
 
 
 (use-package yaml-mode
   :ensure t
-  :init
-  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
+  :mode "\\.yml\\'")
 
 
 (use-package rust-mode
   :ensure t
   :init
   (add-hook 'rust-mode-hook #'flycheck-rust-setup)
-  (add-hook 'rust-mode-hook 'my-rust-mode-hook))
+  (add-hook 'rust-mode-hook #'my-rust-mode-hook))
 (defun my-rust-mode-hook ()
   "My `rust-mode` initializations."
   (electric-pair-mode 1)
@@ -344,11 +355,6 @@
   :init (lsp-treemacs-sync-mode 1)
   :ensure t
   :commands lsp-treemacs-errors-list)
-
-
-(use-package which-key
-  :ensure t
-  :config (which-key-mode))
 
 
 (provide 'my-init)

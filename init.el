@@ -136,7 +136,7 @@
 (require 'bind-key)
 
 
-(use-package use-package-chords
+(use-package key-chord
   :ensure t
   :init
   (key-chord-mode 1)

@@ -172,8 +172,7 @@
   :config
   (my-ido-mode-keys)
   :bind
-  ("M-m" . ido-switch-buffer)
-  ("C-c d SPC" . ido-dired))
+  ("M-m" . ido-switch-buffer))
 
 
 (use-package projectile

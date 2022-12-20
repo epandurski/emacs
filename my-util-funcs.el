@@ -158,6 +158,12 @@ directory, display it in the same window."
       (ido-write-file)
     (save-buffer)))
 
+(defun my-file-to-string (file)
+  "Read file into string."
+  (with-temp-buffer
+    (insert-file-contents file)
+    (buffer-string)))
+
 (provide 'my-util-funcs)
 
 ;;; my-util-funcs.el ends here

@@ -54,6 +54,9 @@
 ;; Configure build-in packages ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defvar my-commands-keymap (make-keymap "Custom commands")
+  "Custom commands invoked with a key-chord.")
+
 (add-to-list 'load-path "~/src/emacs")
 (byte-recompile-directory "~/src/emacs" 0)
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -140,8 +143,12 @@
   :ensure t
   :init
   (key-chord-mode 1)
-  (setq key-chord-one-key-delay 0.4) ;; the default is 0.2
-  (key-chord-define-global "jj" (lookup-key (current-global-map) (kbd "C-c"))))
+  (setq key-chord-two-keys-delay 0.15) ;; the default is 0.1
+  (setq key-chord-one-key-delay 0.3) ;; the default is 0.2
+  ;; prefix for global commands:
+  (key-chord-define-global "jk" my-commands-keymap)
+  ;; prefix for mode-specific commands:
+  (key-chord-define-global "fd" 'undefined))
 
 
 (use-package which-key
@@ -235,9 +242,10 @@
 
 (use-package magit
   :ensure t
-  :bind (("C-x g" . magit-status) ;; an old habit, use "C-c g" intead
-         ("C-c g" . magit-status)
-         ("C-c G" . magit-file-dispatch)
+  :bind (("C-x g" . magit-status) ;; an old habit, use "jk g" intead
+         :map my-commands-keymap
+         ("g" . magit-status)
+         ("G" . magit-file-dispatch)
          :map magit-mode-map
          ;; Magit binds some keys that we need. Unbind them, and
          ;; define our own.
@@ -313,9 +321,50 @@
   :ensure t
   :commands (markdown-mode gfm-mode)
   :mode (("README\\.md\\'" . gfm-mode)
-         ("\\.md\\'" . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode))
-  :init (setq markdown-command "markdown"))
+         ("\\.md\\'" . gfm-mode)
+         ("\\.markdown\\'" . gfm-mode))
+  :config
+  (add-hook 'markdown-mode-hook #'flyspell-mode)
+  (setq markdown-enable-prefix-prompts nil)
+  (setq markdown-asymmetric-header nil)
+  (setq markdown-xhtml-header-content (concat
+         "<style type=\"text/css\">"
+         (my-file-to-string "~/src/emacs/splendor.css")
+         "</style>"))
+  (setq markdown-command (concat
+         "cmark-gfm"
+         " -e table"
+         " -e tasklist"
+         " -e strikethrough"
+         " -e tagfilter"
+         " -e autolink"
+         " -e footnotes"))
+  (setq my-markdown-mode-keymap (make-keymap))
+  (key-chord-define markdown-mode-map "fd" my-markdown-mode-keymap)
+  :bind (:map markdown-mode-map
+         ("M-<return>" . markdown-insert-list-item)
+         ("M-p" . markdown-outline-previous-same-level)
+         ("M-n" . markdown-outline-next-same-level)
+         ("M-P" . markdown-outline-previous)
+         ("M-N" . markdown-outline-next)
+         ("M-C-p" . markdown-move-up)
+         ("M-C-n" . markdown-move-down)
+         ("M-7" . markdown-outline-up)
+         ("M-9" . markdown-promote)
+         ("M-0" . markdown-demote)
+         :map my-markdown-mode-keymap
+         ("d" . markdown-do)
+         ("h" . markdown-insert-header-dwim)
+         ("i" . markdown-insert-italic)
+         ("b" . markdown-insert-bold)
+         ("q" . markdown-insert-blockquote)
+         ("," . markdown-outdent-region)
+         ("." . markdown-indent-region)
+         ("p" . markdown-preview)
+         ("e" . markdown-export)
+         ("r" . markdown-check-refs)
+         ("n" . markdown-cleanup-list-numbers))
+  )
 
 
 (use-package dockerfile-mode

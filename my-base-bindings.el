@@ -123,25 +123,35 @@
 ;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; bookmarks
-(global-set-key (kbd "C-c b SPC") 'bookmark-set)
-(global-set-key (kbd "C-c b b") 'my-bookmark-bmenu-list)
+(define-key my-commands-keymap (kbd "b SPC") 'bookmark-set)
+(define-key my-commands-keymap (kbd "b b") 'my-bookmark-bmenu-list)
 
 ;; dired
-(global-set-key (kbd "C-c d d") 'my-dired-at-home)
-(global-set-key (kbd "C-c d j") 'dired-jump)
-(global-set-key (kbd "C-c d SPC") 'dired)
-(global-set-key (kbd "C-c d p") 'dired-at-point)
+(define-key my-commands-keymap (kbd "d d") 'my-dired-at-home)
+(define-key my-commands-keymap (kbd "d j") 'dired-jump)
+(define-key my-commands-keymap (kbd "d SPC") 'dired)
+(define-key my-commands-keymap (kbd "d p") 'dired-at-point)
 
 ;; shell
-(global-set-key (kbd "C-c s s") 'shell)
-(global-set-key (kbd "C-c s SPC") 'my-new-shell)
-(global-set-key (kbd "C-c s c") 'shell-command)
-(global-set-key (kbd "C-c s r") 'shell-command-on-region)
-(global-set-key (kbd "C-c s e") 'eshell)
+(define-key my-commands-keymap (kbd "s s") 'shell)
+(define-key my-commands-keymap (kbd "s SPC") 'my-new-shell)
+(define-key my-commands-keymap (kbd "s c") 'shell-command)
+(define-key my-commands-keymap (kbd "s r") 'shell-command-on-region)
+(define-key my-commands-keymap (kbd "s e") 'eshell)
+
+;; ispell
+(define-key my-commands-keymap (kbd "i i") 'ispell)
+(define-key my-commands-keymap (kbd "i b") 'ispell-buffer)
+(define-key my-commands-keymap (kbd "i r") 'ispell-region)
+(define-key my-commands-keymap (kbd "i s") 'ispell-comments-and-strings)
+(define-key my-commands-keymap (kbd "i c") 'ispell-continue)
+(define-key my-commands-keymap (kbd "i k") 'ispell-kill-ispell)
+(define-key my-commands-keymap (kbd "i d") 'ispell-change-dictionary)
+(define-key my-commands-keymap (kbd "i f") 'flyspell-buffer)
 
 ;; utilities
-(global-set-key (kbd "C-c u p") 'proced)
-(global-set-key (kbd "C-c u c") 'calendar)
+(define-key my-commands-keymap (kbd "u p") 'proced)
+(define-key my-commands-keymap (kbd "u c") 'calendar)
 
 
 (defun my-minibuffer-keys ()

@@ -30,14 +30,11 @@
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(initial-frame-alist '((fullscreen . maximized)))
- '(js-indent-level 2)
- '(js2-basic-offset 2)
  '(json-reformat:indent-width 2)
  '(rust-rustfmt-bin "~/.cargo/bin/rustfmt")
  '(scroll-bar-mode 'right)
  '(show-paren-mode t)
- '(tool-bar-mode nil)
- '(typescript-indent-level 2))
+ '(tool-bar-mode nil))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -76,7 +73,8 @@
 (require 'my-server)
 (require 'my-workarounds)
 (setq grep-program "egrep")
-
+(setq compilation-scroll-output t)  ;; or 'first-error
+(electric-pair-mode 1)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -190,6 +188,12 @@
   (add-hook 'after-init-hook #'projectile-global-mode))
 
 
+(use-package flycheck
+  :ensure t
+  :bind ("C-e" . flycheck-display-error-at-point)
+  :init (global-flycheck-mode))
+
+
 (use-package company
   :ensure t
   :init
@@ -197,7 +201,7 @@
   (add-hook 'after-init-hook #'global-company-mode)
   :bind (("M-/" . company-complete-common-or-cycle)
          :map company-active-map
-         ;; Magit binds some keys that we may need. Unbind them, and
+         ;; Company binds some keys that we may need. Unbind them, and
          ;; define our own.
          ("C-s" . nil)
          ("C-w" . nil)
@@ -205,44 +209,9 @@
          ("M-." . company-show-location)))
 
 
-(use-package python
-  :ensure t
-  :config
-  (add-hook 'python-mode-hook #'hs-minor-mode)
-  (add-hook 'python-mode-hook #'imenu-add-menubar-index)
-  (add-hook 'python-mode-hook #'flyspell-prog-mode)
-  :bind (:map python-mode-map
-              ("M-7" . python-shell-switch-to-shell)
-              ("M-9" . python-indent-shift-left)
-              ("M-0" . python-indent-shift-right)
-              ("M-U" . beginning-of-defun)
-              ("M-O" . end-of-defun)
-         :map inferior-python-mode-map
-              ("M-r" . kill-word)
-              ("C-r" . comint-history-isearch-backward-regexp)))
-
-
-(use-package virtualenvwrapper
-  :ensure t
-  :init
-  (venv-initialize-interactive-shells)
-  (venv-initialize-eshell))
-
-
-(use-package sgml-mode
-  :ensure t
-  :config
-  (setq sgml-validate-command "tidy --gnu-emacs yes -utf8 -e -q")
-  :bind (:map html-mode-map
-              ("M-7" . sgml-delete-tag)
-              ("M-9" . sgml-tag)
-              ("M-0" . sgml-close-tag)
-              ("M-O" . sgml-skip-tag-forward)
-              ("M-U" . sgml-skip-tag-backward)))
-
-
 (use-package magit
   :ensure t
+  :commands (magit-status magit-file-dispatch)
   :bind (("C-x g" . magit-status) ;; an old habit, use "jk g" intead
          :map my-commands-keymap
          ("g" . magit-status)
@@ -264,20 +233,57 @@
          ("M-x" . magit-copy-section-value)))
 
 
-(use-package flycheck
+(use-package python
   :ensure t
-  :bind ("C-e" . flycheck-display-error-at-point)
-  :init (global-flycheck-mode))
+  :commands (python-mode)
+  :config
+  (add-hook 'python-mode-hook #'hs-minor-mode)
+  (add-hook 'python-mode-hook #'imenu-add-menubar-index)
+  (add-hook 'python-mode-hook #'flyspell-prog-mode)
+  :bind (:map python-mode-map
+              ("M-7" . python-shell-switch-to-shell)
+              ("M-9" . python-indent-shift-left)
+              ("M-0" . python-indent-shift-right)
+              ("M-U" . beginning-of-defun)
+              ("M-O" . end-of-defun)
+         :map inferior-python-mode-map
+              ("M-r" . kill-word)
+              ("C-r" . comint-history-isearch-backward-regexp)))
 
 
 (use-package js
   :ensure t
-  :init
-  (add-hook 'js-mode-hook #'my-js-mode-hook)
+  :commands (js-mode)
+  :config
+  (setq js-indent-level 2)
   (add-hook 'js-mode-hook #'flyspell-prog-mode))
-(defun my-js-mode-hook ()
-  "My `js-mode` initializations."
-  (electric-pair-mode 1))
+
+
+(use-package typescript-mode
+  :ensure t
+  :commands (typescript-mode)
+  :config
+  (setq typescript-indent-level 2)
+  (add-hook 'typescript-mode-hook #'flyspell-prog-mode))
+
+
+(use-package virtualenvwrapper
+  :ensure t
+  :init
+  (venv-initialize-interactive-shells)
+  (venv-initialize-eshell))
+
+
+(use-package sgml-mode
+  :ensure t
+  :config
+  (setq sgml-validate-command "tidy --gnu-emacs yes -utf8 -e -q")
+  :bind (:map html-mode-map
+              ("M-7" . sgml-delete-tag)
+              ("M-9" . sgml-tag)
+              ("M-0" . sgml-close-tag)
+              ("M-O" . sgml-skip-tag-forward)
+              ("M-U" . sgml-skip-tag-backward)))
 
 
 (use-package nodejs-repl
@@ -306,22 +312,6 @@
   (add-hook 'yaml-mode-hook #'flyspell-prog-mode))
 
 
-(use-package rust-mode
-  :ensure t
-  :init
-  (add-hook 'rust-mode-hook #'flycheck-rust-setup)
-  (add-hook 'rust-mode-hook #'my-rust-mode-hook)
-  (add-hook 'rust-mode-hook #'flyspell-prog-mode))
-(defun my-rust-mode-hook ()
-  "My `rust-mode` initializations."
-  (electric-pair-mode 1)
-  (cargo-minor-mode 1))
-
-
-(use-package cargo
-  :ensure t)
-
-
 (use-package markdown-mode
   :ensure t
   :commands (markdown-mode gfm-mode)
@@ -330,6 +320,7 @@
          ("\\.markdown\\'" . gfm-mode))
   :config
   (add-hook 'markdown-mode-hook #'flyspell-mode)
+  (add-hook 'markdown-mode-hook #'imenu-add-menubar-index)
   (setq markdown-enable-prefix-prompts nil)
   (setq markdown-asymmetric-header nil)
   (setq markdown-xhtml-header-content (concat
@@ -386,13 +377,8 @@
   :ensure t)
 
 
-(use-package typescript-mode
-  :ensure t
-  :config
-  (add-hook 'typescript-mode-hook #'flyspell-prog-mode))
-
-
 (use-package svelte-mode
+  :commands (svelte-mode)
   :ensure t)
 
 

@@ -31,7 +31,6 @@
  '(inhibit-startup-screen t)
  '(initial-frame-alist '((fullscreen . maximized)))
  '(json-reformat:indent-width 2)
- '(rust-rustfmt-bin "~/.cargo/bin/rustfmt")
  '(scroll-bar-mode 'right)
  '(show-paren-mode t)
  '(tool-bar-mode nil))

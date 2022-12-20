@@ -149,6 +149,12 @@
 (define-key my-commands-keymap (kbd "i d") 'ispell-change-dictionary)
 (define-key my-commands-keymap (kbd "i f") 'flyspell-buffer)
 
+;; hs-minor-mode
+(define-key my-commands-keymap (kbd "h h") 'hs-toggle-hiding)
+(define-key my-commands-keymap (kbd "h s") 'hs-show-all)
+(define-key my-commands-keymap (kbd "h a") 'hs-hide-all)
+(define-key my-commands-keymap (kbd "h l") 'hs-hide-level)
+
 ;; utilities
 (define-key my-commands-keymap (kbd "u p") 'proced)
 (define-key my-commands-keymap (kbd "u c") 'calendar)

@@ -210,6 +210,7 @@
   :config
   (add-hook 'python-mode-hook #'hs-minor-mode)
   (add-hook 'python-mode-hook #'imenu-add-menubar-index)
+  (add-hook 'python-mode-hook #'flyspell-prog-mode)
   :bind (:map python-mode-map
               ("M-7" . python-shell-switch-to-shell)
               ("M-9" . python-indent-shift-left)
@@ -272,7 +273,8 @@
 (use-package js
   :ensure t
   :init
-  (add-hook 'js-mode-hook #'my-js-mode-hook))
+  (add-hook 'js-mode-hook #'my-js-mode-hook)
+  (add-hook 'js-mode-hook #'flyspell-prog-mode))
 (defun my-js-mode-hook ()
   "My `js-mode` initializations."
   (electric-pair-mode 1))
@@ -299,14 +301,17 @@
 
 (use-package yaml-mode
   :ensure t
-  :mode "\\.yml\\'")
+  :mode "\\.yml\\'"
+  :config
+  (add-hook 'yaml-mode-hook #'flyspell-prog-mode))
 
 
 (use-package rust-mode
   :ensure t
   :init
   (add-hook 'rust-mode-hook #'flycheck-rust-setup)
-  (add-hook 'rust-mode-hook #'my-rust-mode-hook))
+  (add-hook 'rust-mode-hook #'my-rust-mode-hook)
+  (add-hook 'rust-mode-hook #'flyspell-prog-mode))
 (defun my-rust-mode-hook ()
   "My `rust-mode` initializations."
   (electric-pair-mode 1)
@@ -368,7 +373,9 @@
 
 
 (use-package dockerfile-mode
-  :ensure t)
+  :ensure t
+  :config
+  (add-hook 'dockerfile-mode-hook #'flyspell-prog-mode))
 
 
 (use-package jinja2-mode
@@ -380,7 +387,9 @@
 
 
 (use-package typescript-mode
-  :ensure t)
+  :ensure t
+  :config
+  (add-hook 'typescript-mode-hook #'flyspell-prog-mode))
 
 
 (use-package svelte-mode

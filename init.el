@@ -273,44 +273,6 @@
   (venv-initialize-eshell))
 
 
-(use-package sgml-mode
-  :ensure t
-  :config
-  (setq sgml-validate-command "tidy --gnu-emacs yes -utf8 -e -q")
-  :bind (:map html-mode-map
-              ("M-7" . sgml-delete-tag)
-              ("M-9" . sgml-tag)
-              ("M-0" . sgml-close-tag)
-              ("M-O" . sgml-skip-tag-forward)
-              ("M-U" . sgml-skip-tag-backward)))
-
-
-(use-package nodejs-repl
-  :ensure t
-  :bind (:map js-mode-map
-              ("M-7" . nodejs-repl-switch-to-repl)
-              ("C-c C-c" . nodejs-repl-send-buffer)
-              ("C-c C-e" . nodejs-repl-send-last-expression)
-              ("C-c C-j" . nodejs-repl-send-line)
-              ("C-c C-r" . nodejs-repl-send-region)
-              ("C-c C-l" . nodejs-repl-load-file)
-         :map nodejs-repl-mode-map
-              ("M-r" . kill-word)
-              ("C-r" . comint-history-isearch-backward-regexp)))
-
-
-(use-package json-mode
-  :ensure t
-  :mode "\\.json\\'")
-
-
-(use-package yaml-mode
-  :ensure t
-  :mode "\\.yml\\'"
-  :config
-  (add-hook 'yaml-mode-hook #'flyspell-prog-mode))
-
-
 (use-package markdown-mode
   :ensure t
   :commands (markdown-mode gfm-mode)
@@ -362,14 +324,55 @@
   )
 
 
-(use-package dockerfile-mode
+(use-package sgml-mode
   :ensure t
+  :commands (html-mode sgml-mode)
   :config
-  (add-hook 'dockerfile-mode-hook #'flyspell-prog-mode))
+  (setq sgml-validate-command "tidy --gnu-emacs yes -utf8 -e -q")
+  :bind (:map html-mode-map
+              ("M-7" . sgml-delete-tag)
+              ("M-9" . sgml-tag)
+              ("M-0" . sgml-close-tag)
+              ("M-O" . sgml-skip-tag-forward)
+              ("M-U" . sgml-skip-tag-backward)))
+
+
+(use-package nodejs-repl
+  :ensure t
+  :bind (:map js-mode-map
+              ("M-7" . nodejs-repl-switch-to-repl)
+              ("C-c C-c" . nodejs-repl-send-buffer)
+              ("C-c C-e" . nodejs-repl-send-last-expression)
+              ("C-c C-j" . nodejs-repl-send-line)
+              ("C-c C-r" . nodejs-repl-send-region)
+              ("C-c C-l" . nodejs-repl-load-file)
+         :map nodejs-repl-mode-map
+              ("M-r" . kill-word)
+              ("C-r" . comint-history-isearch-backward-regexp)))
+
+
+(use-package json-mode
+  :ensure t
+  :mode "\\.json\\'")
+
+
+(use-package yaml-mode
+  :ensure t
+  :mode "\\.yml\\'"
+  :config
+  (add-hook 'yaml-mode-hook #'flyspell-prog-mode))
 
 
 (use-package jinja2-mode
+  :commands (jinja2-mode)
   :ensure t)
+
+
+(use-package dockerfile-mode
+  :ensure t
+  :commands (dockerfile-mode)
+  :config
+  (add-hook 'dockerfile-mode-hook #'flyspell-prog-mode))
 
 
 (use-package add-node-modules-path

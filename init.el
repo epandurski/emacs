@@ -154,8 +154,8 @@
 
 
 (use-package flx-ido
-  :defer t
-  :ensure t)
+  :ensure t
+  :commands (flx-ido-mode))
 
 
 (use-package ido
@@ -266,18 +266,10 @@
   (add-hook 'typescript-mode-hook #'flyspell-prog-mode))
 
 
-(use-package virtualenvwrapper
-  :ensure t
-  :init
-  (venv-initialize-interactive-shells)
-  (venv-initialize-eshell))
-
-
 (use-package markdown-mode
   :ensure t
   :commands (markdown-mode gfm-mode)
-  :mode (("README\\.md\\'" . gfm-mode)
-         ("\\.md\\'" . gfm-mode)
+  :mode (("\\.md\\'" . gfm-mode)
          ("\\.markdown\\'" . gfm-mode))
   :config
   (add-hook 'markdown-mode-hook #'flyspell-mode)
@@ -320,8 +312,7 @@
          ("p" . markdown-preview)
          ("e" . markdown-export)
          ("r" . markdown-check-refs)
-         ("n" . markdown-cleanup-list-numbers))
-  )
+         ("n" . markdown-cleanup-list-numbers)))
 
 
 (use-package sgml-mode
@@ -337,27 +328,15 @@
               ("M-U" . sgml-skip-tag-backward)))
 
 
-(use-package nodejs-repl
-  :ensure t
-  :bind (:map js-mode-map
-              ("M-7" . nodejs-repl-switch-to-repl)
-              ("C-c C-c" . nodejs-repl-send-buffer)
-              ("C-c C-e" . nodejs-repl-send-last-expression)
-              ("C-c C-j" . nodejs-repl-send-line)
-              ("C-c C-r" . nodejs-repl-send-region)
-              ("C-c C-l" . nodejs-repl-load-file)
-         :map nodejs-repl-mode-map
-              ("M-r" . kill-word)
-              ("C-r" . comint-history-isearch-backward-regexp)))
-
-
 (use-package json-mode
   :ensure t
+  :commands (json-mode)
   :mode "\\.json\\'")
 
 
 (use-package yaml-mode
   :ensure t
+  :commands (yaml-mode)
   :mode "\\.yml\\'"
   :config
   (add-hook 'yaml-mode-hook #'flyspell-prog-mode))
@@ -373,10 +352,6 @@
   :commands (dockerfile-mode)
   :config
   (add-hook 'dockerfile-mode-hook #'flyspell-prog-mode))
-
-
-(use-package add-node-modules-path
-  :ensure t)
 
 
 (use-package svelte-mode
@@ -400,6 +375,38 @@
   :init (lsp-treemacs-sync-mode 1)
   :ensure t
   :commands lsp-treemacs-errors-list)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Packages which are *probably* not needed anymore,  ;;
+;; or have a replacement which is better.             ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package nodejs-repl
+  :disabled
+  :ensure t
+  :bind (:map js-mode-map
+              ("M-7" . nodejs-repl-switch-to-repl)
+              ("C-c C-c" . nodejs-repl-send-buffer)
+              ("C-c C-e" . nodejs-repl-send-last-expression)
+              ("C-c C-j" . nodejs-repl-send-line)
+              ("C-c C-r" . nodejs-repl-send-region)
+              ("C-c C-l" . nodejs-repl-load-file)
+         :map nodejs-repl-mode-map
+              ("M-r" . kill-word)
+              ("C-r" . comint-history-isearch-backward-regexp)))
+
+
+(use-package add-node-modules-path
+  :ensure t)
+
+
+(use-package virtualenvwrapper
+  :ensure t
+  :init
+  (venv-initialize-interactive-shells)
+  (venv-initialize-eshell))
+
 
 
 (provide 'my-init)

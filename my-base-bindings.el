@@ -291,14 +291,14 @@
   )
 (eval-after-load "dired" '(my-dired-mode-keys))
 
-(defun my-shell-mode-keys ()
+(defun my-comint-mode-keys ()
   "My keybindings for shell-mode."
   ;; By default, "M-r" in shell-mode searches in history -- restore it
   ;; to "kill-word", and use "C-r" for searching in history.
-  (define-key shell-mode-map (kbd "M-r") 'kill-word)
-  (define-key shell-mode-map (kbd "C-r") 'comint-history-isearch-backward-regexp)
+  (define-key comint-mode-map (kbd "M-r") 'kill-word)
+  (define-key comint-mode-map (kbd "C-r") 'comint-history-isearch-backward-regexp)
   )
-(eval-after-load "shell" '(my-shell-mode-keys))
+(eval-after-load "comint" '(my-comint-mode-keys))
 
 (provide 'my-base-bindings)
 

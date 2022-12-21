@@ -12,9 +12,13 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
+ '(compilation-scroll-output t)
  '(cua-remap-control-v nil)
  '(default-input-method "bulgarian-phonetic")
  '(dired-dwim-target 'dired-dwim-target-next)
+ '(dired-guess-shell-alist-user
+   '(("\\.\\(mp3\\|ogg\\|wav\\)\\'" "audacious")
+     ("\\.\\(mp4\\|webm\\|mov\\|avi\\)\\'" "vlc")))
  '(dired-isearch-filenames t)
  '(dired-listing-switches "-alh --time-style=long-iso --group-directories-first")
  '(dired-omit-files "^[#]\\|^[.]$\\|^[.]\\(?:[^.]\\|[.].+\\)")
@@ -23,6 +27,8 @@
  '(dired-use-ls-dired t)
  '(ediff-split-window-function 'split-window-horizontally)
  '(ediff-window-setup-function 'ediff-setup-windows-plain)
+ '(find-ls-option
+   '("-exec ls -ldhb --time-style=long-iso --group-directories-first {} +" . "-ldhb --time-style=long-iso --group-directories-first"))
  '(fringe-mode '(nil . 0) nil (fringe))
  '(global-subword-mode t)
  '(help-at-pt-display-when-idle '(flymake-overlay) nil (help-at-pt))
@@ -31,6 +37,7 @@
  '(inhibit-startup-screen t)
  '(initial-frame-alist '((fullscreen . maximized)))
  '(json-reformat:indent-width 2)
+ '(recentf-max-saved-items 100)
  '(scroll-bar-mode 'right)
  '(show-paren-mode t)
  '(tool-bar-mode nil))
@@ -43,6 +50,28 @@
  '(default ((t (:family "DejaVu Sans Mono" :foundry "unknown" :slant normal :weight normal :height 128 :width normal))))
  '(mode-line ((((class color) (min-colors 88)) (:background "#9dbde4" :foreground "black" :box (:line-width -1 :style released-button)))))
  '(region ((t (:background "LightGoldenrod2")))))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Load and configure build-in packages ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defalias 'yes-or-no-p 'y-or-n-p)
+(require 'jka-compr)
+(require 'dired-x)
+(require 'find-dired)
+(require 'uniquify)
+(require 'easymenu)
+(setq-default dired-omit-mode t)
+(recentf-mode t)
+(electric-pair-mode 1)
+(setq grep-program "egrep")
+
+;; Add code navigation commands to the Edit menu. This makes easier
+;; navigating the code using only the mouse.
+(easy-menu-add-item nil '("edit") ["--" nil t])
+(easy-menu-add-item nil '("edit") ["Jump to Definition" xref-find-definitions t])
+(easy-menu-add-item nil '("edit") ["Jump Back from Definition" xref-pop-marker-stack t])
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -70,11 +99,11 @@
 (package-initialize)
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Install and configure use-package ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Make sure `use-package` is installed ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Ensure packages in my-package-list are installed.
+;; Ensure all packages in my-package-list are installed.
 (setq my-package-list '(use-package))
 (unless package-archive-contents
   (package-refresh-contents))
@@ -86,43 +115,12 @@
   (require 'use-package))
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Configure build-in packages ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(add-to-list 'load-path "~/src/emacs")
-(byte-recompile-directory "~/src/emacs" 0)
-(defalias 'yes-or-no-p 'y-or-n-p)
-(require 'jka-compr)
-(require 'dired-x)
-(require 'find-dired)
-(setq find-ls-option
-      '("-exec ls -ldhb --time-style=long-iso --group-directories-first {} +" .
-        "-ldhb --time-style=long-iso --group-directories-first"))
-(setq-default dired-omit-mode t)
-(require 'recentf)
-(recentf-mode t)
-(setq recentf-max-saved-items 100)
-(require 'uniquify)
-(setq grep-program "egrep")
-(setq compilation-scroll-output t)  ;; or 'first-error
-(electric-pair-mode 1)
-
-;; Configure dired file associations.
-(setq dired-guess-shell-alist-user
-      '(("\\.\\(mp3\\|ogg\\|wav\\)\\'" "audacious")
-        ("\\.\\(mp4\\|webm\\|mov\\|avi\\)\\'" "vlc")))
-
-;; Add code navigation commands to the Edit menu. This makes easier
-;; navigating the code using only the mouse.
-(easy-menu-add-item nil '("edit") ["--" nil t])
-(easy-menu-add-item nil '("edit") ["Jump to Definition" xref-find-definitions t])
-(easy-menu-add-item nil '("edit") ["Jump Back from Definition" xref-pop-marker-stack t])
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Run my configuration scripts ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(add-to-list 'load-path "~/src/emacs")
+(byte-recompile-directory "~/src/emacs" 0)
+
 (defvar my-commands-keymap (make-keymap "Custom commands")
   "Custom commands invoked with a key-chord.")
 

@@ -6,6 +6,9 @@
 
 (require 'my-util-funcs)
 
+(defvar my-commands-keymap (make-keymap "Custom commands")
+  "Custom commands invoked with a key-chord.")
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Throw away the awful Emacs defaults, and define new ;;
 ;; "Ergoemacs"-like key-bindings.                      ;;
@@ -206,45 +209,6 @@
   (define-key isearch-mode-map (kbd "M-b") 'isearch-toggle-input-method)
   )
 (eval-after-load "isearch" '(my-isearch-mode-keys))
-
-(defun my-ido-mode-keys ()
-  "My keybindings for ido."
-  ;; Use "M-y", "M-Y", "M-j", "M-l" for switching between the matching items.
-  (define-key ido-common-completion-map (kbd "M-y") 'ido-next-match)
-  (define-key ido-common-completion-map (kbd "M-Y") 'ido-prev-match)
-  (define-key ido-common-completion-map (kbd "M-l") 'ido-next-match)
-  (define-key ido-common-completion-map (kbd "M-j") 'ido-prev-match)
-  ;; Change the original "M-s" binding for the file manager to "M-6",
-  ;; and make sure "M-s" does what it is supposed to do.
-  (define-key ido-file-completion-map (kbd "M-6") (lookup-key ido-file-completion-map (kbd "M-s")))
-  (define-key ido-file-completion-map (kbd "M-s") 'other-window)
-  ;; When finding files, `ido` overrides many of the navigation keys.
-  ;; For example, "C-e" enters edit mode, "C-k" deletes the current
-  ;; file, "M-m" creates a new directory. Here we bring back those
-  ;; bindings that we really need.
-  (define-key ido-file-completion-map (kbd "M-d") 'delete-backward-char)
-  (define-key ido-file-completion-map (kbd "M-e") 'backward-kill-word)
-  (define-key ido-file-completion-map (kbd "M-l") 'ido-next-match)
-  (define-key ido-file-completion-map (kbd "M-j") 'ido-prev-match)
-  (define-key ido-file-completion-map (kbd "M-i") 'ido-prev-work-directory)
-  (define-key ido-file-completion-map (kbd "M-k") 'ido-next-work-directory)
-  (define-key ido-file-completion-map (kbd "M-b") 'toggle-input-method)
-  (define-key ido-file-completion-map (kbd "M-v") 'yank)
-  (define-key ido-file-completion-map (kbd "M-w") 'ido-forget-work-directory)
-  (define-key ido-file-completion-map (kbd "M-f") 'ido-wide-find-file-or-pop-dir)
-  (define-key ido-file-completion-map (kbd "M-r") 'ido-wide-find-dir-or-delete-dir)
-  (define-key ido-file-completion-map (kbd "M-y") 'ido-merge-work-directories)
-  (define-key ido-file-completion-map (kbd "M-Y") 'ido-merge-work-directories)
-  (define-key ido-file-completion-map (kbd "C-y") 'ido-merge-work-directories)
-  ;; Use "C-o" to enter `ido-find-file` mode from `ido-switch-buffer`
-  ;; mode ("C-f" does this too). Press "C-o" again to fallback to the
-  ;; classic `find-file` mode.
-  (define-key ido-buffer-completion-map (kbd "C-o") 'ido-enter-find-file)
-  (define-key ido-file-completion-map (kbd "C-o") 'ido-fallback-command)
-  ;; Press "M-m" again to fallback to the classic `switch-to-buffer`.
-  (define-key ido-buffer-completion-map (kbd "M-m") 'ido-fallback-command)
-  )
-(eval-after-load "ido" '(my-ido-mode-keys))
 
 (defun my-Buffer-menu-mode-keys ()
   "My keybindings for `Buffer-menu' mode."

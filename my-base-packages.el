@@ -5,7 +5,7 @@
 
 ;;; Code:
 
-(require 'my-util-funcs)
+(require 'my-base-bindings)
 (eval-when-compile
   (require 'use-package))
 
@@ -48,11 +48,47 @@
   (ido-auto-merge-work-directories-length -1 "Disable auto-merge.")
   (ido-use-faces t)
   :config
-  (require 'my-base-bindings)
   (ido-mode 'both)
   (flx-ido-mode 1)
-  (my-ido-mode-keys)
-  :bind ("M-m" . ido-switch-buffer))
+  :bind (("M-m" . ido-switch-buffer)
+         :map ido-common-completion-map
+         ;; Use "M-j", "M-l" for switching between the matching
+         ;; items. Also, do not activate isearch here ("M-y", "M-Y").
+         ("M-l" . ido-next-match)
+         ("M-j" . ido-prev-match)
+         ("M-y" . undefined)
+         ("M-Y" . undefined)
+         :map ido-file-completion-map
+         ;; Make sure "M-s" does what it is supposed to do. Ido binds
+         ;; "M-s" to `ido-merge-work-directories`, but we will use
+         ;; "M-y" for this.
+         ("M-s" . other-window)
+         ;; When finding files, `ido` overrides many of the navigation keys.
+         ;; For example, "C-e" enters edit mode, "C-k" deletes the current
+         ;; file, "M-m" creates a new directory. Here we bring back those
+         ;; bindings that we really need.
+         ("M-d" . delete-backward-char)
+         ("M-e" . backward-kill-word)
+         ("M-l" . ido-next-match)
+         ("M-j" . ido-prev-match)
+         ("M-i" . ido-prev-work-directory)
+         ("M-k" . ido-next-work-directory)
+         ("M-b" . toggle-input-method)
+         ("M-v" . yank)
+         ("M-w" . ido-forget-work-directory)
+         ("M-f" . ido-wide-find-file-or-pop-dir)
+         ("M-r" . ido-wide-find-dir-or-delete-dir)
+         ("M-y" . ido-merge-work-directories)
+         ("M-Y" . ido-merge-work-directories)
+         ("C-y" . ido-merge-work-directories)
+         ("C-o" . ido-fallback-command)
+         :map ido-buffer-completion-map
+         ;; Use "C-o" to enter `ido-find-file` mode from `ido-switch-buffer`
+         ;; mode ("C-f" does this too). Press "C-o" again to fallback to the
+         ;; classic `find-file` mode.
+         ("C-o" . ido-enter-find-file)
+         ;; Press "M-m" again to fallback to the classic `switch-to-buffer`.
+         ("M-m" . ido-fallback-command)))
 
 
 (use-package projectile

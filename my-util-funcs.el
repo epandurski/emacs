@@ -4,10 +4,6 @@
 
 ;;; Code:
 
-(defvar my-commands-keymap (make-keymap "Custom commands")
-  "Custom commands invoked with a key-chord.")
-
-
 (defun my-open-previous-line (arg)
   "Open a new line before the current one.
 

@@ -5,6 +5,7 @@
 
 ;;; Code:
 
+(require 'my-base-bindings)
 (require 'my-util-funcs)
 (eval-when-compile
   (require 'use-package))

@@ -8,7 +8,7 @@
 
 ;;; Code:
 
-(require 'my-util-funcs)
+(require 'my-base-bindings)
 (eval-when-compile
   (require 'use-package))
 

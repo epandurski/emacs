@@ -145,22 +145,23 @@
          ("M-x" . magit-copy-section-value)))
 
 
-; NOTE: Run "pip install -U 'python-lsp-server'" to install the pylsp
-; server for python.
+(use-package lsp-treemacs
+  :ensure t
+  :commands (lsp-treemacs-sync-mode))
+
+
 (use-package lsp-mode
   :ensure t
   :commands (lsp lsp-deferred)
-  :init
-  (setq lsp-keymap-prefix "C-v")
-  (add-hook 'lsp-deferred #'svelte-mode)
-  (add-hook 'lsp-deferred #'python-mode)
-  (add-hook 'lsp-deferred #'typescript-mode))
+  :custom (lsp-keymap-prefix "C-v")
+  :config (lsp-treemacs-sync-mode 1)
+  :hook
+  (svelte-mode . lsp-deferred)
+  (python-mode . lsp-deferred)
+  (typescript-mode . lsp-deferred))
 
-
-(use-package lsp-treemacs
-  :init (lsp-treemacs-sync-mode 1)
-  :ensure t
-  :commands lsp-treemacs-errors-list)
+; NOTE: Run "pip install -U 'python-lsp-server'" to install the pylsp
+; server for python.
 
 
 (provide 'my-base-packages)

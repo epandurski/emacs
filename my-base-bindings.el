@@ -114,11 +114,9 @@
                "M-0" "M-7" "M-0" "M-{" "M-}"))
   (global-unset-key (kbd key)))
 
-;; Use "C-z" as "redo" when not on text terminal. Hide the menu bar on
-;; text terminal.
+;; Use "C-z" as "redo" when not on text terminal.
 (if window-system
-    (global-set-key (kbd "C-z") 'undo)
-  (menu-bar-mode -1))
+    (global-set-key (kbd "C-z") 'undo))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;

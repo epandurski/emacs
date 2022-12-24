@@ -12,6 +12,10 @@
 (setq custom-file "~/src/emacs/custom.el")
 (load custom-file 'noerror nil t)
 
+;; Hide the menu bar on text terminal.
+(unless window-system
+  (menu-bar-mode -1))
+
 (defalias 'yes-or-no-p 'y-or-n-p)
 (require 'uniquify)
 (recentf-mode t)

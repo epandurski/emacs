@@ -11,7 +11,6 @@
   (require 'use-package))
 
 
-
 (use-package python
   :ensure t
   :commands (python-mode)

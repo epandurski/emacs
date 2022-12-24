@@ -160,7 +160,11 @@
 (define-key my-commands-keymap (kbd "u c") 'calendar)
 
 
-(defun my-minibuffer-keys ()
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Mode-specific bindings ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(eval-after-load "minibuffer" (lambda ()
   "My keybindings for the minibuffer."
   ;; Minibuffer uses "M-s" and "M-r" to search in history. Make them
   ;; do what they are supposed to do, and use "C-s" and "C-r" to
@@ -173,10 +177,9 @@
   ;; do what it is supposed to do instead.
   (define-key minibuffer-local-completion-map (kbd "M-v") 'yank)
   (define-key minibuffer-local-completion-map (kbd "M-V") 'yank-pop)
-  )
-(eval-after-load "minibuffer" '(my-minibuffer-keys))
+  ))
 
-(defun my-isearch-mode-keys ()
+(eval-after-load "isearch" (lambda ()
   "My keybindings for `isearch' mode."
   ;; By default `buffer-menu-mode` uses "M-s" as a key prefix. Make it
   ;; do what it is supposed to do, and use "M-i" or "M-6" as a key
@@ -204,10 +207,9 @@
   (define-key isearch-mode-map (kbd "M-v") 'isearch-yank-kill)
   (define-key isearch-mode-map (kbd "M-V") 'isearch-yank-pop)
   (define-key isearch-mode-map (kbd "M-b") 'isearch-toggle-input-method)
-  )
-(eval-after-load "isearch" '(my-isearch-mode-keys))
+  ))
 
-(defun my-Buffer-menu-mode-keys ()
+(eval-after-load "buff-menu" (lambda ()
   "My keybindings for `Buffer-menu' mode."
   ;; `Buffer-menu-mode` uses "M-s" as a key prefix. Make it do what it
   ;; is supposed to do, and use "M-6" as a key prefix instead.
@@ -218,20 +220,18 @@
   ;; displaying a file in another window.
   (define-key Buffer-menu-mode-map (kbd "C-o") 'find-file)
   (define-key Buffer-menu-mode-map (kbd "M-f") 'Buffer-menu-switch-other-window)
-  )
-(eval-after-load "buff-menu" '(my-Buffer-menu-mode-keys))
+  ))
 
-(defun my-bookmark-bmenu-mode-keys ()
+(eval-after-load "bookmark" (lambda ()
   "My keybindings for bookmark-bmenu-mode."
   ;; By default, "C-o" in bookmark-mode displays a file in another
   ;; window -- make it run "find-file" instead, and use "M-f" for
   ;; displaying a file in another window.
   (define-key bookmark-bmenu-mode-map (kbd "C-o") 'find-file)
   (define-key bookmark-bmenu-mode-map (kbd "M-f") 'bookmark-bmenu-switch-other-window)
-  )
-(eval-after-load "bookmark" '(my-bookmark-bmenu-mode-keys))
+  ))
 
-(defun my-dired-mode-keys ()
+(eval-after-load "dired" (lambda ()
   "My keybindings for `dired' mode."
   (define-key dired-mode-map (kbd "a") 'dired-omit-mode)
   (define-key dired-mode-map (kbd "M-5") 'find-name-dired)
@@ -249,17 +249,15 @@
   ;; supposed to do, and use "M-6" as a key prefix instead.
   (define-key dired-mode-map (kbd "M-6") (lookup-key dired-mode-map (kbd "M-s")))
   (define-key dired-mode-map (kbd "M-s") 'other-window)
-  )
-(eval-after-load "dired" '(my-dired-mode-keys))
+  ))
 
-(defun my-comint-mode-keys ()
+(eval-after-load "comint" (lambda ()
   "My keybindings for shell-mode."
   ;; By default, "M-r" in shell-mode searches in history -- restore it
   ;; to "kill-word", and use "C-r" for searching in history.
   (define-key comint-mode-map (kbd "M-r") 'kill-word)
   (define-key comint-mode-map (kbd "C-r") 'comint-history-isearch-backward-regexp)
-  )
-(eval-after-load "comint" '(my-comint-mode-keys))
+  ))
 
 (provide 'my-base-bindings)
 

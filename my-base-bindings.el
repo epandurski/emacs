@@ -111,7 +111,7 @@
                ;; These are especially convinient. Every major-mode
                ;; can define these as fast shortcuts.
                "C-d" "C-e" "C-f" "C-v" "C-b" "C-_" "C-\\"
-               "M-0" "M-7" "M-0" "M-{" "M-}"))
+               "M-0" "M-7" "M-9" "M-0" "M-{" "M-}"))
   (global-unset-key (kbd key)))
 
 ;; Use "C-z" as "redo" when not on text terminal.

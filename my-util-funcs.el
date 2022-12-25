@@ -164,6 +164,13 @@ directory, display it in the same window."
     (insert-file-contents file)
     (buffer-string)))
 
+(defun my-dired-toggle-subdir-visibility (arg)
+  "Hide/show subdir and move the point to the subdir."
+  (interactive "p")
+  (let ((dir (dired-current-directory)))
+    (dired-hide-subdir arg)
+    (dired-goto-subdir dir)))
+
 (provide 'my-util-funcs)
 
 ;;; my-util-funcs.el ends here

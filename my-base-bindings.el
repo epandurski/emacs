@@ -128,9 +128,7 @@
 (define-key my-commands-keymap (kbd "b b") 'my-bookmark-bmenu-list)
 
 ;; dired
-(define-key my-commands-keymap (kbd "d d") 'my-dired-at-home)
-(define-key my-commands-keymap (kbd "d SPC") 'dired)
-(define-key my-commands-keymap (kbd "d p") 'dired-at-point)
+(define-key my-commands-keymap (kbd "d") 'my-dired-at-home)
 
 ;; shell
 (define-key my-commands-keymap (kbd "s s") 'shell)
@@ -234,8 +232,13 @@
 (eval-after-load "dired" (lambda ()
   "My keybindings for `dired' mode."
   (define-key dired-mode-map (kbd "a") 'dired-omit-mode)
+  (define-key dired-mode-map (kbd "h") 'dired-hide-all)
+  (define-key dired-mode-map (kbd "TAB") 'my-dired-toggle-subdir-visibility)
+  (define-key dired-mode-map (kbd "M-p") 'dired-prev-subdir)
+  (define-key dired-mode-map (kbd "M-n") 'dired-next-subdir)
   (define-key dired-mode-map (kbd "M-5") 'find-name-dired)
   (define-key dired-mode-map (kbd "M-%") 'find-dired)
+  (define-key dired-mode-map (kbd "M-7") 'dired-tree-up)
   ;; Make so that when the left button is clicked (dired translates
   ;; the left to <mouse-2>) directories are open in-place, and files
   ;; are open in other window.

@@ -21,7 +21,6 @@
 (recentf-mode t)
 (electric-pair-mode 1)
 (setq-default dired-omit-mode t)
-(setq grep-program "egrep")
 
 ;; Use dired+
 (add-hook 'dired-load-hook (lambda ()

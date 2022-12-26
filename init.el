@@ -77,6 +77,10 @@
 (add-to-list 'load-path "~/src/emacs")
 (byte-recompile-directory "~/src/emacs" 0)
 
+;; If necessary, upgrade versions of builtin packages.
+(require 'my-util-funcs)
+(my-upgrade-builtin-package 'flymake '(1 2 2))
+
 (require 'my-workarounds)
 (require 'my-server)
 (require 'my-abbrevs)

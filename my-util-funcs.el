@@ -171,6 +171,21 @@ directory, display it in the same window."
     (dired-hide-subdir arg)
     (dired-goto-subdir dir)))
 
+(defun my-upgrade-builtin-package (pkg version)
+  "Try to update the version of PKG to VERSION if necessary.
+PKG must be a symbol identifying the package, and VERSION must be
+a list with version numbers.  For example, '(1 2 3) for version
+`1.2.3`."
+  (require 'package)
+  (let ((builtin (package-built-in-p pkg version))
+        (installed (assq pkg package-alist)))
+    (unless (or builtin installed)
+      (unless package-archive-contents
+        (package-refresh-contents))
+      (message "Installing new version of %s..." pkg)
+      (let ((pdescr (cadr(assq pkg package-archive-contents))))
+        (package-install pdescr)))))
+
 (provide 'my-util-funcs)
 
 ;;; my-util-funcs.el ends here

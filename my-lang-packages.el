@@ -12,7 +12,6 @@
 
 
 (use-package python
-  :ensure t
   :commands (python-mode)
   :custom (python-shell-interpreter "python3")
   :config
@@ -27,7 +26,6 @@
 
 
 (use-package js
-  :ensure t
   :commands (js-mode)
   :custom (js-indent-level 2)
   :config
@@ -44,7 +42,6 @@
 
 
 (use-package sgml-mode
-  :ensure t
   :commands (html-mode sgml-mode)
   :custom (sgml-validate-command "tidy --gnu-emacs yes -utf8 -e -q")
   :bind (:map html-mode-map
@@ -58,7 +55,6 @@
 (use-package mhtml-mode
   ;; Mhtml-mode is a sub-mode of sgml-mode. By default, html/htm files
   ;; are open in this mode.
-  :ensure t
   :commands (mhtml-mode))
 
 

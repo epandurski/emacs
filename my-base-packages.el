@@ -35,7 +35,6 @@
 
 
 (use-package ido
-  :ensure t
   :demand t
   :custom
   (ido-case-fold t)
@@ -115,7 +114,6 @@
 
 
 (use-package flymake
-  :ensure t
   :commands (flymake-mode)
   :bind (:map my-commands-keymap
          ("f f" . flymake-show-buffer-diagnostics)

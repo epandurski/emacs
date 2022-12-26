@@ -53,9 +53,19 @@
 
 (package-initialize)
 
-;; If necessary, upgrade versions of some builtin packages.
+;; If necessary, upgrade flymake's version. Emacs 28 comes with an
+;; improved version of flymake, which we would want to use even in
+;; older Emacs.
 (require 'my-util-funcs)
 (my-upgrade-builtin-package 'flymake '(1 2 2))
+
+;; A new flymake version, may install as a dependency, a new eldoc
+;; version. It seems though, that eldoc is loaded automatically very
+;; early (before `package-initialize`), and therefore we may need to
+;; re-load the new eldoc version here.
+(if (assq 'eldoc package-alist)
+    ;; I guess we do not need (unload-feature 'eldoc) here.
+    (load "eldoc"))
 
 ;; A list of packages that must be automatically installed, if they
 ;; are not installed already.

@@ -21,6 +21,8 @@
 (recentf-mode t)
 (electric-pair-mode 1)
 (setq-default dired-omit-mode t)
+(add-to-list 'load-path "~/src/emacs")
+(byte-recompile-directory "~/src/emacs" 0)
 
 ;; Use dired+
 (add-hook 'dired-load-hook (lambda ()
@@ -51,6 +53,10 @@
 
 (package-initialize)
 
+;; If necessary, upgrade versions of some builtin packages.
+(require 'my-util-funcs)
+(my-upgrade-builtin-package 'flymake '(1 2 2))
+
 ;; A list of packages that must be automatically installed, if they
 ;; are not installed already.
 (setq my-package-list '(use-package))
@@ -69,13 +75,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Run my configuration scripts ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(add-to-list 'load-path "~/src/emacs")
-(byte-recompile-directory "~/src/emacs" 0)
-
-;; If necessary, upgrade versions of builtin packages.
-(require 'my-util-funcs)
-(my-upgrade-builtin-package 'flymake '(1 2 2))
-
 (require 'my-workarounds)
 (require 'my-server)
 (require 'my-abbrevs)

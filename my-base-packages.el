@@ -1,3 +1,5 @@
+;; -*-no-byte-compile: t; -*-
+
 ;;; my-base-packages.el --- Ensure the most basic packages are
 ;;; installed and configured.
 

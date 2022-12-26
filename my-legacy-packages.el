@@ -1,3 +1,5 @@
+;; -*-no-byte-compile: t; -*-
+
 ;;; my-legacy-packages.el --- Ensure the legacy packages are installed
 ;;; and configured.
 ;;;

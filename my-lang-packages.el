@@ -1,3 +1,5 @@
+;; -*-no-byte-compile: t; -*-
+
 ;;; my-lang-packages.el --- Ensure the packages supporting differnet
 ;;; language formats are installed and configured.
 

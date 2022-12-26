@@ -121,8 +121,8 @@
          ("f f" . flymake-show-buffer-diagnostics)
          ("f p" . flymake-show-project-diagnostics)
          :map flymake-mode-map
-         ("C-n" . flymake-goto-next-error)
-         ("C-p" . flymake-goto-prev-error))
+         ("M-n" . flymake-goto-next-error)
+         ("M-p" . flymake-goto-prev-error))
   :hook (emacs-lisp-mode
          python-mode
          js-mode

@@ -24,12 +24,7 @@
 
 ;; Use dired+
 (add-hook 'dired-load-hook (lambda ()
-   (load "dired-x")
-   ;; Set dired-x global variables.
-   (customize-set-variable 'dired-guess-shell-alist-user '(
-      ("\\.\\(mp3\\|ogg\\|wav\\)\\'" "audacious")
-      ("\\.\\(mp4\\|webm\\|mov\\|avi\\)\\'" "vlc")))
-   ))
+   (load "dired-x")))
 
 ;; Add code navigation commands to the Edit menu. This makes easier to
 ;; navigate code using only the mouse.

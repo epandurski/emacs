@@ -13,6 +13,14 @@
   (require 'use-package))
 
 
+(use-package flycheck
+  :disabled
+  :ensure t
+  :demand t
+  :config (add-hook 'after-init-hook #'global-flycheck-mode)
+  :bind ("C-e" . flycheck-display-error-at-point))
+
+
 (use-package nodejs-repl
   :disabled
   :ensure t

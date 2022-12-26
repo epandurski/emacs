@@ -99,13 +99,6 @@
   :bind ("C-f" . projectile-commander))
 
 
-(use-package flycheck
-  :ensure t
-  :demand t
-  :config (add-hook 'after-init-hook #'global-flycheck-mode)
-  :bind ("C-e" . flycheck-display-error-at-point))
-
-
 (use-package company
   :ensure t
   :demand t
@@ -119,6 +112,22 @@
          ("C-w" . nil)
          ("M-y" . company-search-candidates)
          ("M-." . company-show-location)))
+
+
+(use-package flymake
+  :ensure t
+  :commands (flymake-mode)
+  :bind (:map my-commands-keymap
+         ("f f" . flymake-show-buffer-diagnostics)
+         ("f p" . flymake-show-project-diagnostics)
+         :map flymake-mode-map
+         ("C-n" . flymake-goto-next-error)
+         ("C-p" . flymake-goto-prev-error))
+  :hook (emacs-lisp-mode
+         python-mode
+         js-mode
+         typescript-mode
+         svelte-mode))
 
 
 (use-package magit

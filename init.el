@@ -20,6 +20,7 @@
 (require 'uniquify)
 (recentf-mode t)
 (electric-pair-mode 1)
+(minibuffer-depth-indicate-mode)
 (setq-default dired-omit-mode t)
 (setq read-process-output-max (* 256 1024)) ; 256kb
 (add-to-list 'load-path "~/src/emacs")
@@ -29,8 +30,9 @@
 (add-hook 'dired-load-hook (lambda ()
    (load "dired-x")))
 
-;; Add code navigation commands to the Edit menu. This makes easier to
-;; navigate code using only the mouse.
+;; Add code navigation commands to the Edit menu. This makes easier to navigate
+;; code using only the mouse. Most probably, using `context-menu-mode` for this
+;; in Emacs 28 would be better.
 (require 'easymenu)
 (easy-menu-add-item nil '("edit") ["--" nil t])
 (easy-menu-add-item nil '("edit") ["Jump to Definition" xref-find-definitions t])

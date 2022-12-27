@@ -11,8 +11,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(auto-save-default nil)
+ '(case-fold-search nil)
  '(column-number-mode t)
- '(compilation-scroll-output t)
+ '(compilation-scroll-output 'first-error)
+ '(create-lockfiles nil)
  '(cua-remap-control-v nil)
  '(default-input-method "bulgarian-phonetic")
  '(dired-dwim-target 'dired-dwim-target-next)
@@ -37,8 +40,12 @@
  '(inhibit-startup-screen t)
  '(initial-frame-alist '((fullscreen . maximized)))
  '(json-reformat:indent-width 2)
+ '(make-backup-files nil)
  '(recentf-max-saved-items 100)
+ '(ring-bell-function 'ignore)
+ '(save-interprogram-paste-before-kill t)
  '(scroll-bar-mode 'right)
+ '(sentence-end-double-space nil)
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 

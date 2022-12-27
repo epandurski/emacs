@@ -128,7 +128,9 @@
 (define-key my-commands-keymap (kbd "b b") 'my-bookmark-bmenu-list)
 
 ;; dired
-(define-key my-commands-keymap (kbd "d") 'my-dired-at-home)
+(define-key my-commands-keymap (kbd "d d") 'my-dired-at-home)
+(define-key my-commands-keymap (kbd "d SPC") 'dired)
+(define-key my-commands-keymap (kbd "d p") 'dired-at-point)
 
 ;; shell
 (define-key my-commands-keymap (kbd "s s") 'shell)

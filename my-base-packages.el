@@ -31,6 +31,17 @@
   :config (which-key-mode))
 
 
+(use-package diminish
+  :ensure t
+  :demand t
+  :config
+  (diminish 'auto-revert-mode)
+  (diminish 'subword-mode)
+  (diminish 'which-key-mode)
+  (diminish 'abbrev-mode)
+  (diminish 'eldoc-mode))
+
+
 (use-package flx-ido
   :ensure t
   :commands (flx-ido-mode))
@@ -95,6 +106,7 @@
 (use-package projectile
   :ensure t
   :demand t
+  :diminish projectile-mode
   :custom (projectile-switch-project-action 'projectile-dired)
   :config (add-hook 'after-init-hook #'projectile-mode)
   :bind ("C-f" . projectile-commander))
@@ -103,6 +115,7 @@
 (use-package company
   :ensure t
   :demand t
+  :diminish company-mode
   :custom (company-idle-delay nil "Disable idle completion.")
   :config (add-hook 'after-init-hook #'global-company-mode)
   :bind (("M-/" . company-complete-common-or-cycle)

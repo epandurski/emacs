@@ -39,12 +39,10 @@
 
 
 (use-package add-node-modules-path
-  :disabled
   :ensure t)
 
 
 (use-package virtualenvwrapper
-  :disabled
   :ensure t
   :init
   (venv-initialize-interactive-shells)

@@ -21,6 +21,7 @@
 (recentf-mode t)
 (electric-pair-mode 1)
 (setq-default dired-omit-mode t)
+(setq read-process-output-max (* 256 1024)) ; 256kb
 (add-to-list 'load-path "~/src/emacs")
 (byte-recompile-directory "~/src/emacs" 0)
 

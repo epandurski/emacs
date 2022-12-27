@@ -28,7 +28,9 @@
 (use-package which-key
   :ensure t
   :demand t
-  :config (which-key-mode))
+  :config
+  (which-key-mode)
+  (which-key-setup-minibuffer))
 
 
 (use-package diminish

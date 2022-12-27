@@ -30,9 +30,11 @@
  '(dired-use-ls-dired t)
  '(ediff-split-window-function 'split-window-horizontally)
  '(ediff-window-setup-function 'ediff-setup-windows-plain)
+ '(fill-column 79)
  '(find-ls-option
    '("-exec ls -ldhb --time-style=long-iso --group-directories-first {} +" . "-ldhb --time-style=long-iso --group-directories-first"))
  '(fringe-mode '(nil . 0) nil (fringe))
+ '(global-so-long-mode t)
  '(global-subword-mode t)
  '(help-at-pt-display-when-idle '(flymake-overlay) nil (help-at-pt))
  '(help-at-pt-timer-delay 0.9)

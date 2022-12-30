@@ -101,7 +101,8 @@
 ;; breaks (see https://github.com/redguardtoo/elpa-mirror). Use `M-x
 ;; elpamr-create-mirror-for-installed` to (re)create the local
 ;; repository.
-(require 'elpa-mirror)
+(autoload 'elpamr-create-mirror-for-installed "elpa-mirror"
+  "Export installed packages into a new directory." t)
 
 ;; Calculate and show the time it took to execute this file.
 (let ((t0 (car (time-convert my-emacs-load-start 1000)))

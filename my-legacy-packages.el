@@ -43,6 +43,7 @@
 
 
 (use-package virtualenvwrapper
+  :disabled
   :ensure t
   :init
   (venv-initialize-interactive-shells)

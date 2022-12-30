@@ -179,12 +179,27 @@
          ("u e" . envrc-command-map)))
 
 
+(use-package eglot
+  :ensure t
+  :commands (eglot-ensure)
+  :custom (eglot-autoshutdown t)
+  :hook
+  (svelte-mode . eglot-ensure)
+  (python-mode . eglot-ensure)
+  (typescript-mode . eglot-ensure)
+  :bind (:map my-commands-keymap
+         ("e r" . eglot-rename)
+         ("e a" . eglot-code-actions)))
+
+
 (use-package lsp-treemacs
+  :disabled
   :ensure t
   :commands (lsp-treemacs-sync-mode))
 
 
 (use-package lsp-mode
+  :disabled
   :ensure t
   :commands (lsp lsp-deferred)
   :custom (lsp-keymap-prefix "C-v")

@@ -172,6 +172,13 @@
          ("M-x" . magit-copy-section-value)))
 
 
+(use-package envrc
+  :ensure t
+  :demand t
+  :bind (:map my-commands-keymap
+         ("u e" . envrc-command-map)))
+
+
 (use-package lsp-treemacs
   :ensure t
   :commands (lsp-treemacs-sync-mode))

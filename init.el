@@ -104,6 +104,11 @@
 (autoload 'elpamr-create-mirror-for-installed "elpa-mirror"
   "Export installed packages into a new directory." t)
 
+;; `envrc` uses the direnv tool to determine per-directory/project environment
+;; variables and then set those environment variables on a per-buffer basis.
+;; This requires direnv to be installed.
+(envrc-global-mode)
+
 ;; Calculate and show the time it took to execute this file.
 (let ((t0 (car (time-convert my-emacs-load-start 1000)))
       (t1 (car (time-convert (current-time) 1000))))

@@ -30,6 +30,12 @@ With ARG, insert ARG lines."
     (exit-recursive-edit))
   (dired "~/"))
 
+(defun my-dired-jump ()
+  "Require dired-x and jump."
+  (interactive)
+  (require 'dired-x)
+  (dired-jump))
+
 (defun my-bookmark-bmenu-list ()
   "Open bookmarks list buffer."
   (interactive)

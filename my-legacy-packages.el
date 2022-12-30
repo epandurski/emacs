@@ -50,6 +50,24 @@
   (venv-initialize-eshell))
 
 
+(use-package lsp-treemacs
+  :disabled
+  :ensure t
+  :commands (lsp-treemacs-sync-mode))
+
+
+(use-package lsp-mode
+  :disabled
+  :ensure t
+  :commands (lsp lsp-deferred)
+  :custom (lsp-keymap-prefix "C-v")
+  :config (lsp-treemacs-sync-mode 1)
+  :hook
+  (svelte-mode . lsp-deferred)
+  (python-mode . lsp-deferred)
+  (typescript-mode . lsp-deferred))
+
+
 (provide 'my-legacy-packages)
 
 ;;; my-legacy-packages.el ends here

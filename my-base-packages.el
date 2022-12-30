@@ -191,26 +191,8 @@
          ("e r" . eglot-rename)
          ("e a" . eglot-code-actions)))
 
-
-(use-package lsp-treemacs
-  :disabled
-  :ensure t
-  :commands (lsp-treemacs-sync-mode))
-
-
-(use-package lsp-mode
-  :disabled
-  :ensure t
-  :commands (lsp lsp-deferred)
-  :custom (lsp-keymap-prefix "C-v")
-  :config (lsp-treemacs-sync-mode 1)
-  :hook
-  (svelte-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
-  (typescript-mode . lsp-deferred))
-
-; NOTE: Run "pip install -U 'python-lsp-server'" to install the pylsp
-; server for python.
+; NOTE: Run 'pip install "python-lsp-server[all]' to install the pylsp server
+; for python.
 
 
 (provide 'my-base-packages)

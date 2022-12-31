@@ -87,6 +87,7 @@
 (global-set-key (kbd "M-%") 'query-replace-regexp)
 (global-set-key (kbd "M-6") search-map)
 (global-set-key (kbd "C-y") 'rgrep)
+(global-set-key (kbd "C-/") 'xref-find-references)
 
 ;; Manipulate buffers:
 (global-set-key (kbd "M-m") 'switch-to-buffer)

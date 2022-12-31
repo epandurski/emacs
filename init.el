@@ -94,7 +94,6 @@
 (require 'my-base-bindings)
 (require 'my-base-packages)
 (require 'my-lang-packages)
-(require 'my-legacy-packages)
 
 ;; `elpa-mirror` is a module that creates a local Emacs package
 ;; repository from installed packages, so that package upgrade never

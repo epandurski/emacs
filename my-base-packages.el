@@ -187,12 +187,22 @@
   (svelte-mode . eglot-ensure)
   (python-mode . eglot-ensure)
   (typescript-mode . eglot-ensure)
+  :config
+  (add-to-list 'eglot-server-programs '(svelte-mode "svelteserver" "--stdio"))
   :bind (:map my-commands-keymap
          ("e r" . eglot-rename)
          ("e a" . eglot-code-actions)))
 
-; NOTE: Run 'pip install "python-lsp-server[all]' to install the pylsp server
-; for python.
+;; NOTE:
+;;
+;; * Run 'pip install "python-lsp-server[all]' to install the pylsp server for
+;;   Python.
+;;
+;; * Run 'npm install typescript-language-server typescript' to install the
+;;   tsserver server for Typescript.
+;;
+;; * Run 'npm install svelte-language-server' to install the svelteserver
+;;   server for Svelte.
 
 
 (provide 'my-base-packages)

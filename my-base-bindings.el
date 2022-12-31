@@ -87,7 +87,6 @@
 (global-set-key (kbd "M-%") 'query-replace-regexp)
 (global-set-key (kbd "M-6") search-map)
 (global-set-key (kbd "C-y") 'rgrep)
-(global-set-key (kbd "C-/") 'xref-find-references)
 
 ;; Manipulate buffers:
 (global-set-key (kbd "M-m") 'switch-to-buffer)
@@ -111,7 +110,7 @@
 (dolist (key '("C-x 1" "C-x 2" "C-x 3" "C-x u" "C-x C-b"
                ;; These are especially convinient. Every major-mode
                ;; can define these as fast shortcuts.
-               "C-d" "C-e" "C-f" "C-v" "C-b" "C-_" "C-\\"
+               "C-d" "C-e" "C-f" "C-v" "C-b" "C-_" "C-\\" "C-/"
                "M-0" "M-7" "M-9" "M-0" "M-{" "M-}"))
   (global-unset-key (kbd key)))
 

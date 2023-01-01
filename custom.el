@@ -45,7 +45,7 @@
  '(json-reformat:indent-width 2)
  '(make-backup-files nil)
  '(project-switch-commands
-   '((project-dired "Root directory" 32)
+   '((project-dired "Root directory" 13)
      (project-find-file "Find file" nil)
      (project-find-regexp "Find regexp" nil)
      (project-shell "Shell" nil)))

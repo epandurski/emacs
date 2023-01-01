@@ -15,6 +15,16 @@
   (require 'use-package))
 
 
+(use-package projectile
+  :disabled
+  :ensure t
+  :demand t
+  :diminish projectile-mode
+  :custom (projectile-switch-project-action 'projectile-dired)
+  :config (add-hook 'after-init-hook #'projectile-mode)
+  :bind ("C-f" . projectile-commander))
+
+
 (use-package flycheck
   :disabled
   :ensure t

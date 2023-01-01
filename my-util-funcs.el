@@ -151,10 +151,10 @@ directory, display it in the same window."
         (find-alternate-file file)
       (display-buffer (find-file-noselect file) t))))
 
-(defun my-new-shell ()
-  "Start an inferior shell in a new buffer"
+(defun my-shell-at-home ()
+  "Switch to an inferior shell at home directory."
   (interactive)
-  (let ((current-prefix-arg 4)) ;; emulate C-u
+  (let ((default-directory "~"))
     (call-interactively 'shell)))
 
 (defun my-save-buffer (arg)

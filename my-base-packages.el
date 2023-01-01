@@ -105,13 +105,19 @@
          ("M-m" . ido-fallback-command)))
 
 
-(use-package projectile
+(use-package project
   :ensure t
   :demand t
-  :diminish projectile-mode
-  :custom (projectile-switch-project-action 'projectile-dired)
-  :config (add-hook 'after-init-hook #'projectile-mode)
-  :bind ("C-f" . projectile-commander))
+  :config
+  (define-key my-commands-keymap (kbd "p") project-prefix-map)
+  :bind (:map my-commands-keymap
+         ("d" . project-dired)
+         ("s" . project-shell)
+         ("y" . project-find-regexp)
+         :map project-prefix-map
+         ("C-b" . nil)
+         ("l" . project-list-buffers)
+         ("w" . project-forget-project)))
 
 
 (use-package company

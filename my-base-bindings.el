@@ -123,22 +123,12 @@
 ;; Command shortcuts ;;
 ;;;;;;;;;;;;;;;;;;;;;;;
 
+(define-key my-commands-keymap (kbd "D") 'my-dired-at-home)
+(define-key my-commands-keymap (kbd "S") 'my-shell-at-home)
+
 ;; bookmarks
 (define-key my-commands-keymap (kbd "b SPC") 'bookmark-set)
 (define-key my-commands-keymap (kbd "b b") 'my-bookmark-bmenu-list)
-
-;; dired
-(define-key my-commands-keymap (kbd "d d") 'my-dired-jump)
-(define-key my-commands-keymap (kbd "d h") 'my-dired-at-home)
-(define-key my-commands-keymap (kbd "d SPC") 'dired)
-(define-key my-commands-keymap (kbd "d p") 'dired-at-point)
-
-;; shell
-(define-key my-commands-keymap (kbd "s s") 'shell)
-(define-key my-commands-keymap (kbd "s SPC") 'my-new-shell)
-(define-key my-commands-keymap (kbd "s c") 'shell-command)
-(define-key my-commands-keymap (kbd "s r") 'shell-command-on-region)
-(define-key my-commands-keymap (kbd "s e") 'eshell)
 
 ;; ispell
 (define-key my-commands-keymap (kbd "i i") 'ispell)

@@ -192,6 +192,15 @@ a list with version numbers.  For example, '(1 2 3) for version
       (let ((pdescr (cadr(assq pkg package-archive-contents))))
         (package-install pdescr)))))
 
+(defun my-find-dired (arg)
+  "Find files in dired, asking the user for a wildcard.
+If prefixed with `C-u`, instead of wildcard, ask the user to
+directly enter parameters for the `find` command."
+  (interactive "p")
+  (if (eq arg 4)
+      (call-interactively 'find-dired)
+    (call-interactively 'find-name-dired)))
+
 (provide 'my-util-funcs)
 
 ;;; my-util-funcs.el ends here

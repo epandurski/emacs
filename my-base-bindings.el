@@ -86,7 +86,7 @@
 (global-set-key (kbd "M-5") 'query-replace)
 (global-set-key (kbd "M-%") 'query-replace-regexp)
 (global-set-key (kbd "M-6") search-map)
-(global-set-key (kbd "C-y") 'rgrep)
+(global-set-key (kbd "C-y") 'my-find-dired)
 
 ;; Manipulate buffers:
 (global-set-key (kbd "M-m") 'switch-to-buffer)
@@ -229,8 +229,6 @@
   (define-key dired-mode-map (kbd "TAB") 'my-dired-toggle-subdir-visibility)
   (define-key dired-mode-map (kbd "M-p") 'dired-prev-subdir)
   (define-key dired-mode-map (kbd "M-n") 'dired-next-subdir)
-  (define-key dired-mode-map (kbd "M-5") 'find-name-dired)
-  (define-key dired-mode-map (kbd "M-%") 'find-dired)
   (define-key dired-mode-map (kbd "M-7") 'dired-tree-up)
   ;; Make so that when the left button is clicked (dired translates
   ;; the left to <mouse-2>) directories are open in-place, and files

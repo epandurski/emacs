@@ -98,8 +98,7 @@
 (global-set-key (kbd "<f5>") 'server-edit)
 
 ;; Manipulate windows:
-(global-set-key (kbd "M-2") 'split-window-below)
-(global-set-key (kbd "M-3") 'split-window-right)
+(global-set-key (kbd "M-3") 'my-arrange-windows)
 (global-set-key (kbd "M-4") 'delete-other-windows)
 (global-set-key (kbd "<C-down>") 'shrink-window)
 (global-set-key (kbd "<C-up>") 'enlarge-window)
@@ -111,7 +110,7 @@
                ;; These are especially convinient. Every major-mode
                ;; can define these as fast shortcuts.
                "C-d" "C-e" "C-f" "C-v" "C-b" "C-_" "C-\\" "C-/"
-               "M-0" "M-7" "M-9" "M-0" "M-{" "M-}"))
+               "M-0" "M-2" "M-7" "M-9" "M-0" "M-{" "M-}"))
   (global-unset-key (kbd key)))
 
 ;; Use "C-z" as "redo" when not on text terminal.

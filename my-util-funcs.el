@@ -201,6 +201,31 @@ directly enter parameters for the `find` command."
       (call-interactively 'find-dired)
     (call-interactively 'find-name-dired)))
 
+(defun my-arrange-two-windows (window1 window2)
+  "A helper function for `my-arrange-windows`."
+  (let ((left1 (car (window-edges window1)))
+        (left2 (car (window-edges window2)))
+        (buffer2 (window-buffer window2)))
+    (delete-other-windows)
+    (if (= left1 left2)
+        (split-window-right)
+      (split-window-below))
+    (other-window 1)
+    (switch-to-buffer buffer2 t t)
+    (other-window -1)))
+
+(defun my-arrange-windows ()
+  "Toggle between 2 window vertical-split, and horizontal-split."
+  (interactive)
+  (let* ((windows (window-list nil 'nominibuf nil))
+         (n (length windows)))
+    (if (<= n 2)
+        (cond
+         ((= n 1) (split-window-right))
+         ((= n 2) (my-arrange-two-windows (car windows) (cadr windows))))
+      (delete-other-windows)
+      (split-window-right))))
+
 (provide 'my-util-funcs)
 
 ;;; my-util-funcs.el ends here

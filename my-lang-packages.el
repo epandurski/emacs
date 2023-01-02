@@ -40,7 +40,9 @@
   :ensure t
   :commands (typescript-mode)
   :custom (typescript-indent-level 2)
-  :config (add-hook 'typescript-mode-hook #'flyspell-prog-mode))
+  :config
+  (add-hook 'typescript-mode-hook #'hs-minor-mode)
+  (add-hook 'typescript-mode-hook #'flyspell-prog-mode))
 
 
 (use-package sgml-mode

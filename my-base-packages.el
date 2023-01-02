@@ -108,8 +108,8 @@
 (use-package project
   :ensure t
   :demand t
-  :config
-  (define-key my-commands-keymap (kbd "p") project-prefix-map)
+  :custom (project-switch-commands 'project-dired)
+  :config (define-key my-commands-keymap (kbd "p") project-prefix-map)
   :bind (("M-2" . project-switch-project)
          :map my-commands-keymap
          ("d" . project-dired)

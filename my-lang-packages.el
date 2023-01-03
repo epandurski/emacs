@@ -131,15 +131,10 @@
   :ensure t
   :commands (json-mode)
   :mode "\\.json\\'"
-  :init
-  (defvar my-json-mode-chordmap (make-keymap) "My chord-keymap for json-mode.")
   :config
-  (key-chord-define json-mode-map "fd" my-json-mode-chordmap)
   (add-hook 'json-mode-hook #'flyspell-prog-mode)
-  :bind (:map my-json-mode-chordmap
-         ("p" . json-pretty-print-buffer)
-         ("n" . json-nullify-sexp)
-         ("t" . json-toggle-boolean)))
+  :bind (:map json-mode-map
+         ("C-\\" . json-pretty-print-buffer)))
 
 
 (use-package yaml-mode

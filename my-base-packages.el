@@ -140,11 +140,8 @@
 (use-package flymake
   :commands (flymake-mode)
   :bind (:map my-commands-keymap
-         ("f f" . flymake-show-buffer-diagnostics)
-         ("f p" . flymake-show-project-diagnostics)
-         ("f s" . flymake-start)
-         ("f r" . flymake-running-backends)
-         ("f l" . flymake-switch-to-log-buffer)
+         ("f" . flymake-show-buffer-diagnostics)
+         ("F" . flymake-show-project-diagnostics)
          :map flymake-mode-map
          ("M-n" . flymake-goto-next-error)
          ("M-p" . flymake-goto-prev-error))

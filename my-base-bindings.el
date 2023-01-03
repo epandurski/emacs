@@ -111,7 +111,7 @@
 
     ;; These are especially convinient. Every major-mode
     ;; can define these as fast shortcuts.
-    "M-7" "M-9" "M-0" "M-{" "M-}"
+    "M-7" "M-9" "M-0" "M--" "M-{" "M-}"
     "C-d" "C-e" "C-f" "C-v" "C-b" "C-\\"
 
     ;; It seems that pressing "C-/", on text terminals generates "C-_".

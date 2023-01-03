@@ -106,11 +106,18 @@
 (global-set-key (kbd "<C-right>") 'enlarge-window-horizontally)
 
 ;; Unbind unused keys:
-(dolist (key '("C-x 1" "C-x 2" "C-x 3" "C-x u" "C-x C-b"
-               ;; These are especially convinient. Every major-mode
-               ;; can define these as fast shortcuts.
-               "C-d" "C-e" "C-f" "C-v" "C-b" "C-_" "C-\\" "C-/"
-               "M-0" "M-2" "M-7" "M-9" "M-0" "M-{" "M-}"))
+(dolist (key '(
+    "M-2" ;; Later, use-package will bind this to project-switch-project.
+
+    ;; These are especially convinient. Every major-mode
+    ;; can define these as fast shortcuts.
+    "M-0" "M-7" "M-9" "M-0" "M-{" "M-}"
+    "C-d" "C-e" "C-f" "C-v" "C-b" "C-\\"
+
+    ;; It seems that pressing "C-/", on text terminals generates "C-_".
+    ;; Therefore, to work correctly on graphical and text terminals, both
+    ;; should be bound to the same command.
+    "C-/" "C-_"))
   (global-unset-key (kbd key)))
 
 ;; Use "C-z" as "redo" when not on text terminal.

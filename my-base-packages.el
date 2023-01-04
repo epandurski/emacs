@@ -273,7 +273,7 @@
 
 ;; NOTE:
 ;;
-;; * Run 'pip install "python-lsp-server[all]' to install the pylsp server for
+;; * Run 'pip install "python-lsp-server[all]"' to install the pylsp server for
 ;;   Python.
 ;;
 ;; * Run 'npm install typescript-language-server typescript' to install the

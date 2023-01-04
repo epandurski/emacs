@@ -44,13 +44,15 @@
   (diminish 'eldoc-mode))
 
 
-(use-package flx-ido
-  :ensure t
-  :commands (flx-ido-mode))
-
-
 (use-package ido
   :demand t
+
+  :init
+  ;; Install flx-ido, which improves ido's flex matchig.
+  (use-package flx-ido
+    :ensure t
+    :commands (flx-ido-mode))
+
   :custom
   (ido-case-fold t)
   (ido-use-virtual-buffers t)
@@ -61,9 +63,11 @@
      ".emacs" ".xml" ".el" ".ini" ".cfg" ".cnf"))
   (ido-auto-merge-work-directories-length -1 "Disable auto-merge.")
   (ido-use-faces t)
+
   :config
   (ido-mode 'both)
   (flx-ido-mode 1)
+
   :bind (("M-m" . ido-switch-buffer)
          :map ido-common-completion-map
          ;; Use "M-j", "M-l" for switching between the matching
@@ -137,6 +141,13 @@
          ("M-." . company-show-location)))
 
 
+(use-package envrc
+  :ensure t
+  :demand t
+  :bind (:map my-commands-keymap
+         ("u e" . envrc-command-map)))
+
+
 (use-package flymake
   :commands (flymake-mode)
   :bind (:map my-commands-keymap
@@ -174,13 +185,6 @@
          ("4" . magit-section-show-level-4-all)
          ("M-c" . magit-copy-buffer-revision)
          ("M-x" . magit-copy-section-value)))
-
-
-(use-package envrc
-  :ensure t
-  :demand t
-  :bind (:map my-commands-keymap
-         ("u e" . envrc-command-map)))
 
 
 (use-package yasnippet

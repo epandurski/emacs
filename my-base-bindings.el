@@ -77,8 +77,8 @@
 (global-set-key (kbd "M-t") 'my-toggle-letter-case)
 (global-set-key (kbd "M-T") 'my-upcase-letter-case)
 (global-set-key (kbd "M-=") 'abbrev-prefix-mark)
-(global-set-key (kbd "M-<return>") 'indent-new-comment-line) ;; also "C-M-j"
 (global-set-key (kbd "C-k") 'zap-to-char)
+;; NOTE: By default, "C-M-j" runs indent-new-comment-line, which is useful.
 
 ;; Text search/replace:
 (global-set-key (kbd "M-y") 'isearch-forward)

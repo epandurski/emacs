@@ -103,7 +103,6 @@
   (add-hook 'markdown-mode-hook #'flyspell-mode)
   (add-hook 'markdown-mode-hook #'imenu-add-menubar-index)
   :bind (:map markdown-mode-map
-         ("M-<return>" . markdown-insert-list-item)
          ("M-p" . markdown-outline-previous-same-level)
          ("M-n" . markdown-outline-next-same-level)
          ("M-P" . markdown-outline-previous)

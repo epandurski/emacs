@@ -183,19 +183,93 @@
          ("u e" . envrc-command-map)))
 
 
+(use-package yasnippet
+  :ensure t
+  :commands (yas-global-mode yas-minor-mode yas-reload-all)
+
+  :init
+  ;; Install a library of snippets for many languages.
+  (use-package yasnippet-snippets
+    :ensure t
+    :commands (yasnippet-snippets-initialize))
+
+  :custom
+  (yas-visit-from-menu t)
+  (yas-prompt-functions
+   '(my-yas-popup-isearch-prompt  ;; Use `popup` if available.
+     yas-maybe-ido-prompt
+     yas-dropdown-prompt
+     yas-completing-prompt
+     yas-no-prompt))
+
+  :config
+  (add-to-list 'yas-snippet-dirs "~/src/emacs/snippets")
+  (yas-reload-all)
+  (yasnippet-snippets-initialize)
+
+  :bind (:map yas-minor-mode-map
+         ;; Make M-<return> also expand snippets (in addition to <tab>).
+         ("M-RET" . yas-expand)
+         ("M-<return>" . yas-expand)
+         :map yas-keymap
+         ;; Allow recursive snippet expansion with M-<return>.
+         ("M-RET" . yas-expand)
+         ("M-<return>" . yas-expand))
+
+  :hook
+  ;; Yasnippet can be used as a global mode, by executing the command
+  ;; `(yas-global-mode 1)`. However, that causes all installed snippets to be
+  ;; loaded eagerly, which takes some time. Instead, we delay the loading of
+  ;; the snippets for the time when the first buffer that uses Yasnippet is
+  ;; created.
+  (emacs-lisp-mode . my-yas-minor-mode-except-for-scratch)
+  (snippet-mode . yas-minor-mode)
+  (sh-mode . yas-minor-mode)
+  (html-mode . yas-minor-mode)
+  (css-mode . yas-minor-mode)
+  (org-mode . yas-minor-mode)
+  (markdown-mode . yas-minor-mode)
+  (yaml-mode . yas-minor-mode)
+  (dockerfile-mode . yas-minor-mode)
+  (sql-mode . yas-minor-mode)
+  (python-mode . yas-minor-mode)
+  (rst-mode . yas-minor-mode)
+  (svelte-mode . yas-minor-mode)
+  (js-mode . yas-minor-mode)
+  (typescript-mode . yas-minor-mode))
+
+
+(use-package popup
+  :ensure t
+  :commands (popup-menu*)
+  :bind (:map popup-menu-keymap
+         ;; Add many alternative ways to navigate the list in the popup.
+         ("M-n" . popup-next)
+         ("M-p" . popup-previous)
+         ("M-k" . popup-next)
+         ("M-i" . popup-previous)
+         ("M-l" . popup-next)
+         ("M-j" . popup-previous)
+         ("M-y" . popup-next)
+         ("M-Y" . popup-previous)
+         ("TAB" . popup-next)
+         ("<tab>" . popup-next)
+         ("<backtab>" . popup-previous)))
+
+
 (use-package eglot
   :ensure t
   :commands (eglot-ensure)
   :custom (eglot-autoshutdown t)
-  :hook
-  (svelte-mode . eglot-ensure)
-  (python-mode . eglot-ensure)
-  (typescript-mode . eglot-ensure)
   :config
   (add-to-list 'eglot-server-programs '(svelte-mode "svelteserver" "--stdio"))
   :bind (:map my-commands-keymap
          ("e r" . eglot-rename)
-         ("e a" . eglot-code-actions)))
+         ("e a" . eglot-code-actions))
+  :hook
+  (svelte-mode . eglot-ensure)
+  (python-mode . eglot-ensure)
+  (typescript-mode . eglot-ensure))
 
 ;; NOTE:
 ;;

@@ -226,6 +226,30 @@ directly enter parameters for the `find` command."
       (delete-other-windows)
       (split-window-right))))
 
+(defun my-yas-popup-isearch-prompt (prompt choices &optional display-fn)
+  "If `popup` is installed, use it to show a choice popup for Yasnippet.
+This code has been copied almost verbatim from
+www.emacswiki.org."
+  (when (functionp 'popup-menu*)
+    (require 'popup)
+    (popup-menu*
+     (mapcar
+      (lambda (choice)
+        (popup-make-item
+         (or (and display-fn (funcall display-fn choice))
+             choice)
+         :value choice))
+      choices)
+     :prompt prompt
+     ;; start isearch mode immediately
+     :isearch t
+     )))
+
+(defun my-yas-minor-mode-except-for-scratch ()
+  "Activate yas-minor-mode, unless buffer's name is *scratch*."
+  (unless (equal (buffer-name) "*scratch*")
+    (yas-minor-mode)))
+
 (provide 'my-util-funcs)
 
 ;;; my-util-funcs.el ends here

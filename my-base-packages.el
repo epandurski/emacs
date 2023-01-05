@@ -190,13 +190,6 @@
 (use-package yasnippet
   :ensure t
   :commands (yas-global-mode yas-minor-mode yas-reload-all)
-
-  :init
-  ;; Install a library of snippets for many languages.
-  (use-package yasnippet-snippets
-    :ensure t
-    :commands (yasnippet-snippets-initialize))
-
   :custom
   (yas-visit-from-menu t)
   (yas-prompt-functions
@@ -205,12 +198,14 @@
      yas-dropdown-prompt
      yas-completing-prompt
      yas-no-prompt))
-
   :config
+  ;; NOTE: The package `yasnippet-snippets` on MELPA is a good library of
+  ;; snippets for many languages. The problem is that, once installed, it
+  ;; automatically loads all the snippets, which takes quite some time. To
+  ;; avoid this, we do not install the library, but pick up from it only the
+  ;; snippets we may actually use, and copy them to ~/src/emacs/snippets.
   (add-to-list 'yas-snippet-dirs "~/src/emacs/snippets")
   (yas-reload-all)
-  (yasnippet-snippets-initialize)
-
   :bind (:map yas-minor-mode-map
          ;; Make M-<return> also expand snippets (in addition to <tab>).
          ("M-RET" . yas-expand)
@@ -219,7 +214,6 @@
          ;; Allow recursive snippet expansion with M-<return>.
          ("M-RET" . yas-expand)
          ("M-<return>" . yas-expand))
-
   :hook
   ;; Yasnippet can be used as a global mode, by executing the command
   ;; `(yas-global-mode 1)`. However, that causes all installed snippets to be
@@ -231,10 +225,6 @@
   (sh-mode . yas-minor-mode)
   (html-mode . yas-minor-mode)
   (css-mode . yas-minor-mode)
-  (org-mode . yas-minor-mode)
-  (markdown-mode . yas-minor-mode)
-  (yaml-mode . yas-minor-mode)
-  (dockerfile-mode . yas-minor-mode)
   (sql-mode . yas-minor-mode)
   (python-mode . yas-minor-mode)
   (rst-mode . yas-minor-mode)

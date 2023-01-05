@@ -4,16 +4,16 @@
 (require 'yasnippet)
 (defvar yas-text)
 
-(defun python-split-args (arg-string)
+(defun my-python-split-args (arg-string)
   "Split a python argument string into ((name, default)..) tuples"
   (mapcar (lambda (x)
              (split-string x "[[:blank:]]*=[[:blank:]]*" t))
           (split-string arg-string "[[:blank:]]*,[[:blank:]]*" t)))
 
-(defun python-args-to-docstring ()
+(defun my-python-args-to-docstring ()
   "return docstring format for the python arguments in yas-text"
   (let* ((indent (concat "\n" (make-string (current-column) 32)))
-         (args (python-split-args yas-text))
+         (args (my-python-split-args yas-text))
          (max-len (if args (apply 'max (mapcar (lambda (x) (length (nth 0 x))) args)) 0))
          (formatted-args (mapconcat
                 (lambda (x)
@@ -24,9 +24,9 @@
     (unless (string= formatted-args "")
       (mapconcat 'identity (list "Keyword Arguments:" formatted-args) indent))))
 
-(defun python-args-to-docstring-numpy ()
+(defun my-python-args-to-docstring-numpy ()
   "return docstring format for the python arguments in yas-text"
-  (let* ((args (python-split-args yas-text))
+  (let* ((args (my-python-split-args yas-text))
          (format-arg (lambda(arg)
                        (concat (nth 0 arg) " : " (if (nth 1 arg) ", optional") "\n")))
          (formatted-params (mapconcat format-arg args "\n"))
@@ -36,9 +36,6 @@
                  (list "\nParameters\n----------" formatted-params
                        "\nReturns\n-------" formatted-ret)
                  "\n"))))
-
-
-(add-hook 'python-mode-hook #'yasnippet-snippets--fixed-indent)
 ;;; Snippet definitions:
 ;;;
 (yas-define-snippets 'python-mode
@@ -58,7 +55,7 @@
                        ("un" "def __unicode__(self):\n    $0" "__unicode__" nil
                         ("dunder methods")
                         nil "/home/evgeni/src/emacs/snippets/python-mode/unicode" nil nil)
-                       ("try" "try:\n    $0\nexcept $1:\n    $2\nelse:\n    $3" "tryelse" nil nil nil "/home/evgeni/src/emacs/snippets/python-mode/tryelse" nil nil)
+                       ("tryel" "try:\n    $0\nexcept $1:\n    $2\nelse:\n    $3" "tryelse" nil nil nil "/home/evgeni/src/emacs/snippets/python-mode/tryelse" nil nil)
                        ("try" "try:\n    $0\nexcept ${1:Exception}:\n    $2" "try" nil nil nil "/home/evgeni/src/emacs/snippets/python-mode/try" nil nil)
                        ("tf" "import unittest\n${1:from ${2:test_file} import *}\n\n$0\n\nif __name__ == '__main__':\n    unittest.main()" "test_file" nil
                         ("testing")
@@ -120,10 +117,10 @@
                         ("general")
                         nil "/home/evgeni/src/emacs/snippets/python-mode/np" nil nil)
                        ("not_impl" "raise NotImplementedError" "not_impl" nil nil nil "/home/evgeni/src/emacs/snippets/python-mode/not_impl" nil nil)
-                       ("mdn" "def ${1:name}(self$2):\n    \\\"\\\"\\\"$3\n    ${2:$(python-args-to-docstring-numpy)}\n    \\\"\\\"\\\"\n    $0" "method_docstring_numpy" nil
+                       ("mdn" "def ${1:name}(self$2):\n    \\\"\\\"\\\"$3\n    ${2:$(my-python-args-to-docstring-numpy)}\n    \\\"\\\"\\\"\n    $0" "method_docstring_numpy" nil
                         ("object oriented")
                         nil "/home/evgeni/src/emacs/snippets/python-mode/method_docstring_numpy" nil nil)
-                       ("md" "def ${1:name}(self$2):\n    \\\"\\\"\\\"$3\n    ${2:$(python-args-to-docstring)}\n    \\\"\\\"\\\"\n    $0" "method_docstring" nil
+                       ("md" "def ${1:name}(self$2):\n    \\\"\\\"\\\"$3\n    ${2:$(my-python-args-to-docstring)}\n    \\\"\\\"\\\"\n    $0" "method_docstring" nil
                         ("object oriented")
                         nil "/home/evgeni/src/emacs/snippets/python-mode/method_docstring" nil nil)
                        ("m" "def ${1:method}(self${2:, $3}):\n    $0" "method" nil
@@ -146,10 +143,10 @@
                         ("debug")
                         nil "/home/evgeni/src/emacs/snippets/python-mode/ipdb" nil nil)
                        ("int" "import code; code.interact(local=locals())" "interact" nil nil nil "/home/evgeni/src/emacs/snippets/python-mode/interact" nil nil)
-                       ("idn" "def __init__(self$1):\n    \\\"\\\"\\\"$2\n    ${1:$(python-args-to-docstring-numpy)}\n    \\\"\\\"\\\"\n    $0\n" "init_docstring_numpy" nil
+                       ("idn" "def __init__(self$1):\n    \\\"\\\"\\\"$2\n    ${1:$(my-python-args-to-docstring-numpy)}\n    \\\"\\\"\\\"\n    $0\n" "init_docstring_numpy" nil
                         ("definitions")
                         nil "/home/evgeni/src/emacs/snippets/python-mode/init_docstring_numpy" nil nil)
-                       ("id" "def __init__(self$1):\n    \\\"\\\"\\\"$2\n    ${1:$(python-args-to-docstring)}\n    \\\"\\\"\\\"\n    $0" "init_docstring" nil
+                       ("id" "def __init__(self$1):\n    \\\"\\\"\\\"$2\n    ${1:$(my-python-args-to-docstring)}\n    \\\"\\\"\\\"\n    $0" "init_docstring" nil
                         ("definitions")
                         nil "/home/evgeni/src/emacs/snippets/python-mode/init_docstring" nil nil)
                        ("init" "def __init__(self${1:, args}):\n    ${2:\"${3:docstring}\"\n    }$0" "init" nil
@@ -169,10 +166,10 @@
                        ("doxy_func" "\"\"\"\n@brief      ${1:function description}\n\n@details    ${2:detailed description}\n\n@param      ${3:param}\n\n@return     ${4:return type}\n\"\"\"" "Function Doxygen Doc" nil
                         ("doxygen")
                         nil "/home/evgeni/src/emacs/snippets/python-mode/function_doxygen_doc" nil nil)
-                       ("fdn" "def ${1:name}($2):\n \\\"\\\"\\\"$3\n ${2:$(python-args-to-docstring-numpy)}\n \\\"\\\"\\\"\n $0" "function_docstring_numpy" nil
+                       ("fdn" "def ${1:name}($2):\n \\\"\\\"\\\"$3\n ${2:$(my-python-args-to-docstring-numpy)}\n \\\"\\\"\\\"\n $0" "function_docstring_numpy" nil
                         ("definitions")
                         nil "/home/evgeni/src/emacs/snippets/python-mode/function_docstring_numpy" nil nil)
-                       ("fd" "def ${1:name}($2):\n \\\"\\\"\\\"$3\n ${2:$(python-args-to-docstring)}\n \\\"\\\"\\\"\n $0" "function_docstring" nil
+                       ("fd" "def ${1:name}($2):\n \\\"\\\"\\\"$3\n ${2:$(my-python-args-to-docstring)}\n \\\"\\\"\\\"\n $0" "function_docstring" nil
                         ("definitions")
                         nil "/home/evgeni/src/emacs/snippets/python-mode/function_docstring" nil nil)
                        ("f" "def ${1:fun}(${2:args}):\n    $0\n" "function" nil
@@ -275,4 +272,4 @@
                         nil "/home/evgeni/src/emacs/snippets/python-mode/__contains__" nil nil)))
 
 
-;;; Do not edit! File generated at Thu Jan  5 15:48:31 2023
+;;; Do not edit! File generated at Thu Jan  5 23:32:51 2023

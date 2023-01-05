@@ -120,4 +120,4 @@
                        ("ah" "(add-hook '${1:name}-hook ${2:'${3:function}})$0\n" "add-hook" nil nil nil "/home/evgeni/src/emacs/snippets/emacs-lisp-mode/add-hook" nil nil)))
 
 
-;;; Do not edit! File generated at Thu Jan  5 15:48:30 2023
+;;; Do not edit! File generated at Thu Jan  5 23:32:51 2023

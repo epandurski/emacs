@@ -214,7 +214,9 @@
          ("M-f" . yas-skip-and-clear-or-delete-char)
          ;; Allow recursive snippet expansion with M-<return>.
          ("M-RET" . yas-expand)
-         ("M-<return>" . yas-expand))
+         ("M-<return>" . yas-expand)
+         :map my-commands-keymap
+         ("i s" . yas-insert-snippet))
   :hook
   ;; Yasnippet can be used as a global mode, by executing the command
   ;; `(yas-global-mode 1)`. However, that causes all installed snippets to be
@@ -228,6 +230,7 @@
   (css-mode . yas-minor-mode)
   (sql-mode . yas-minor-mode)
   (python-mode . yas-minor-mode)
+  (python-mode . my-set-yasnippet-fixed-indent)
   (rst-mode . yas-minor-mode)
   (svelte-mode . yas-minor-mode)
   (js-mode . yas-minor-mode)

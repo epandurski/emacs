@@ -250,6 +250,12 @@ www.emacswiki.org."
   (unless (equal (buffer-name) "*scratch*")
     (yas-minor-mode)))
 
+(defun my-set-yasnippet-fixed-indent ()
+  "Declare yas-indent-line as buffer-local, and set it to 'fixed.
+For example, this is needed for the correct expansion of Python's
+Yasnippets."
+  (set (make-local-variable 'yas-indent-line) 'fixed))
+
 (provide 'my-util-funcs)
 
 ;;; my-util-funcs.el ends here

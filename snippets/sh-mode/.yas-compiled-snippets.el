@@ -16,4 +16,4 @@
                        ("args" "if [ $# -lt ${1:2} ]\n   then $0\nfi" "args" nil nil nil "/home/evgeni/src/emacs/snippets/sh-mode/args" nil nil)))
 
 
-;;; Do not edit! File generated at Thu Jan  5 15:48:31 2023
+;;; Do not edit! File generated at Thu Jan  5 23:32:51 2023

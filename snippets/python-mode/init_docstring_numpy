@@ -6,6 +6,6 @@
 # --
 def __init__(self$1):
     \"\"\"$2
-    ${1:$(python-args-to-docstring-numpy)}
+    ${1:$(my-python-args-to-docstring-numpy)}
     \"\"\"
     $0

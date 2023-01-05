@@ -211,6 +211,7 @@
          ("M-RET" . yas-expand)
          ("M-<return>" . yas-expand)
          :map yas-keymap
+         ("M-f" . yas-skip-and-clear-or-delete-char)
          ;; Allow recursive snippet expansion with M-<return>.
          ("M-RET" . yas-expand)
          ("M-<return>" . yas-expand))

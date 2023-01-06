@@ -117,12 +117,12 @@ Toggles between: “all lower”, “Init Caps”, “ALL CAPS”."
 (defun my-dired-mouse-find-file (event &optional find-file-func find-dir-func)
   "In Dired, visit the file or directory name you click on.
 The optional arguments FIND-FILE-FUNC and FIND-DIR-FUNC specify
-functions to visit the file and directory, respectively.  If
-omitted or nil, these arguments default to `find-file' and
-`find-alternate-file', respectively.  See dired-mouse-find-file."
+functions to visit the file and directory, respectively. If
+omitted or nil, these arguments default to `find-file-other-window'
+and `dired', respectively. See dired-mouse-find-file."
   (interactive "e")
   (or find-file-func (setq find-file-func 'find-file-other-window))
-  (or find-dir-func (setq find-dir-func 'find-alternate-file))
+  (or find-dir-func (setq find-dir-func 'dired))
   (let (window pos file)
     (save-excursion
       (setq window (posn-window (event-end event))
@@ -148,7 +148,9 @@ directory, display it in the same window."
   (let (file)
     (setq file (dired-get-file-for-visit))
     (if (file-directory-p file)
-        (find-alternate-file file)
+        (or (and (cdr dired-subdir-alist)
+                 (dired-goto-subdir file))
+            (dired file))
       (display-buffer (find-file-noselect file) t))))
 
 (defun my-shell-at-home ()

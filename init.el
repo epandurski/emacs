@@ -27,6 +27,9 @@
 (add-to-list 'load-path "~/src/emacs")
 (byte-recompile-directory "~/src/emacs" 0)
 
+;; Show line number for programs.
+(add-hook 'prog-mode-hook #'display-line-numbers-mode)
+
 ;; Use dired+
 (add-hook 'dired-load-hook (lambda ()
    (load "dired-x")))

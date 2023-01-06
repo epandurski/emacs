@@ -76,7 +76,7 @@
 (global-set-key (kbd "M-w") 'my-open-previous-line)
 (global-set-key (kbd "M-t") 'my-toggle-letter-case)
 (global-set-key (kbd "M-T") 'my-upcase-letter-case)
-(global-set-key (kbd "M-=") 'abbrev-prefix-mark)
+(global-set-key (kbd "M-_") 'abbrev-prefix-mark)
 (global-set-key (kbd "C-k") 'zap-to-char)
 ;; NOTE: By default, "C-M-j" runs indent-new-comment-line, which is useful.
 
@@ -108,10 +108,11 @@
 ;; Unbind unused keys:
 (dolist (key '(
     "M-2" ;; Later, use-package will bind this to project-switch-project.
+    "M--" ;; Later, use-package will bind this to yas-expand.
 
     ;; These are especially convinient. Every major-mode
     ;; can define these as fast shortcuts.
-    "M-7" "M-9" "M-0" "M--" "M-{" "M-}"
+    "M-7" "M-9" "M-0" "M-=" "M-{" "M-}"
     "C-d" "C-e" "C-f" "C-v" "C-b" "C-\\"
 
     ;; It seems that pressing "C-/", on text terminals generates "C-_".

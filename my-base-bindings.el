@@ -133,6 +133,7 @@
 (define-key my-commands-keymap (kbd "S") 'my-shell-at-home)
 (define-key my-commands-keymap (kbd "B") 'bookmark-set)
 (define-key my-commands-keymap (kbd "b") 'my-bookmark-bmenu-list)
+(define-key my-commands-keymap (kbd "j") 'my-dired-jump)
 
 ;; spell
 (define-key my-commands-keymap (kbd "l l") 'ispell)

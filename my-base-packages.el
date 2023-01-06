@@ -200,8 +200,7 @@
   :custom
   (yas-visit-from-menu t)
   (yas-prompt-functions
-   '(my-yas-popup-isearch-prompt  ;; Use `popup` if available.
-     yas-maybe-ido-prompt
+   '(yas-maybe-ido-prompt
      yas-dropdown-prompt
      yas-completing-prompt
      yas-no-prompt))
@@ -241,24 +240,6 @@
   (svelte-mode . yas-minor-mode)
   (js-mode . yas-minor-mode)
   (typescript-mode . yas-minor-mode))
-
-
-(use-package popup
-  :ensure t
-  :commands (popup-menu*)
-  :bind (:map popup-menu-keymap
-         ;; Add many alternative ways to navigate the list in the popup.
-         ("M-n" . popup-next)
-         ("M-p" . popup-previous)
-         ("M-k" . popup-next)
-         ("M-i" . popup-previous)
-         ("M-l" . popup-next)
-         ("M-j" . popup-previous)
-         ("M-y" . popup-next)
-         ("M-Y" . popup-previous)
-         ("TAB" . popup-next)
-         ("<tab>" . popup-next)
-         ("<backtab>" . popup-previous)))
 
 
 (use-package eglot

@@ -15,6 +15,25 @@
   (require 'use-package))
 
 
+(use-package popup
+  :disabled
+  :ensure t
+  :commands (popup-menu*)
+  :bind (:map popup-menu-keymap
+         ;; Add many alternative ways to navigate the list in the popup.
+         ("M-n" . popup-next)
+         ("M-p" . popup-previous)
+         ("M-k" . popup-next)
+         ("M-i" . popup-previous)
+         ("M-l" . popup-next)
+         ("M-j" . popup-previous)
+         ("M-y" . popup-next)
+         ("M-Y" . popup-previous)
+         ("TAB" . popup-next)
+         ("<tab>" . popup-next)
+         ("<backtab>" . popup-previous)))
+
+
 (use-package projectile
   :disabled
   :ensure t

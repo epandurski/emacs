@@ -131,20 +131,18 @@
 
 (define-key my-commands-keymap (kbd "D") 'my-dired-at-home)
 (define-key my-commands-keymap (kbd "S") 'my-shell-at-home)
+(define-key my-commands-keymap (kbd "B") 'bookmark-set)
+(define-key my-commands-keymap (kbd "b") 'my-bookmark-bmenu-list)
 
-;; bookmarks
-(define-key my-commands-keymap (kbd "b SPC") 'bookmark-set)
-(define-key my-commands-keymap (kbd "b b") 'my-bookmark-bmenu-list)
-
-;; ispell
-(define-key my-commands-keymap (kbd "i i") 'ispell)
-(define-key my-commands-keymap (kbd "i b") 'ispell-buffer)
-(define-key my-commands-keymap (kbd "i r") 'ispell-region)
-(define-key my-commands-keymap (kbd "i s") 'ispell-comments-and-strings)
-(define-key my-commands-keymap (kbd "i c") 'ispell-continue)
-(define-key my-commands-keymap (kbd "i k") 'ispell-kill-ispell)
-(define-key my-commands-keymap (kbd "i d") 'ispell-change-dictionary)
-(define-key my-commands-keymap (kbd "i f") 'flyspell-buffer)
+;; spell
+(define-key my-commands-keymap (kbd "l l") 'ispell)
+(define-key my-commands-keymap (kbd "l b") 'ispell-buffer)
+(define-key my-commands-keymap (kbd "l r") 'ispell-region)
+(define-key my-commands-keymap (kbd "l s") 'ispell-comments-and-strings)
+(define-key my-commands-keymap (kbd "l c") 'ispell-continue)
+(define-key my-commands-keymap (kbd "l k") 'ispell-kill-ispell)
+(define-key my-commands-keymap (kbd "l d") 'ispell-change-dictionary)
+(define-key my-commands-keymap (kbd "l f") 'flyspell-buffer)
 
 ;; hs-minor-mode
 (define-key my-commands-keymap (kbd "h h") 'hs-toggle-hiding)
@@ -152,9 +150,9 @@
 (define-key my-commands-keymap (kbd "h a") 'hs-hide-all)
 (define-key my-commands-keymap (kbd "h l") 'hs-hide-level)
 
-;; utilities
-(define-key my-commands-keymap (kbd "u p") 'proced)
-(define-key my-commands-keymap (kbd "u c") 'calendar)
+;; utilities to "Fire"
+(define-key my-commands-keymap (kbd "f p") 'proced)
+(define-key my-commands-keymap (kbd "f c") 'calendar)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;

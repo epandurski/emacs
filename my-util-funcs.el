@@ -258,6 +258,11 @@ For example, this is needed for the correct expansion of Python's
 Yasnippets."
   (set (make-local-variable 'yas-indent-line) 'fixed))
 
+(defun my-magit-project-status ()
+  "Run `magit-status' in the current project's root."
+  (interactive)
+  (magit-status-setup-buffer (project-root (project-current t))))
+
 (provide 'my-util-funcs)
 
 ;;; my-util-funcs.el ends here

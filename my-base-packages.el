@@ -112,15 +112,22 @@
 (use-package project
   :ensure t
   :demand t
-  :custom (project-switch-commands 'project-dired)
+  :custom (project-switch-commands '(
+    (project-dired "Root directory" ?d)
+    (my-magit-project-status "Magit" ?g)
+    (project-shell "Shell" ?s)
+    (project-find-file "Open file" ?o)
+    (project-find-regexp "Find regexp" ?y)))
   :config (define-key my-commands-keymap (kbd "p") project-prefix-map)
   :bind (("M-2" . project-switch-project)
          :map my-commands-keymap
          ("d" . project-dired)
          ("s" . project-shell)
          ("y" . project-find-regexp)
+         ("o" . project-find-file)
          :map project-prefix-map
          ("C-b" . nil)
+         ("m" . my-magit-project-status)
          ("l" . project-list-buffers)
          ("w" . project-forget-project)))
 
@@ -151,8 +158,8 @@
 (use-package flymake
   :commands (flymake-mode)
   :bind (:map my-commands-keymap
-         ("f" . flymake-show-buffer-diagnostics)
-         ("F" . flymake-show-project-diagnostics)
+         ("f f" . flymake-show-buffer-diagnostics)
+         ("f F" . flymake-show-project-diagnostics)
          :map flymake-mode-map
          ("M-n" . flymake-goto-next-error)
          ("M-p" . flymake-goto-prev-error))
@@ -165,7 +172,7 @@
 
 (use-package magit
   :ensure t
-  :commands (magit-status magit-file-dispatch)
+  :commands (magit-status magit-file-dispatch magit-status-setup-buffer)
   :bind (("C-x g" . magit-status) ;; an old habit, use "jk g" intead
          :map my-commands-keymap
          ("g" . magit-status)

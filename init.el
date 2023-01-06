@@ -20,6 +20,7 @@
 (require 'uniquify)
 (recentf-mode t)
 (electric-pair-mode 1)
+(global-hl-line-mode 1)
 (minibuffer-depth-indicate-mode)
 (setq-default dired-omit-mode t)
 (setq read-process-output-max (* 256 1024)) ; 256kb

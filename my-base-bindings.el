@@ -19,10 +19,13 @@
 (global-set-key (kbd "M-6") (lookup-key (current-global-map) (kbd "M-s")))
 (global-set-key (kbd "M-s") 'other-window)
 
-;; Bind the original M-g to M-'. Use M-g to kill everything from the
+;; Bind the original M-g to M-=. Use M-g to kill everything from the
 ;; point to the end of the current line.
-(global-set-key (kbd "M-'") (lookup-key (current-global-map) (kbd "M-g")))
-(global-set-key (kbd "M-' M-'") 'goto-line) ;; easier than "M-' M-g"
+(global-set-key (kbd "M-=") (lookup-key (current-global-map) (kbd "M-g")))
+(global-set-key (kbd "M-= M-g") nil)
+(global-set-key (kbd "M-= g") nil)
+(global-set-key (kbd "M-= M-=") 'goto-line) ;; much easier than "M-= M-g"
+(global-set-key (kbd "M-= =") 'goto-line) ;; much easier than "M-= g"
 (global-set-key (kbd "M-g") 'kill-line)
 
 ;; Use M-a (instead of M-x) to execute commands.
@@ -76,7 +79,7 @@
 (global-set-key (kbd "M-w") 'my-open-previous-line)
 (global-set-key (kbd "M-t") 'my-toggle-letter-case)
 (global-set-key (kbd "M-T") 'my-upcase-letter-case)
-(global-set-key (kbd "M-_") 'abbrev-prefix-mark)
+(global-set-key (kbd "M-+") 'abbrev-prefix-mark)
 (global-set-key (kbd "M-RET") 'indent-new-comment-line)
 (global-set-key (kbd "M-<return>") 'indent-new-comment-line) ;; also "C-M-j"
 (global-set-key (kbd "C-k") 'zap-to-char)
@@ -109,11 +112,11 @@
 ;; Unbind unused keys:
 (dolist (key '(
     "M-3" ;; Later, use-package will bind this to project-switch-project.
-    "M--" ;; Later, use-package will bind this to yas-expand.
+    "M-'" ;; Later, use-package will bind this to yas-expand.
 
     ;; These are especially convinient. Every major-mode
     ;; can define these as fast shortcuts.
-    "M-7" "M-9" "M-0" "M-=" "M-{" "M-}"
+    "M-7" "M-9" "M-0" "M--" "M-{" "M-}"
     "C-d" "C-e" "C-f" "C-v" "C-b" "C-\\"
 
     ;; It seems that pressing "C-/", on text terminals generates "C-_".

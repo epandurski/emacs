@@ -137,7 +137,7 @@
   :demand t
   :diminish company-mode
   :custom (company-idle-delay nil "Disable idle completion.")
-  :config (add-hook 'after-init-hook #'global-company-mode)
+  :config (add-hook 'after-init-hook 'global-company-mode)
   :bind (("M-/" . company-complete-common-or-cycle)
          :map company-active-map
          ;; Company binds some keys that we may need. Unbind them, and

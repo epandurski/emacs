@@ -17,9 +17,9 @@
   :commands (python-mode)
   :custom (python-shell-interpreter "python3")
   :config
-  (add-hook 'python-mode-hook #'hs-minor-mode)
-  (add-hook 'python-mode-hook #'imenu-add-menubar-index)
-  (add-hook 'python-mode-hook #'flyspell-prog-mode)
+  (add-hook 'python-mode-hook 'hs-minor-mode)
+  (add-hook 'python-mode-hook 'imenu-add-menubar-index)
+  (add-hook 'python-mode-hook 'flyspell-prog-mode)
   :bind (:map python-mode-map
          ("M-9" . python-indent-shift-left)
          ("M-0" . python-indent-shift-right)
@@ -31,9 +31,9 @@
   :commands (js-mode)
   :custom (js-indent-level 2)
   :config
-  (add-hook 'js-mode-hook #'hs-minor-mode)
-  (add-hook 'js-mode-hook #'imenu-add-menubar-index)
-  (add-hook 'js-mode-hook #'flyspell-prog-mode))
+  (add-hook 'js-mode-hook 'hs-minor-mode)
+  (add-hook 'js-mode-hook 'imenu-add-menubar-index)
+  (add-hook 'js-mode-hook 'flyspell-prog-mode))
 
 
 (use-package typescript-mode
@@ -41,8 +41,8 @@
   :commands (typescript-mode)
   :custom (typescript-indent-level 2)
   :config
-  (add-hook 'typescript-mode-hook #'hs-minor-mode)
-  (add-hook 'typescript-mode-hook #'flyspell-prog-mode))
+  (add-hook 'typescript-mode-hook 'hs-minor-mode)
+  (add-hook 'typescript-mode-hook 'flyspell-prog-mode))
 
 
 (use-package sgml-mode
@@ -65,7 +65,7 @@
 (use-package jinja2-mode
   :ensure t
   :commands (jinja2-mode)
-  :config (add-hook 'jinja2-mode-hook #'flyspell-prog-mode))
+  :config (add-hook 'jinja2-mode-hook 'flyspell-prog-mode))
 
 
 (use-package svelte-mode
@@ -100,8 +100,8 @@
   (defvar my-markdown-mode-chordmap (make-keymap) "My chord-keymap for markdown-mode.")
   :config
   (key-chord-define markdown-mode-map "fd" my-markdown-mode-chordmap)
-  (add-hook 'markdown-mode-hook #'flyspell-mode)
-  (add-hook 'markdown-mode-hook #'imenu-add-menubar-index)
+  (add-hook 'markdown-mode-hook 'flyspell-mode)
+  (add-hook 'markdown-mode-hook 'imenu-add-menubar-index)
   :bind (:map markdown-mode-map
          ("M-RET" . markdown-insert-list-item)
          ("M-<return>" . markdown-insert-list-item)
@@ -133,7 +133,7 @@
   :commands (json-mode)
   :mode "\\.json\\'"
   :config
-  (add-hook 'json-mode-hook #'flyspell-prog-mode)
+  (add-hook 'json-mode-hook 'flyspell-prog-mode)
   :bind (:map json-mode-map
          ("C-\\" . json-pretty-print-buffer)))
 
@@ -142,13 +142,13 @@
   :ensure t
   :commands (yaml-mode)
   :mode "\\.yml\\'"
-  :config (add-hook 'yaml-mode-hook #'flyspell-prog-mode))
+  :config (add-hook 'yaml-mode-hook 'flyspell-prog-mode))
 
 
 (use-package dockerfile-mode
   :ensure t
   :commands (dockerfile-mode)
-  :config (add-hook 'dockerfile-mode-hook #'flyspell-prog-mode))
+  :config (add-hook 'dockerfile-mode-hook 'flyspell-prog-mode))
 
 
 (provide 'my-lang-packages)

@@ -40,7 +40,7 @@
   :demand t
   :diminish projectile-mode
   :custom (projectile-switch-project-action 'projectile-dired)
-  :config (add-hook 'after-init-hook #'projectile-mode)
+  :config (add-hook 'after-init-hook 'projectile-mode)
   :bind ("C-f" . projectile-commander))
 
 
@@ -48,7 +48,7 @@
   :disabled
   :ensure t
   :demand t
-  :config (add-hook 'after-init-hook #'global-flycheck-mode)
+  :config (add-hook 'after-init-hook 'global-flycheck-mode)
   :bind ("C-e" . flycheck-display-error-at-point))
 
 

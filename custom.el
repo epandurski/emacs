@@ -52,7 +52,8 @@
  '(sentence-end-double-space nil)
  '(show-paren-mode t)
  '(so-long-threshold 500)
- '(tool-bar-mode nil))
+ '(tool-bar-mode nil)
+ '(warning-suppress-types '((comp))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

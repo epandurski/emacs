@@ -99,7 +99,7 @@
 (global-set-key (kbd "<f5>") 'server-edit)
 
 ;; Manipulate windows:
-(global-set-key (kbd "M-3") 'my-arrange-windows)
+(global-set-key (kbd "M-2") 'my-arrange-windows)
 (global-set-key (kbd "M-4") 'delete-other-windows)
 (global-set-key (kbd "<C-down>") 'shrink-window)
 (global-set-key (kbd "<C-up>") 'enlarge-window)
@@ -108,7 +108,7 @@
 
 ;; Unbind unused keys:
 (dolist (key '(
-    "M-2" ;; Later, use-package will bind this to project-switch-project.
+    "M-3" ;; Later, use-package will bind this to project-switch-project.
     "M--" ;; Later, use-package will bind this to yas-expand.
 
     ;; These are especially convinient. Every major-mode

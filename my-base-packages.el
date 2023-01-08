@@ -119,7 +119,7 @@
     (project-find-file "Open file" ?o)
     (project-find-regexp "Find regexp" ?y)))
   :config (define-key my-commands-keymap (kbd "p") project-prefix-map)
-  :bind (("M-2" . project-switch-project)
+  :bind (("M-3" . project-switch-project)
          :map my-commands-keymap
          ("d" . project-dired)
          ("s" . project-shell)

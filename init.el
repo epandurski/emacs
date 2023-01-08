@@ -13,7 +13,7 @@
 (load custom-file 'noerror nil t)
 
 ;; Hide the menu bar on text terminal.
-(unless window-system
+(unless (display-graphic-p)
   (menu-bar-mode -1))
 
 (defalias 'yes-or-no-p 'y-or-n-p)

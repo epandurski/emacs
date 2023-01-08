@@ -126,7 +126,7 @@
   (global-unset-key (kbd key)))
 
 ;; Use "C-z" as "redo" when not on text terminal.
-(if window-system
+(if (display-graphic-p)
     (global-set-key (kbd "C-z") 'undo))
 
 

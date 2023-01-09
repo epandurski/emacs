@@ -25,6 +25,7 @@
 (setq-default dired-omit-mode t)
 (setq-default abbrev-mode t)
 (setq read-process-output-max (* 256 1024)) ; 256kb
+(setq nobreak-char-ascii-display t)
 (add-to-list 'load-path "~/src/emacs")
 (byte-recompile-directory "~/src/emacs" 0)
 
@@ -38,13 +39,10 @@
 ;; Save abbrev usage statistics before exiting Emacs.
 (add-hook 'kill-emacs-hook 'write-abbrev-file)
 
-;; Add code navigation commands to the Edit menu. This makes easier to navigate
-;; code using only the mouse. Most probably, using `context-menu-mode` for this
-;; in Emacs 28 would be better.
-(require 'easymenu)
-(easy-menu-add-item nil '("edit") ["--" nil t])
-(easy-menu-add-item nil '("edit") ["Jump to Definition" xref-find-definitions t])
-(easy-menu-add-item nil '("edit") ["Jump Back from Definition" xref-pop-marker-stack t])
+;; This instructs Emacs to use the OSC information, if present in the shell
+;; prompt, to track the actual directory. For how to include OCS information in
+;; the shell prompt, see the documentation for `comint-osc-directory-tracker`.
+(add-hook 'comint-output-filter-functions 'comint-osc-process-output)
 
 ;; Configure package archives. Comment/uncomment lines to
 ;; enable/disable archives as desired:

@@ -11,6 +11,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(abbrev-file-name "~/src/emacs/abbrev_defs")
+ '(abbrev-suggest t)
  '(auto-save-default nil)
  '(case-fold-search t)
  '(column-number-mode t)
@@ -44,8 +46,10 @@
  '(initial-frame-alist '((fullscreen . maximized)))
  '(json-reformat:indent-width 2)
  '(make-backup-files nil)
+ '(only-global-abbrevs t)
  '(recentf-max-saved-items 100)
  '(ring-bell-function 'ignore)
+ '(save-abbrevs 'silently)
  '(save-interprogram-paste-before-kill t)
  '(scroll-bar-mode 'right)
  '(search-whitespace-regexp "[ \t\r\n]+")

@@ -1,0 +1,26 @@
+;;-*-coding: utf-8;-*-
+(define-abbrev-table 'global-abbrev-table
+  '(
+    ("8alt" "alternative" nil :count 0)
+    ("8bg" "background" nil :count 0)
+    ("8char" "character" nil :count 0)
+    ("8def" "definition" nil :count 0)
+    ("8env" "environment" nil :count 0)
+    ("8envvar" "environment variable" nil :count 0)
+    ("8ep" "Evgeni Pandurski" nil :count 10)
+    ("8ex" "example" nil :count 0)
+    ("8fb" "Facebook" nil :count 0)
+    ("8g" "Google" nil :count 0)
+    ("8kb" "keyboard" nil :count 0)
+    ("8md" "—" nil :count 1)
+    ("8mep" "epandurski@gmail.com" nil :count 0)
+    ("8ms" "Microsoft" nil :count 0)
+    ("8mswin" "Microsoft Windows" nil :count 1)
+    ("8sw" "Swaptacular" nil :count 0)
+    ("8tw" "Twitter" nil :count 0)
+    ("8usw" "http://swaptacular.org/" nil :count 0)
+    ("8var" "variable" nil :count 0)
+    ("8win" "Windows" nil :count 0)
+    ("8wp" "Wikipedia" nil :count 0)
+   ))
+

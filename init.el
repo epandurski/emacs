@@ -23,6 +23,7 @@
 (global-hl-line-mode 1)
 (minibuffer-depth-indicate-mode)
 (setq-default dired-omit-mode t)
+(setq-default abbrev-mode t)
 (setq read-process-output-max (* 256 1024)) ; 256kb
 (add-to-list 'load-path "~/src/emacs")
 (byte-recompile-directory "~/src/emacs" 0)
@@ -33,6 +34,9 @@
 ;; Use dired+
 (add-hook 'dired-load-hook (lambda ()
    (load "dired-x")))
+
+;; Save abbrev usage statistics before exiting Emacs.
+(add-hook 'kill-emacs-hook 'write-abbrev-file)
 
 ;; Add code navigation commands to the Edit menu. This makes easier to navigate
 ;; code using only the mouse. Most probably, using `context-menu-mode` for this
@@ -94,10 +98,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'my-workarounds)
 (require 'my-server)
-(require 'my-abbrevs)
 (require 'my-base-bindings)
 (require 'my-base-packages)
 (require 'my-lang-packages)
+
+;; Abbrev-expand only in non-prog-modes, or in strings and comments.
+(setq abbrev-expand-function 'my-abbrev-expand-function)
 
 ;; `elpa-mirror` is a module that creates a local Emacs package
 ;; repository from installed packages, so that package upgrade never

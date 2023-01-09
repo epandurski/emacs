@@ -271,6 +271,21 @@ Yasnippets."
   (interactive)
   (magit-status-setup-buffer (project-root (project-current t))))
 
+(defun my--point-at-string-or-comment ()
+  "Figure out if the point is at string or comment."
+  (let ((result (syntax-ppss)))
+    (or (nth 3 result) (nth 4 result))))
+
+(defvar my--orig-abbrev-expand-function
+  (symbol-function abbrev-expand-function)
+  "The original value of `abbrev-expand-function`.")
+
+(defun my-abbrev-expand-function ()
+  "Abbrev-expand only in non-prog-modes, or in strings and comments."
+  (unless (and (derived-mode-p 'prog-mode)
+               (not (my--point-at-string-or-comment)))
+    (funcall my--orig-abbrev-expand-function)))
+
 (provide 'my-util-funcs)
 
 ;;; my-util-funcs.el ends here

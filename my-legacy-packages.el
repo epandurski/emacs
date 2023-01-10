@@ -15,6 +15,20 @@
   (require 'use-package))
 
 
+(use-package key-chord
+  :disabled
+  :ensure t
+  :demand t
+  :config
+  (setq key-chord-two-keys-delay 0.15) ;; the default is 0.1
+  (setq key-chord-one-key-delay 0.3) ;; the default is 0.2
+  (key-chord-mode 1)
+  ;; prefix for global commands:
+  (key-chord-define-global "jk" my-commands-keymap)
+  ;; prefix for mode-specific commands:
+  (key-chord-define-global "fd" 'undefined))
+
+
 (use-package popup
   :disabled
   :ensure t

@@ -7,12 +7,14 @@
 (require 'my-util-funcs)
 
 (defvar my-commands-keymap (make-keymap "Custom commands")
-  "Custom commands invoked with a key-chord.")
+  "Custom commands invoked with a key-prefix.")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Throw away the awful Emacs defaults, and define new ;;
 ;; "Ergoemacs"-like key-bindings.                      ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(global-set-key (kbd "M-;") my-commands-keymap)
 
 ;; Bind the original M-s to M-6. Use M-s to move the cursor to other
 ;; window.
@@ -64,8 +66,6 @@
 
 ;; Manipulate the mark, copy, cut, paste, undo:
 (global-set-key (kbd "M-SPC") 'set-mark-command)
-(global-set-key (kbd "C-SPC") 'my-set-mark-command-with-prefix)
-(global-set-key (kbd "C-@") 'my-set-mark-command-with-prefix)
 (global-set-key (kbd "M-c") 'kill-ring-save)
 (global-set-key (kbd "M-x") 'kill-region)
 (global-set-key (kbd "M-v") 'yank)
@@ -75,6 +75,7 @@
 ;; Common text-editing actions:
 (global-set-key (kbd "M-b") 'toggle-input-method)
 (global-set-key (kbd "M-1") 'kmacro-end-and-call-macro)
+(global-set-key (kbd "M-3") 'comment-dwim)
 (global-set-key (kbd "M-\\") 'cycle-spacing)
 (global-set-key (kbd "M-w") 'my-open-previous-line)
 (global-set-key (kbd "M-t") 'my-toggle-letter-case)
@@ -111,8 +112,7 @@
 
 ;; Unbind unused keys:
 (dolist (key '(
-    "M-3" ;; Later, use-package will bind this to project-switch-project.
-    "M-'" ;; Later, use-package will bind this to yas-expand.
+    "M-'" ;; Later, use-package will bind this to project-switch-project.
 
     ;; These are especially convinient. Every major-mode
     ;; can define these as fast shortcuts.

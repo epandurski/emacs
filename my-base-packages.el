@@ -12,19 +12,6 @@
   (require 'use-package))
 
 
-(use-package key-chord
-  :ensure t
-  :demand t
-  :config
-  (setq key-chord-two-keys-delay 0.15) ;; the default is 0.1
-  (setq key-chord-one-key-delay 0.3) ;; the default is 0.2
-  (key-chord-mode 1)
-  ;; prefix for global commands:
-  (key-chord-define-global "jk" my-commands-keymap)
-  ;; prefix for mode-specific commands:
-  (key-chord-define-global "fd" 'undefined))
-
-
 (use-package which-key
   :ensure t
   :demand t
@@ -119,7 +106,7 @@
     (project-find-file "Open file" ?o)
     (project-find-regexp "Find regexp" ?y)))
   :config (define-key my-commands-keymap (kbd "p") project-prefix-map)
-  :bind (("M-3" . project-switch-project)
+  :bind (("M-'" . project-switch-project)
          :map my-commands-keymap
          ("d" . project-dired)
          ("s" . project-shell)
@@ -213,12 +200,14 @@
   (add-to-list 'yas-snippet-dirs "~/src/emacs/snippets")
   (yas-reload-all)
   :bind (:map yas-minor-mode-map
-         ;; Make M-' also expand snippets (in addition to <tab>).
-         ("M-'" . yas-expand)
+         ;; Make C-SPC also expand snippets (in addition to <tab>).
+         ("C-SPC" . yas-expand)
+         ("C-@" . yas-expand)
          :map yas-keymap
          ("M-f" . yas-skip-and-clear-or-delete-char)
-         ;; Allow recursive snippet expansion with M-'.
-         ("M-'" . yas-expand)
+         ;; Allow recursive snippet expansion with C-SPC.
+         ("C-SPC" . yas-expand)
+         ("C-@" . yas-expand)
          :map my-commands-keymap
          ("i s" . yas-insert-snippet))
   :hook

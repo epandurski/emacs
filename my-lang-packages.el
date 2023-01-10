@@ -97,9 +97,9 @@
     " -e autolink"
     " -e footnotes"))
   :init
-  (defvar my-markdown-mode-chordmap (make-keymap) "My chord-keymap for markdown-mode.")
+  (defvar my-markdown-mode-keymap (make-keymap) "My prefix-keymap for markdown-mode.")
   :config
-  (key-chord-define markdown-mode-map "fd" my-markdown-mode-chordmap)
+  (define-key markdown-mode-map (kbd "M--") my-markdown-mode-keymap)
   (add-hook 'markdown-mode-hook 'flyspell-mode)
   (add-hook 'markdown-mode-hook 'imenu-add-menubar-index)
   :bind (:map markdown-mode-map
@@ -114,7 +114,7 @@
          ("M-7" . markdown-outline-up)
          ("M-9" . markdown-promote)
          ("M-0" . markdown-demote)
-         :map my-markdown-mode-chordmap
+         :map my-markdown-mode-keymap
          ("d" . markdown-do)
          ("h" . markdown-insert-header-dwim)
          ("i" . markdown-insert-italic)

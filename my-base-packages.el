@@ -200,14 +200,12 @@
   (add-to-list 'yas-snippet-dirs "~/src/emacs/snippets")
   (yas-reload-all)
   :bind (:map yas-minor-mode-map
-         ;; Make C-SPC also expand snippets (in addition to <tab>).
-         ("C-SPC" . yas-expand)
-         ("C-@" . yas-expand)
+         ;; Make C-e also expand snippets (in addition to TAB).
+         ("C-e" . yas-expand)
          :map yas-keymap
          ("M-f" . yas-skip-and-clear-or-delete-char)
-         ;; Allow recursive snippet expansion with C-SPC.
-         ("C-SPC" . yas-expand)
-         ("C-@" . yas-expand)
+         ;; Allow recursive snippet expansion with C-e.
+         ("C-e" . yas-expand)
          :map my-commands-keymap
          ("i s" . yas-insert-snippet))
   :hook

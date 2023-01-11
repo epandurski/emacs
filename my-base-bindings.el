@@ -14,7 +14,8 @@
 ;; "Ergoemacs"-like key-bindings.                      ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(global-set-key (kbd "M-;") my-commands-keymap)
+(global-set-key (kbd "C-SPC") my-commands-keymap)
+(global-set-key (kbd "C-@") my-commands-keymap)
 
 ;; Bind the original M-s to M-6. Use M-s to move the cursor to other
 ;; window.
@@ -75,7 +76,6 @@
 ;; Common text-editing actions:
 (global-set-key (kbd "M-b") 'toggle-input-method)
 (global-set-key (kbd "M-1") 'kmacro-end-and-call-macro)
-(global-set-key (kbd "M-3") 'comment-dwim)
 (global-set-key (kbd "M-\\") 'cycle-spacing)
 (global-set-key (kbd "M-w") 'my-open-previous-line)
 (global-set-key (kbd "M-t") 'my-toggle-letter-case)
@@ -113,11 +113,15 @@
 ;; Unbind unused keys:
 (dolist (key '(
     "M-'" ;; Later, use-package will bind this to project-switch-project.
+    "C-e" ;; Later, use-package will bind this to yas-expand.
 
-    ;; These are especially convinient. Every major-mode
-    ;; can define these as fast shortcuts.
-    "M-7" "M-9" "M-0" "M--" "M-{" "M-}"
-    "C-d" "C-e" "C-f" "C-v" "C-b" "C-\\"
+    ;; These are especially convinient. Every major-mode can define these as
+    ;; fast shortcuts.
+    "M-3" "M-7" "M-9" "M-0" "M--" "M-]"
+    "M-_" "M-{" "M-}" "M-\""
+    "C-d" "C-f" "C-v" "C-b" "C-\\"
+
+    ;; NOTE: For some reason, "M-[" produces ESC on text terminals.
 
     ;; It seems that pressing "C-/", on text terminals generates "C-_".
     ;; Therefore, to work correctly on graphical and text terminals, both

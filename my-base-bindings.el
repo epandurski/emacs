@@ -174,6 +174,7 @@
   (define-key minibuffer-local-map (kbd "M-r") 'kill-word)
   (define-key minibuffer-local-map (kbd "C-s") 'next-matching-history-element)
   (define-key minibuffer-local-map (kbd "C-r") 'previous-matching-history-element)
+  (define-key minibuffer-local-map (kbd "C-v") 'switch-to-completions)
   ;; Minibuffer uses "M-v" to switch to the completion buffer. Make it
   ;; do what it is supposed to do instead.
   (define-key minibuffer-local-completion-map (kbd "M-v") 'yank)
@@ -198,7 +199,7 @@
   (define-key isearch-mode-map (kbd "M-d") 'isearch-del-char)
   (define-key isearch-mode-map (kbd "M-g") 'isearch-yank-line)
   (define-key isearch-mode-map (kbd "M-t") 'isearch-toggle-case-fold)
-  (define-key isearch-mode-map (kbd "M-c") 'isearch-yank-char)
+  (define-key isearch-mode-map (kbd "M-W") 'isearch-yank-char)
   (define-key isearch-mode-map (kbd "M-w") 'isearch-yank-word-or-char)
   (define-key isearch-mode-map (kbd "M-/") 'isearch-complete)
   (define-key isearch-mode-map (kbd "M-y") 'isearch-repeat-forward)

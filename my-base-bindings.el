@@ -14,8 +14,7 @@
 ;; "Ergoemacs"-like key-bindings.                      ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(global-set-key (kbd "C-SPC") my-commands-keymap)
-(global-set-key (kbd "C-@") my-commands-keymap)
+(global-set-key (kbd "M-;") my-commands-keymap)
 
 ;; Bind the original M-s to M-6. Use M-s to move the cursor to other
 ;; window.
@@ -67,6 +66,8 @@
 
 ;; Manipulate the mark, copy, cut, paste, undo:
 (global-set-key (kbd "M-SPC") 'set-mark-command)
+(global-set-key (kbd "C-SPC") 'my-set-mark-command-with-prefix)
+(global-set-key (kbd "C-@") 'my-set-mark-command-with-prefix)
 (global-set-key (kbd "M-c") 'kill-ring-save)
 (global-set-key (kbd "M-x") 'kill-region)
 (global-set-key (kbd "M-v") 'yank)
@@ -83,7 +84,7 @@
 (global-set-key (kbd "M-+") 'abbrev-prefix-mark)
 (global-set-key (kbd "M-RET") 'indent-new-comment-line)
 (global-set-key (kbd "M-<return>") 'indent-new-comment-line) ;; also "C-M-j"
-(global-set-key (kbd "C-k") 'zap-to-char)
+(global-set-key (kbd "M-]") 'zap-to-char)
 
 ;; Text search/replace:
 (global-set-key (kbd "M-y") 'isearch-forward)
@@ -112,14 +113,13 @@
 
 ;; Unbind unused keys:
 (dolist (key '(
-    "M-'" ;; Later, use-package will bind this to project-switch-project.
     "C-e" ;; Later, use-package will bind this to yas-expand.
 
     ;; These are especially convinient. Every major-mode can define these as
     ;; fast shortcuts.
-    "M-3" "M-7" "M-9" "M-0" "M--" "M-]"
+    "M-3" "M-7" "M-9" "M-0" "M--" "M-'"
     "M-_" "M-{" "M-}" "M-\""
-    "C-d" "C-f" "C-v" "C-b" "C-\\"
+    "C-d" "C-f" "C-v" "C-b" "C-k" "C-\\"
 
     ;; NOTE: For some reason, "M-[" produces ESC on text terminals.
 
@@ -138,14 +138,27 @@
 ;; Command shortcuts ;;
 ;;;;;;;;;;;;;;;;;;;;;;;
 
-(define-key my-commands-keymap (kbd "D") 'my-dired-at-home)
-(define-key my-commands-keymap (kbd "S") 'my-shell-at-home)
-(define-key my-commands-keymap (kbd "B") 'bookmark-set)
-(define-key my-commands-keymap (kbd "b") 'my-bookmark-bmenu-list)
-(define-key my-commands-keymap (kbd "j") 'my-dired-jump)
+;; To comment the selected region, "M-;" should be hit twice. "M-; ;" is an
+;; alternative which does exactly the same.
+(define-key my-commands-keymap (kbd "M-;") 'comment-dwim)
+(define-key my-commands-keymap (kbd ";") 'comment-dwim)
+
+;; dired
+(define-key my-commands-keymap (kbd "d d") 'my-dired-at-home)
+(define-key my-commands-keymap (kbd "d j") 'my-dired-jump)
+
+;; shell
+(define-key my-commands-keymap (kbd "s s") 'my-shell-at-home)
+(define-key my-commands-keymap (kbd "s e") 'eshell)
+
+;; bookmarks
+(define-key my-commands-keymap (kbd "b b") 'bookmark-set)
+(define-key my-commands-keymap (kbd "b l") 'my-bookmark-bmenu-list)
+(define-key my-commands-keymap (kbd "M-b") 'my-bookmark-bmenu-list)
 
 ;; spell
 (define-key my-commands-keymap (kbd "l l") 'ispell)
+(define-key my-commands-keymap (kbd "l w") 'ispell-word)
 (define-key my-commands-keymap (kbd "l b") 'ispell-buffer)
 (define-key my-commands-keymap (kbd "l r") 'ispell-region)
 (define-key my-commands-keymap (kbd "l s") 'ispell-comments-and-strings)
@@ -153,16 +166,20 @@
 (define-key my-commands-keymap (kbd "l k") 'ispell-kill-ispell)
 (define-key my-commands-keymap (kbd "l d") 'ispell-change-dictionary)
 (define-key my-commands-keymap (kbd "l f") 'flyspell-buffer)
+(define-key my-commands-keymap (kbd "M-l") 'ispell-word)
 
 ;; hs-minor-mode
-(define-key my-commands-keymap (kbd "h h") 'hs-toggle-hiding)
+(define-key my-commands-keymap (kbd "h h") 'hs-hide-all)
 (define-key my-commands-keymap (kbd "h s") 'hs-show-all)
-(define-key my-commands-keymap (kbd "h a") 'hs-hide-all)
 (define-key my-commands-keymap (kbd "h l") 'hs-hide-level)
+(define-key my-commands-keymap (kbd "h t") 'hs-toggle-hiding)
+(define-key my-commands-keymap (kbd "M-h") 'hs-toggle-hiding)
 
 ;; utilities to "Fire"
 (define-key my-commands-keymap (kbd "f p") 'proced)
 (define-key my-commands-keymap (kbd "f c") 'calendar)
+(define-key my-commands-keymap (kbd "f d") 'my-dired-jump)
+(define-key my-commands-keymap (kbd "M-f") 'my-dired-jump)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -143,6 +143,7 @@
 
 ;; dired
 (define-key my-commands-keymap (kbd "d d") 'my-dired-at-home)
+(define-key my-commands-keymap (kbd "d SPC") 'dired)
 (define-key my-commands-keymap (kbd "d j") 'my-dired-jump)
 
 ;; shell
@@ -154,7 +155,15 @@
 (define-key my-commands-keymap (kbd "b l") 'my-bookmark-bmenu-list)
 (define-key my-commands-keymap (kbd "M-b") 'my-bookmark-bmenu-list)
 
-;; spell
+;; search
+(define-key my-commands-keymap (kbd "y y") 'find-name-dired)
+(define-key my-commands-keymap (kbd "y f") 'find-dired)
+(define-key my-commands-keymap (kbd "y g") 'rgrep)
+
+;; version control
+(define-key my-commands-keymap (kbd "v p") 'project-vc-dir)
+
+;; spell-checking
 (define-key my-commands-keymap (kbd "l l") 'ispell)
 (define-key my-commands-keymap (kbd "l w") 'ispell-word)
 (define-key my-commands-keymap (kbd "l b") 'ispell-buffer)
@@ -173,16 +182,21 @@
 (define-key my-commands-keymap (kbd "h t") 'hs-toggle-hiding)
 (define-key my-commands-keymap (kbd "M-h") 'hs-toggle-hiding)
 
-;; insert
+;; insert into current buffer
+(define-key my-commands-keymap (kbd "i i") 'yank-from-kill-ring)
 (define-key my-commands-keymap (kbd "i c") 'insert-char)
 (define-key my-commands-keymap (kbd "i b") 'insert-buffer)
-(define-key my-commands-keymap (kbd "i c") 'insert-file)
+(define-key my-commands-keymap (kbd "i f") 'insert-file)
 (define-key my-commands-keymap (kbd "i r") 'insert-register)
 
-;; utilities to "Fire"
-(define-key my-commands-keymap (kbd "f p") 'proced)
-(define-key my-commands-keymap (kbd "f c") 'calendar)
-(define-key my-commands-keymap (kbd "f d") 'my-dired-jump)
+;; open files and miscellaneous utilities
+(define-key my-commands-keymap (kbd "o o") 'ido-find-file)
+(define-key my-commands-keymap (kbd "o p") 'proced)
+(define-key my-commands-keymap (kbd "o c") 'calendar)
+
+;; file utilities
+(define-key my-commands-keymap (kbd "f f") 'find-file-at-point)
+(define-key my-commands-keymap (kbd "f j") 'my-dired-jump)
 (define-key my-commands-keymap (kbd "M-f") 'my-dired-jump)
 
 

@@ -18,7 +18,7 @@
     ("defs" "definitions" nil :count 0)
     ("diff" "difference" nil :count 1)
     ("diffs" "differences" nil :count 1)
-    ("emd" "—" nil :count 2)
+    ("emd" "—" nil :count 3)
     ("env" "environment" nil :count 0)
     ("envs" "environments" nil :count 0)
     ("envvar" "environment variable" nil :count 0)

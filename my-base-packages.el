@@ -108,7 +108,7 @@
          ("M-s" . project-shell)
          ("y p" . project-find-regexp)
          ("M-y" . project-find-regexp)
-         ("o p" . project-find-file)
+         ("o SPC" . project-find-file)
          ("M-o" . project-find-file)
          ("M-p" . project-switch-project)
          :map project-prefix-map
@@ -144,7 +144,7 @@
 (use-package flymake
   :commands (flymake-mode)
   :bind (:map my-commands-keymap
-         ("f f" . flymake-show-buffer-diagnostics)
+         ("o f" . flymake-show-buffer-diagnostics)
          :map flymake-mode-map
          ("M-n" . flymake-goto-next-error)
          ("M-p" . flymake-goto-prev-error))
@@ -160,9 +160,9 @@
   :commands (magit-status magit-file-dispatch magit-status-setup-buffer)
   :bind (("C-x g" . magit-status) ;; an old habit, use "M-; M-m" intead
          :map my-commands-keymap
-         ("m m" . magit-file-dispatch)
-         ("m s" . magit-status)
-         ("M-m" . magit-status)
+         ("v v" . magit-file-dispatch)
+         ("v m" . magit-status)
+         ("M-v" . magit-status)
          :map magit-mode-map
          ;; Magit binds some keys that we need. Unbind them, and
          ;; define our own.

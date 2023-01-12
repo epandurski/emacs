@@ -199,14 +199,15 @@
   (add-to-list 'yas-snippet-dirs "~/src/emacs/snippets")
   (yas-reload-all)
   :bind (:map yas-minor-mode-map
-         ;; Make C-e also expand snippets (in addition to TAB).
-         ("C-e" . yas-expand)
+         ;; Make M-# also expand snippets (in addition to TAB).
+         ("M-#" . yas-expand)
          :map yas-keymap
          ("M-f" . yas-skip-and-clear-or-delete-char)
-         ;; Allow recursive snippet expansion with C-e.
-         ("C-e" . yas-expand)
+         ;; Allow recursive snippet expansion with M-#.
+         ("M-#" . yas-expand)
          :map my-commands-keymap
-         ("i s" . yas-insert-snippet))
+         ("i s" . yas-insert-snippet)
+         ("M-i" . yas-insert-snippet))
   :hook
   ;; Yasnippet can be used as a global mode, by executing the command
   ;; `(yas-global-mode 1)`. However, that causes all installed snippets to be

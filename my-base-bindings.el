@@ -113,13 +113,11 @@
 
 ;; Unbind unused keys:
 (dolist (key '(
-    "C-e" ;; Later, use-package will bind this to yas-expand.
-
     ;; These are especially convinient. Every major-mode can define these as
     ;; fast shortcuts.
     "M-3" "M-7" "M-9" "M-0" "M--" "M-'"
     "M-_" "M-{" "M-}" "M-\""
-    "C-d" "C-f" "C-v" "C-b" "C-k" "C-\\"
+    "C-e" "C-d" "C-f" "C-v" "C-b" "C-k" "C-\\"
 
     ;; NOTE: For some reason, "M-[" produces ESC on text terminals.
 
@@ -174,6 +172,12 @@
 (define-key my-commands-keymap (kbd "h l") 'hs-hide-level)
 (define-key my-commands-keymap (kbd "h t") 'hs-toggle-hiding)
 (define-key my-commands-keymap (kbd "M-h") 'hs-toggle-hiding)
+
+;; insert
+(define-key my-commands-keymap (kbd "i c") 'insert-char)
+(define-key my-commands-keymap (kbd "i b") 'insert-buffer)
+(define-key my-commands-keymap (kbd "i c") 'insert-file)
+(define-key my-commands-keymap (kbd "i r") 'insert-register)
 
 ;; utilities to "Fire"
 (define-key my-commands-keymap (kbd "f p") 'proced)

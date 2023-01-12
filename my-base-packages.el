@@ -237,7 +237,10 @@
   (add-to-list 'eglot-server-programs '(svelte-mode "svelteserver" "--stdio"))
   :bind (:map my-commands-keymap
          ("e r" . eglot-rename)
-         ("e a" . eglot-code-actions))
+         ("e a" . eglot-code-actions)
+         :map xref--xref-buffer-mode-map
+         ("M-," . nil)
+         ("M->" . xref-quit-and-pop-marker-stack))
   :hook
   (svelte-mode . eglot-ensure)
   (python-mode . eglot-ensure)

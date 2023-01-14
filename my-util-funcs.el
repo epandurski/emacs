@@ -22,7 +22,7 @@ With ARG, insert ARG lines."
    (t (goto-char (point-max)))))
 
 (defun my-dired-at-home ()
-  "Open dired buffer at home directory."
+  "Open Dired buffer at home directory."
   (interactive)
   (when (> (minibuffer-depth) 0)
     (abort-recursive-edit))
@@ -64,8 +64,7 @@ be found near the point. The returned value is a cons cell."
 
 (defun my-toggle-letter-case ()
   "Toggle the letter case of current word or text selection.
-
-Toggles between: 'all lower', 'Init Caps', 'ALL CAPS'."
+Toggles between: `all lower`, `Init Caps`, `ALL CAPS`."
   (interactive)
   (let (p1 p2 state (deactivate-mark nil) (case-fold-search nil))
     (if (eq last-command this-command)
@@ -92,7 +91,10 @@ Toggles between: 'all lower', 'Init Caps', 'ALL CAPS'."
            (downcase-region p1 p2) "all lower")))))
 
 (defun my-mark-current-symbol (&optional arg allow-extend)
-  "Put point at beginning of current symbol, set mark at end."
+  "Put point at beginning of current symbol, set mark at end.
+If ARG is negative, set point at end, mark at beginning. If
+ALLOW-EXTEND is not nil, the currently selected region will be
+extended instead."
   (interactive "p\np")
   (setq arg (if arg arg 1))
   (if (and allow-extend
@@ -124,10 +126,11 @@ Toggles between: 'all lower', 'Init Caps', 'ALL CAPS'."
 
 (defun my-dired-mouse-find-file (event &optional find-file-func find-dir-func)
   "In Dired, visit the file or directory name you click on.
-The optional arguments FIND-FILE-FUNC and FIND-DIR-FUNC specify
-functions to visit the file and directory, respectively. If
-omitted or nil, these arguments default to `find-file-other-window'
-and `dired', respectively. See dired-mouse-find-file."
+EVENT is the mouse event. The optional arguments FIND-FILE-FUNC
+and FIND-DIR-FUNC specify functions to visit the file and
+directory, respectively. If omitted or nil, these arguments
+default to `find-file-other-window' and `dired', respectively.
+See `dired-mouse-find-file'."
   (interactive "e")
   (or find-file-func (setq find-file-func 'find-file-other-window))
   (or find-dir-func (setq find-dir-func 'dired))
@@ -150,8 +153,8 @@ and `dired', respectively. See dired-mouse-find-file."
       (funcall find-file-func (file-name-sans-versions file t)))))
 
 (defun my-dired-display-file ()
-  "In Dired, display this file in another window. If it is a
-directory, display it in the same window."
+  "In Dired, display this file in another window.
+If it is a directory, display it in the same window."
   (interactive)
   (let (file)
     (setq file (dired-get-file-for-visit))
@@ -168,23 +171,24 @@ directory, display it in the same window."
     (call-interactively 'shell)))
 
 (defun my-save-buffer (arg)
-  "Save the current buffer, ask for filename if prefixed with C-u."
+  "Save the current buffer.
+Ask for filename if ARG is \\[universal-argument]."
   (interactive "p")
   (if (eq arg 4)
       (ido-write-file)
     (save-buffer)))
 
 (defun my-file-to-string (file)
-  "Read file into string."
+  "Read FILE into string."
   (with-temp-buffer
     (insert-file-contents file)
     (buffer-string)))
 
-(defun my-dired-toggle-subdir-visibility (arg)
-  "Hide/show subdir and move the point to the subdir."
+(defun my-dired-toggle-subdir-visibility (subdir)
+  "Hide/show SUBDIR and move the point to the sub-directory."
   (interactive "p")
   (let ((dir (dired-current-directory)))
-    (dired-hide-subdir arg)
+    (dired-hide-subdir subdir)
     (dired-goto-subdir dir)))
 
 (defun my-upgrade-builtin-package (pkg version)
@@ -203,16 +207,16 @@ a list with version numbers.  For example, '(1 2 3) for version
         (package-install pdescr)))))
 
 (defun my-find-dired (arg)
-  "Find files in dired, asking the user for a wildcard.
-If prefixed with `C-u`, instead of wildcard, ask the user to
-directly enter parameters for the `find` command."
+  "Find files in Dired, asking the user for a wildcard.
+If ARG is \\[universal-argument], instead of wildcard, ask the
+user to directly enter parameters for the `find` command."
   (interactive "p")
   (if (eq arg 4)
       (call-interactively 'find-dired)
     (call-interactively 'find-name-dired)))
 
-(defun my-arrange-two-windows (window1 window2)
-  "A helper function for `my-arrange-windows`."
+(defun my--arrange-two-windows (window1 window2)
+  "Toggle vertically/horizontally split for WINDOW1 and WINDOW2."
   (let ((left1 (car (window-edges window1)))
         (left2 (car (window-edges window2)))
         (buffer2 (window-buffer window2)))
@@ -232,36 +236,17 @@ directly enter parameters for the `find` command."
     (if (<= n 2)
         (cond
          ((= n 1) (split-window-right))
-         ((= n 2) (my-arrange-two-windows (car windows) (cadr windows))))
+         ((= n 2) (my--arrange-two-windows (car windows) (cadr windows))))
       (delete-other-windows)
       (split-window-right))))
 
-(defun my-yas-popup-isearch-prompt (prompt choices &optional display-fn)
-  "If `popup` is installed, use it to show a choice popup for Yasnippet.
-This code has been copied almost verbatim from
-www.emacswiki.org."
-  (when (functionp 'popup-menu*)
-    (require 'popup)
-    (popup-menu*
-     (mapcar
-      (lambda (choice)
-        (popup-make-item
-         (or (and display-fn (funcall display-fn choice))
-             choice)
-         :value choice))
-      choices)
-     :prompt prompt
-     ;; start isearch mode immediately
-     :isearch t
-     )))
-
 (defun my-yas-minor-mode-except-for-scratch ()
-  "Activate yas-minor-mode, unless buffer's name is *scratch*."
+  "Activate `yas-minor-mode', unless buffer's name is *scratch*."
   (unless (equal (buffer-name) "*scratch*")
     (yas-minor-mode)))
 
 (defun my-set-yasnippet-fixed-indent ()
-  "Declare yas-indent-line as buffer-local, and set it to 'fixed.
+  "Declare `yas-indent-line' as buffer-local, and set it to 'fixed.
 For example, this is needed for the correct expansion of Python's
 Yasnippets."
   (set (make-local-variable 'yas-indent-line) 'fixed))
@@ -278,7 +263,7 @@ Yasnippets."
 
 (defvar my--orig-abbrev-expand-function
   (symbol-function abbrev-expand-function)
-  "The original value of `abbrev-expand-function`.")
+  "The original value of `abbrev-expand-function'.")
 
 (defun my-abbrev-expand-function ()
   "Abbrev-expand only in non-prog-modes, or in strings and comments."
@@ -289,3 +274,5 @@ Yasnippets."
 (provide 'my-util-funcs)
 
 ;;; my-util-funcs.el ends here
+
+; LocalWords:  SUBDIR ARG Dired yas Yasnippets dired np Init

@@ -92,7 +92,7 @@
 (global-set-key (kbd "M-5") 'query-replace)
 (global-set-key (kbd "M-%") 'query-replace-regexp)
 (global-set-key (kbd "M-6") search-map)
-(global-set-key (kbd "C-y") 'my-find-dired)
+(global-set-key (kbd "C-y") 'rgrep)
 
 ;; Manipulate buffers:
 (global-set-key (kbd "M-m") 'switch-to-buffer)
@@ -156,8 +156,8 @@
 (define-key my-commands-keymap (kbd "M-b") 'my-bookmark-bmenu-list)
 
 ;; search
-(define-key my-commands-keymap (kbd "y y") 'find-name-dired)
-(define-key my-commands-keymap (kbd "y f") 'find-dired)
+(define-key my-commands-keymap (kbd "y f") 'find-name-dired)
+(define-key my-commands-keymap (kbd "y F") 'find-dired)
 (define-key my-commands-keymap (kbd "y g") 'rgrep)
 
 ;; version control
@@ -173,7 +173,7 @@
 (define-key my-commands-keymap (kbd "l k") 'ispell-kill-ispell)
 (define-key my-commands-keymap (kbd "l d") 'ispell-change-dictionary)
 (define-key my-commands-keymap (kbd "l f") 'flyspell-buffer)
-(define-key my-commands-keymap (kbd "M-l") 'ispell-word)
+(define-key my-commands-keymap (kbd "M-l") 'ispell)
 
 ;; hs-minor-mode
 (define-key my-commands-keymap (kbd "h h") 'hs-hide-all)
@@ -183,14 +183,14 @@
 (define-key my-commands-keymap (kbd "M-h") 'hs-toggle-hiding)
 
 ;; insert into current buffer
-(define-key my-commands-keymap (kbd "i i") 'yank-from-kill-ring)
+(define-key my-commands-keymap (kbd "i k") 'yank-from-kill-ring)
 (define-key my-commands-keymap (kbd "i c") 'insert-char)
 (define-key my-commands-keymap (kbd "i b") 'insert-buffer)
 (define-key my-commands-keymap (kbd "i f") 'insert-file)
 (define-key my-commands-keymap (kbd "i r") 'insert-register)
+(define-key my-commands-keymap (kbd "M-i") 'yank-from-kill-ring)
 
 ;; open files and miscellaneous utilities
-(define-key my-commands-keymap (kbd "o o") 'ido-find-file)
 (define-key my-commands-keymap (kbd "o p") 'proced)
 (define-key my-commands-keymap (kbd "o c") 'calendar)
 

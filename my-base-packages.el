@@ -108,7 +108,7 @@
          ("M-s" . project-shell)
          ("y p" . project-find-regexp)
          ("M-y" . project-find-regexp)
-         ("o SPC" . project-find-file)
+         ("o f" . project-find-file)
          ("M-o" . project-find-file)
          ("M-p" . project-switch-project)
          :map project-prefix-map
@@ -144,7 +144,7 @@
 (use-package flymake
   :commands (flymake-mode)
   :bind (:map my-commands-keymap
-         ("o f" . flymake-show-buffer-diagnostics)
+         ("o e" . flymake-show-buffer-diagnostics)
          :map flymake-mode-map
          ("M-n" . flymake-goto-next-error)
          ("M-p" . flymake-goto-prev-error))
@@ -206,8 +206,7 @@
          ;; Allow recursive snippet expansion with M-#.
          ("M-#" . yas-expand)
          :map my-commands-keymap
-         ("i s" . yas-insert-snippet)
-         ("M-i" . yas-insert-snippet))
+         ("i s" . yas-insert-snippet))
   :hook
   ;; Yasnippet can be used as a global mode, by executing the command
   ;; `(yas-global-mode 1)`. However, that causes all installed snippets to be

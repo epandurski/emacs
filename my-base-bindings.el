@@ -85,6 +85,7 @@
 (global-set-key (kbd "M-RET") 'indent-new-comment-line)
 (global-set-key (kbd "M-<return>") 'indent-new-comment-line) ;; also "C-M-j"
 (global-set-key (kbd "M-]") 'zap-to-char)
+(global-set-key (kbd "M-H") 'flyspell-check-previous-highlighted-word)
 
 ;; Text search/replace:
 (global-set-key (kbd "M-y") 'isearch-forward)
@@ -173,7 +174,7 @@
 (define-key my-commands-keymap (kbd "l k") 'ispell-kill-ispell)
 (define-key my-commands-keymap (kbd "l d") 'ispell-change-dictionary)
 (define-key my-commands-keymap (kbd "l f") 'flyspell-buffer)
-(define-key my-commands-keymap (kbd "M-l") 'ispell)
+(define-key my-commands-keymap (kbd "M-l") 'flyspell-buffer)
 
 ;; hs-minor-mode
 (define-key my-commands-keymap (kbd "h h") 'hs-hide-all)

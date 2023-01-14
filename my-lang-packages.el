@@ -19,7 +19,6 @@
   :config
   (add-hook 'python-mode-hook 'hs-minor-mode)
   (add-hook 'python-mode-hook 'imenu-add-menubar-index)
-  (add-hook 'python-mode-hook 'flyspell-prog-mode)
   :bind (:map python-mode-map
          ("M-9" . python-indent-shift-left)
          ("M-0" . python-indent-shift-right)
@@ -32,17 +31,14 @@
   :custom (js-indent-level 2)
   :config
   (add-hook 'js-mode-hook 'hs-minor-mode)
-  (add-hook 'js-mode-hook 'imenu-add-menubar-index)
-  (add-hook 'js-mode-hook 'flyspell-prog-mode))
+  (add-hook 'js-mode-hook 'imenu-add-menubar-index))
 
 
 (use-package typescript-mode
   :ensure t
   :commands (typescript-mode)
   :custom (typescript-indent-level 2)
-  :config
-  (add-hook 'typescript-mode-hook 'hs-minor-mode)
-  (add-hook 'typescript-mode-hook 'flyspell-prog-mode))
+  :config (add-hook 'typescript-mode-hook 'hs-minor-mode))
 
 
 (use-package sgml-mode
@@ -100,7 +96,6 @@
   (defvar my-markdown-mode-keymap (make-keymap) "My prefix-keymap for markdown-mode.")
   :config
   (define-key markdown-mode-map (kbd "M--") my-markdown-mode-keymap)
-  (add-hook 'markdown-mode-hook 'flyspell-mode)
   (add-hook 'markdown-mode-hook 'imenu-add-menubar-index)
   :bind (:map markdown-mode-map
          ("M-RET" . markdown-insert-list-item)
@@ -147,8 +142,7 @@
 
 (use-package dockerfile-mode
   :ensure t
-  :commands (dockerfile-mode)
-  :config (add-hook 'dockerfile-mode-hook 'flyspell-prog-mode))
+  :commands (dockerfile-mode))
 
 
 (provide 'my-lang-packages)

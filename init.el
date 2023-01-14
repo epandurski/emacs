@@ -32,6 +32,10 @@
 ;; Show line number for programs.
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
+;; Use flyspell-mode
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+
 ;; Use dired+
 (add-hook 'dired-load-hook (lambda ()
    (load "dired-x")))

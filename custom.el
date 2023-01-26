@@ -42,6 +42,7 @@
  '(find-ls-option
    '("-exec ls -ldhb --time-style=long-iso --group-directories-first {} +" . "-ldhb --time-style=long-iso --group-directories-first"))
  '(fringe-mode '(nil . 0) nil (fringe))
+ '(global-auto-revert-non-file-buffers t)
  '(global-so-long-mode t)
  '(global-subword-mode t)
  '(help-at-pt-display-when-idle '(flymake-overlay) nil (help-at-pt))

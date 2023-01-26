@@ -54,6 +54,7 @@
  '(isearch-wrap-pause t)
  '(json-reformat:indent-width 2)
  '(make-backup-files nil)
+ '(message-send-mail-function 'smtpmail-send-it)
  '(mode-line-compact t)
  '(mode-line-position-column-line-format '(" (L%l,%c)"))
  '(next-error-message-highlight t)
@@ -68,8 +69,13 @@
  '(search-whitespace-regexp "[ \t\r\n]+")
  '(sentence-end-double-space nil)
  '(show-paren-mode t)
+ '(smtpmail-smtp-server "smtp.gmail.com")
+ '(smtpmail-smtp-service 465)
+ '(smtpmail-stream-type 'ssl)
  '(tool-bar-mode nil)
  '(use-short-answers t)
+ '(user-full-name "Evgeni Pandurski")
+ '(user-mail-address "epandurski@gmail.com")
  '(warning-suppress-types '((comp))))
 
 (custom-set-faces

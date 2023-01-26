@@ -271,6 +271,11 @@ Yasnippets."
                (not (my--point-at-string-or-comment)))
     (funcall my--orig-abbrev-expand-function)))
 
+(defun my-show-mail-inbox ()
+  "Show email inbox."
+  (interactive)
+  (mu4e~headers-jump-to-maildir "/Inbox"))
+
 (provide 'my-util-funcs)
 
 ;;; my-util-funcs.el ends here

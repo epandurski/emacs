@@ -38,7 +38,7 @@
  '(ediff-split-window-function 'split-window-horizontally)
  '(ediff-window-setup-function 'ediff-setup-windows-plain)
  '(enable-recursive-minibuffers t)
- '(fill-column 79)
+ '(fill-column 76)
  '(find-ls-option
    '("-exec ls -ldhb --time-style=long-iso --group-directories-first {} +" . "-ldhb --time-style=long-iso --group-directories-first"))
  '(fringe-mode '(nil . 0) nil (fringe))

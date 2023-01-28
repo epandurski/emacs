@@ -296,9 +296,11 @@
          ("m i" . my-show-mail-inbox)
          ("M-m" . my-show-mail-inbox)))
 
-;; NOTE: mu4e should be installed with "apt install mu4e". Also, mbsync should
-;; be installed with "apt install isync", and then a ~/mbsyncrc configuration
-;; file should be created.
+;; NOTE: mu4e should be installed with "apt install mu4e". Also, mbsync
+;; should be installed with "apt install isync", and then a ~/.mbsyncrc
+;; configuration file should be created, and "mbsync -a" executed. At the
+;; end, the mu-index directory should be initialized with "mu init
+;; --maildir=~/Mail --my-address=epandurski@gmail.com".
 
 
 (provide 'my-base-packages)

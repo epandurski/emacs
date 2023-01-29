@@ -269,6 +269,7 @@
   (mu4e-change-filenames-when-moving t)
   (mu4e-hide-index-messages t)
   (mu4e-compose-format-flowed t)
+  (mu4e-compose-in-new-frame t)
   (mu4e-update-interval (* 10 60))
   (mu4e-confirm-quit nil)
   (mu4e-attachment-dir "~/Downloads")

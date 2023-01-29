@@ -28,6 +28,7 @@
 (setq-default abbrev-mode t)
 (setq read-process-output-max (* 256 1024)) ; 256kb
 (setq nobreak-char-ascii-display t)
+(setq default-frame-alist '((width . 80) (height . 0.8)))
 (add-to-list 'load-path "~/src/emacs")
 (byte-recompile-directory "~/src/emacs" 0)
 

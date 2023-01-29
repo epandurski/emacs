@@ -259,7 +259,7 @@
 
 (use-package mu4e
   :ensure nil
-  :commands (mu4e mu4e~headers-jump-to-maildir)
+  :commands (mu4e)
   :load-path "/usr/share/emacs/site-lisp/mu4e/"
   :defer 20 ; Wait until 20 seconds after startup
   :custom
@@ -270,7 +270,7 @@
   (mu4e-hide-index-messages t)
   (mu4e-compose-format-flowed t)
   (mu4e-compose-in-new-frame t)
-  (mu4e-update-interval (* 10 60))
+  (mu4e-update-interval (* 5 60))
   (mu4e-confirm-quit nil)
   (mu4e-attachment-dir "~/Downloads")
   (mu4e-view-html-plaintext-ratio-heuristic 5)
@@ -287,15 +287,14 @@
         ("/[Gmail]/Sent Mail" . ?s)
         ("/[Gmail]/Spam" . ?j)))
   :config
+  (add-hook 'kill-emacs-hook 'my-mu4e-exit)
   (setq mail-user-agent 'mu4e-user-agent)
   (setq mu4e-maildir "~/Mail")
   (add-to-list 'mu4e-view-actions
                '("View in Browser" . mu4e-action-view-in-browser) t)
-  (mu4e t)
   :bind (:map my-commands-keymap
          ("m m" . mu4e)
-         ("m i" . my-show-mail-inbox)
-         ("M-m" . my-show-mail-inbox)))
+         ("M-m" . mu4e)))
 
 ;; NOTE: mu4e should be installed with "apt install mu4e". Also, mbsync
 ;; should be installed with "apt install isync", and then a ~/.mbsyncrc

@@ -43,6 +43,10 @@
 (add-hook 'dired-load-hook (lambda ()
    (load "dired-x")))
 
+;; Disable abberv-mode in the command shell.
+(add-hook 'comint-mode-hook (lambda ()
+   (abbrev-mode -1)))
+
 ;; Save abbrev usage statistics before exiting Emacs.
 (add-hook 'kill-emacs-hook 'write-abbrev-file)
 

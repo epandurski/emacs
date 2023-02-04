@@ -12,8 +12,34 @@
 (setq custom-file "~/src/emacs/custom.el")
 (load custom-file 'noerror nil t)
 
-;; Hide the menu bar on text terminal.
-(unless (display-graphic-p)
+(if (display-graphic-p)
+    (custom-set-faces
+     ;; font
+     '(default ((t (
+       :family "DejaVu Sans Mono"
+       :foundry "unknown"
+       :slant normal
+       :weight normal
+       :height 128
+       :width normal))))
+     ;; current line
+     '(hl-line ((t (
+       :inherit highlight
+       :extend t
+       :background "gray93"))))
+     ;; current line's number
+     '(line-number-current-line ((t (
+       :inherit line-number
+       :background "gray84"))))
+     ;; mode line
+     '(mode-line ((((class color) (min-colors 88)) (
+        :background "#9dbde4"
+        :foreground "black"
+        :box (:line-width -1 :style released-button)))))
+     ;; selected region
+     '(region ((t (
+        :background "LightGoldenrod2")))))
+  ;; Hide the menu bar on text terminal.
   (menu-bar-mode -1))
 
 (defalias 'yes-or-no-p 'y-or-n-p)

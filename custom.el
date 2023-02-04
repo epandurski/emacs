@@ -77,16 +77,3 @@
  '(user-full-name "Evgeni Pandurski")
  '(user-mail-address "epandurski@gmail.com")
  '(warning-suppress-types '((comp))))
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "DejaVu Sans Mono" :foundry "unknown" :slant normal :weight normal :height 128 :width normal))))
- '(hl-line ((t (:inherit highlight :extend t :background "gray93"))))
- '(line-number-current-line ((t (:inherit line-number :background "gray84"))))
- '(mode-line ((((class color) (min-colors 88)) (:background "#9dbde4" :foreground "black" :box (:line-width -1 :style released-button)))))
- '(region ((t (:background "LightGoldenrod2")))))
-
-

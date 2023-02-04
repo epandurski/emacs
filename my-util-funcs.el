@@ -271,6 +271,14 @@ Yasnippets."
                (not (my--point-at-string-or-comment)))
     (funcall my--orig-abbrev-expand-function)))
 
+(defun my-mu4e-exit ()
+  "Call `mu4e-get-mail-command' in a sub-process, without waiting.
+This sends all mail operations done by the user, to the IMAP
+server."
+  (interactive)
+  (if (boundp 'mu4e-get-mail-command)
+      (call-process-shell-command mu4e-get-mail-command nil 0)))
+
 (provide 'my-util-funcs)
 
 ;;; my-util-funcs.el ends here

@@ -257,6 +257,53 @@
 ;;   server for Svelte.
 
 
+(use-package mu4e
+  :ensure nil
+  :commands (mu4e)
+  :load-path "/usr/share/emacs/site-lisp/mu4e/"
+  :defer 20 ; Wait until 20 seconds after startup
+  :custom
+  (read-mail-command 'mu4e)
+  (mu4e-date-format-long "%F")
+  (mu4e-headers-date-format "%F")
+  (mu4e-change-filenames-when-moving t)
+  (mu4e-hide-index-messages t)
+  (mu4e-compose-format-flowed t)
+  (mu4e-compose-in-new-frame t)
+  (mu4e-update-interval (* 5 60))
+  (mu4e-confirm-quit nil)
+  (mu4e-attachment-dir "~/Downloads")
+  (mu4e-view-html-plaintext-ratio-heuristic 5)
+  (mu4e-get-mail-command "mbsync -a")
+  (mu4e-refile-folder "/Archive")
+  (mu4e-drafts-folder "/[Gmail]/Drafts")
+  (mu4e-trash-folder "/[Gmail]/Trash")
+  (mu4e-sent-folder "/[Gmail]/Sent Mail")
+  (mu4e-maildir-shortcuts
+      '(("/Inbox" . ?i)
+        ("/Archive" . ?a)
+        ("/[Gmail]/Drafts" . ?d)
+        ("/[Gmail]/Trash" . ?t)
+        ("/[Gmail]/Sent Mail" . ?s)
+        ("/[Gmail]/Spam" . ?j)))
+  :config
+  (add-hook 'kill-emacs-hook 'my-mu4e-exit)
+  (setq mu4e-headers-show-threads nil)
+  (setq mail-user-agent 'mu4e-user-agent)
+  (setq mu4e-maildir "~/Mail")
+  (add-to-list 'mu4e-view-actions
+               '("View in Browser" . mu4e-action-view-in-browser) t)
+  :bind (:map my-commands-keymap
+         ("m m" . mu4e)
+         ("M-m" . mu4e)))
+
+;; NOTE: mu4e should be installed with "apt install mu4e". Also, mbsync
+;; should be installed with "apt install isync", and then a ~/.mbsyncrc
+;; configuration file should be created, and "mbsync -a" executed. At the
+;; end, the mu-index directory should be initialized with "mu init
+;; --maildir=~/Mail --my-address=epandurski@gmail.com".
+
+
 (provide 'my-base-packages)
 
 ;;; my-base-packages.el ends here

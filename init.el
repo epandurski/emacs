@@ -12,20 +12,49 @@
 (setq custom-file "~/src/emacs/custom.el")
 (load custom-file 'noerror nil t)
 
-;; Hide the menu bar on text terminal.
-(unless (display-graphic-p)
+(if (display-graphic-p)
+    (custom-set-faces
+     ;; font
+     '(default ((t (
+       :family "DejaVu Sans Mono"
+       :foundry "unknown"
+       :slant normal
+       :weight normal
+       :height 128
+       :width normal))))
+     ;; current line
+     '(hl-line ((t (
+       :inherit highlight
+       :extend t
+       :background "gray93"))))
+     ;; current line's number
+     '(line-number-current-line ((t (
+       :inherit line-number
+       :background "gray84"))))
+     ;; mode line
+     '(mode-line ((((class color) (min-colors 88)) (
+        :background "#9dbde4"
+        :foreground "black"
+        :box (:line-width -1 :style released-button)))))
+     ;; selected region
+     '(region ((t (
+        :background "LightGoldenrod2")))))
+  ;; Hide the menu bar on text terminal.
   (menu-bar-mode -1))
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 (require 'uniquify)
 (recentf-mode t)
+(savehist-mode t)
 (electric-pair-mode 1)
 (global-hl-line-mode 1)
+(global-auto-revert-mode 1)
 (minibuffer-depth-indicate-mode)
 (setq-default dired-omit-mode t)
 (setq-default abbrev-mode t)
 (setq read-process-output-max (* 256 1024)) ; 256kb
 (setq nobreak-char-ascii-display t)
+(setq default-frame-alist '((width . 80) (height . 0.8)))
 (add-to-list 'load-path "~/src/emacs")
 (byte-recompile-directory "~/src/emacs" 0)
 
@@ -39,6 +68,10 @@
 ;; Use dired+
 (add-hook 'dired-load-hook (lambda ()
    (load "dired-x")))
+
+;; Disable abberv-mode in the command shell.
+(add-hook 'comint-mode-hook (lambda ()
+   (abbrev-mode -1)))
 
 ;; Save abbrev usage statistics before exiting Emacs.
 (add-hook 'kill-emacs-hook 'write-abbrev-file)

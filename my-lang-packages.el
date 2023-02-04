@@ -41,6 +41,12 @@
   :config (add-hook 'typescript-mode-hook 'hs-minor-mode))
 
 
+(use-package org
+  :commands (org-mode)
+  :bind (:map org-mode-map
+         ("M-<return>" . org-meta-return)))
+
+
 (use-package sgml-mode
   :commands (html-mode sgml-mode)
   :custom (sgml-validate-command "tidy --gnu-emacs yes -utf8 -e -q")

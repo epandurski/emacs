@@ -38,10 +38,11 @@
  '(ediff-split-window-function 'split-window-horizontally)
  '(ediff-window-setup-function 'ediff-setup-windows-plain)
  '(enable-recursive-minibuffers t)
- '(fill-column 79)
+ '(fill-column 76)
  '(find-ls-option
    '("-exec ls -ldhb --time-style=long-iso --group-directories-first {} +" . "-ldhb --time-style=long-iso --group-directories-first"))
  '(fringe-mode '(nil . 0) nil (fringe))
+ '(global-auto-revert-non-file-buffers t)
  '(global-so-long-mode t)
  '(global-subword-mode t)
  '(help-at-pt-display-when-idle '(flymake-overlay) nil (help-at-pt))
@@ -53,6 +54,7 @@
  '(isearch-wrap-pause t)
  '(json-reformat:indent-width 2)
  '(make-backup-files nil)
+ '(message-send-mail-function 'smtpmail-send-it)
  '(mode-line-compact t)
  '(mode-line-position-column-line-format '(" (L%l,%c)"))
  '(next-error-message-highlight t)
@@ -67,19 +69,11 @@
  '(search-whitespace-regexp "[ \t\r\n]+")
  '(sentence-end-double-space nil)
  '(show-paren-mode t)
+ '(smtpmail-smtp-server "smtp.gmail.com")
+ '(smtpmail-smtp-service 465)
+ '(smtpmail-stream-type 'ssl)
  '(tool-bar-mode nil)
  '(use-short-answers t)
+ '(user-full-name "Evgeni Pandurski")
+ '(user-mail-address "epandurski@gmail.com")
  '(warning-suppress-types '((comp))))
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "DejaVu Sans Mono" :foundry "unknown" :slant normal :weight normal :height 128 :width normal))))
- '(hl-line ((t (:inherit highlight :extend t :background "gray93"))))
- '(line-number-current-line ((t (:inherit line-number :background "gray84"))))
- '(mode-line ((((class color) (min-colors 88)) (:background "#9dbde4" :foreground "black" :box (:line-width -1 :style released-button)))))
- '(region ((t (:background "LightGoldenrod2")))))
-
-

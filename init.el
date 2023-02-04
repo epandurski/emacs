@@ -13,33 +13,38 @@
 (load custom-file 'noerror nil t)
 
 (if (display-graphic-p)
-    (custom-set-faces
-     ;; font
-     '(default ((t (
-       :family "DejaVu Sans Mono"
-       :foundry "unknown"
-       :slant normal
-       :weight normal
-       :height 128
-       :width normal))))
-     ;; current line
-     '(hl-line ((t (
-       :inherit highlight
-       :extend t
-       :background "gray93"))))
-     ;; current line's number
-     '(line-number-current-line ((t (
-       :inherit line-number
-       :background "gray84"))))
-     ;; mode line
-     '(mode-line ((((class color) (min-colors 88)) (
-        :background "#9dbde4"
-        :foreground "black"
-        :box (:line-width -1 :style released-button)))))
-     ;; selected region
-     '(region ((t (
-        :background "LightGoldenrod2")))))
-  ;; Hide the menu bar on text terminal.
+    (progn
+      (custom-set-faces
+        ;; font
+        '(default ((t (
+          :family "DejaVu Sans Mono"
+          :foundry "unknown"
+          :slant normal
+          :weight normal
+          :height 128
+          :width normal))))
+        ;; current line style
+        '(hl-line ((t (
+          :inherit highlight
+          :extend t
+          :background "gray93"))))
+        ;; current line's number style
+        '(line-number-current-line ((t (
+          :inherit line-number
+          :background "gray84"))))
+        ;; mode line style
+        '(mode-line ((((class color) (min-colors 88)) (
+           :background "#9dbde4"
+           :foreground "black"
+           :box (:line-width -1 :style released-button)))))
+        ;; selected region background
+        '(region ((t (
+           :background "LightGoldenrod2")))))
+      ;; Highlight current line only on graphic terminals. On text
+      ;; terminals, with limited number of color, the highlighted line
+      ;; simply looks ugly.
+      (global-hl-line-mode 1))
+  ;; Hide the menu bar on text terminals.
   (menu-bar-mode -1))
 
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -47,7 +52,6 @@
 (recentf-mode t)
 (savehist-mode t)
 (electric-pair-mode 1)
-(global-hl-line-mode 1)
 (global-auto-revert-mode 1)
 (minibuffer-depth-indicate-mode)
 (setq-default dired-omit-mode t)

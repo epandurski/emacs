@@ -82,8 +82,7 @@
 (global-set-key (kbd "M-t") 'my-toggle-letter-case)
 (global-set-key (kbd "M-T") 'my-upcase-letter-case)
 (global-set-key (kbd "M-+") 'abbrev-prefix-mark)
-(global-set-key (kbd "M-RET") 'indent-new-comment-line)
-(global-set-key (kbd "M-<return>") 'indent-new-comment-line) ;; also "C-M-j"
+(global-set-key (kbd "M-RET") 'indent-new-comment-line) ;; also "C-M-j"
 (global-set-key (kbd "M-]") 'zap-to-char)
 (global-set-key (kbd "M-H") 'flyspell-check-previous-highlighted-word)
 

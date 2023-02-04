@@ -41,12 +41,6 @@
   :config (add-hook 'typescript-mode-hook 'hs-minor-mode))
 
 
-(use-package org
-  :commands (org-mode)
-  :bind (:map org-mode-map
-         ("M-<return>" . org-meta-return)))
-
-
 (use-package sgml-mode
   :commands (html-mode sgml-mode)
   :custom (sgml-validate-command "tidy --gnu-emacs yes -utf8 -e -q")
@@ -105,7 +99,6 @@
   (add-hook 'markdown-mode-hook 'imenu-add-menubar-index)
   :bind (:map markdown-mode-map
          ("M-RET" . markdown-insert-list-item)
-         ("M-<return>" . markdown-insert-list-item)
          ("M-p" . markdown-outline-previous-same-level)
          ("M-n" . markdown-outline-next-same-level)
          ("M-P" . markdown-outline-previous)

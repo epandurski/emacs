@@ -303,6 +303,13 @@
   (define-key comint-mode-map (kbd "C-r") 'comint-history-isearch-backward-regexp)
   ))
 
+(eval-after-load "sgml-mode" (lambda ()
+  "My keybindings for the html-mode."
+  ;; Html-mode binds "M-o" to `facemenu-keymap', which is useless. Make it
+  ;; do what it is supposed to do.
+  (define-key html-mode-map (kbd "M-o") 'forward-word)
+  ))
+
 (provide 'my-base-bindings)
 
 ;;; my-base-bindings.el ends here

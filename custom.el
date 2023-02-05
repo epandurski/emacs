@@ -52,6 +52,7 @@
  '(inhibit-startup-screen t)
  '(initial-frame-alist '((fullscreen . maximized)))
  '(isearch-wrap-pause t)
+ '(ispell-dictionary "bg-w_english")
  '(json-reformat:indent-width 2)
  '(make-backup-files nil)
  '(message-send-mail-function 'smtpmail-send-it)

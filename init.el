@@ -14,8 +14,8 @@
 
 (if (display-graphic-p)
     (progn
-      ;; Set font, current line style, current line number style, mode line
-      ;; style, selected region background.
+      ;; Set font, current line style, current line number style, selected
+      ;; region background.
       (custom-set-faces
         '(default ((t (
           :family "DejaVu Sans Mono"
@@ -31,21 +31,16 @@
         '(line-number-current-line ((t (
           :inherit line-number
           :background "gray84"))))
-        '(mode-line ((((class color) (min-colors 88)) (
-           :background "#9dbde4"
-           :foreground "black"
-           :box (:line-width -1 :style released-button)))))
         '(region ((t (
-           :background "LightGoldenrod2")))))
+          :background "LightGoldenrod2")))))
       ;; Highlight current line only on graphic terminals. On text
       ;; terminals, with limited number of colors, the highlighted line
       ;; simply looks ugly.
-      (global-hl-line-mode 1))
-  ;; On text terminals -- hide the menu bar.
-  (menu-bar-mode -1))
+      (global-hl-line-mode 1)))
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 (require 'uniquify)
+(menu-bar-mode -1)
 (recentf-mode t)
 (savehist-mode t)
 (electric-pair-mode 1)

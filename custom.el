@@ -55,6 +55,7 @@
  '(json-reformat:indent-width 2)
  '(make-backup-files nil)
  '(message-send-mail-function 'smtpmail-send-it)
+ '(mml-secure-openpgp-sign-with-sender t)
  '(mode-line-compact t)
  '(mode-line-position-column-line-format '(" (L%l,%c)"))
  '(next-error-message-highlight t)

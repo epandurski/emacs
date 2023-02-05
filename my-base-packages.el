@@ -288,6 +288,7 @@
         ("/[Gmail]/Spam" . ?j)))
   :config
   (add-hook 'kill-emacs-hook 'my-mu4e-exit)
+  (add-hook 'message-send-hook 'mml-secure-message-sign-pgpmime)
   (setq mu4e-headers-show-threads nil)
   (setq mail-user-agent 'mu4e-user-agent)
   (setq mu4e-maildir "~/Mail")

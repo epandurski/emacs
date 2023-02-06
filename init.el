@@ -12,38 +12,13 @@
 (setq custom-file "~/src/emacs/custom.el")
 (load custom-file 'noerror nil t)
 
-(if (display-graphic-p)
-    (progn
-      ;; Set font, current line style, current line number style, selected
-      ;; region background.
-      (custom-set-faces
-        '(default ((t (
-          :family "DejaVu Sans Mono"
-          :foundry "unknown"
-          :slant normal
-          :weight normal
-          :height 128
-          :width normal))))
-        '(hl-line ((t (
-          :inherit highlight
-          :extend t
-          :background "gray93"))))
-        '(line-number-current-line ((t (
-          :inherit line-number
-          :background "gray84"))))
-        '(region ((t (
-          :background "LightGoldenrod2")))))
-      ;; Highlight current line only on graphic terminals. On text
-      ;; terminals, with limited number of colors, the highlighted line
-      ;; simply looks ugly.
-      (global-hl-line-mode 1)))
-
 (defalias 'yes-or-no-p 'y-or-n-p)
 (require 'uniquify)
 (menu-bar-mode -1)
 (recentf-mode t)
 (savehist-mode t)
 (electric-pair-mode 1)
+(global-hl-line-mode 1)
 (global-auto-revert-mode 1)
 (minibuffer-depth-indicate-mode)
 (setq-default dired-omit-mode t)

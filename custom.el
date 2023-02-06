@@ -23,6 +23,7 @@
  '(copy-directory-create-symlink t)
  '(create-lockfiles nil)
  '(cua-remap-control-v nil)
+ '(custom-enabled-themes '(modus-operandi))
  '(default-input-method "bulgarian-phonetic")
  '(describe-bindings-outline t)
  '(dired-dwim-target 'dired-dwim-target-next)
@@ -79,3 +80,10 @@
  '(user-full-name "Evgeni Pandurski")
  '(user-mail-address "epandurski@gmail.com")
  '(warning-suppress-types '((comp))))
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:family "DejaVu Sans Mono" :foundry "unknown" :slant normal :weight normal :height 128 :width normal)))))

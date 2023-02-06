@@ -288,8 +288,8 @@
         ("/[Gmail]/Spam" . ?j)))
   (mu4e-compose-signature (concat
      "Evgeni Pandurski\n"
-     "Github: https://github.com/epandurski\n"
-     "PGP: https://raw.githubusercontent.com/epandurski/myfiles/master/public.asc\n"))
+     "Github: https://github.com/epandurski | PGP public key:\n"
+     "https://raw.githubusercontent.com/epandurski/myfiles/master/public.asc\n"))
   :config
   (add-hook 'kill-emacs-hook 'my-mu4e-exit)
   (add-hook 'message-send-hook 'my-sign-message)

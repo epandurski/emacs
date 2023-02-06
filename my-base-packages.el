@@ -286,9 +286,13 @@
         ("/[Gmail]/Trash" . ?t)
         ("/[Gmail]/Sent Mail" . ?s)
         ("/[Gmail]/Spam" . ?j)))
+  (mu4e-compose-signature (concat
+     "Evgeni Pandurski\n"
+     "Github: https://github.com/epandurski\n"
+     "PGP: https://raw.githubusercontent.com/epandurski/myfiles/master/public.asc"))
   :config
   (add-hook 'kill-emacs-hook 'my-mu4e-exit)
-  (add-hook 'message-send-hook 'mml-secure-message-sign-pgpmime)
+  (add-hook 'message-send-hook 'my-sign-message)
   (setq mu4e-headers-show-threads nil)
   (setq mail-user-agent 'mu4e-user-agent)
   (setq mu4e-maildir "~/Mail")

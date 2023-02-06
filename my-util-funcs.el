@@ -279,6 +279,12 @@ server."
   (if (boundp 'mu4e-get-mail-command)
       (call-process-shell-command mu4e-get-mail-command nil 0)))
 
+(defun my-sign-message ()
+  "Sign the message using PGP, unless the message is already encrypted."
+  (interactive)
+  (unless (mml-secure-is-encrypted-p)
+    (mml-secure-message-sign-pgpmime)))
+
 (provide 'my-util-funcs)
 
 ;;; my-util-funcs.el ends here

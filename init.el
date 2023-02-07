@@ -9,16 +9,18 @@
 (defvar my-emacs-load-start (current-time))
 
 ;; Set and load the custom configurations file.
+(setq custom-theme-directory "~/src/emacs")
 (setq custom-file "~/src/emacs/custom.el")
 (load custom-file 'noerror nil t)
 
+(if (display-graphic-p)
+    (customize-set-variable 'custom-enabled-themes '(my-light)))
+
 (defalias 'yes-or-no-p 'y-or-n-p)
 (require 'uniquify)
-(menu-bar-mode -1)
 (recentf-mode t)
 (savehist-mode t)
 (electric-pair-mode 1)
-(global-hl-line-mode 1)
 (global-auto-revert-mode 1)
 (minibuffer-depth-indicate-mode)
 (setq-default dired-omit-mode t)

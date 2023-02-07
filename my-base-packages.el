@@ -32,7 +32,10 @@
 
 
 (use-package flyspell
-  :diminish 'flyspell-mode)
+  :diminish 'flyspell-mode
+  :hook
+  (text-mode . flyspell-mode)
+  (prog-mode . flyspell-prog-mode))
 
 
 (use-package ido

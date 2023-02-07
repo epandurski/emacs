@@ -31,6 +31,10 @@
   (diminish 'eldoc-mode))
 
 
+(use-package flyspell
+  :diminish 'flyspell-mode)
+
+
 (use-package ido
   :demand t
 
@@ -137,12 +141,14 @@
 (use-package envrc
   :ensure t
   :demand t
+  :diminish envrc-mode
   :bind (:map my-commands-keymap
          ("u e" . envrc-command-map)))
 
 
 (use-package flymake
   :commands (flymake-mode)
+  :diminish (flymake-mode)
   :bind (:map my-commands-keymap
          ("o e" . flymake-show-buffer-diagnostics)
          :map flymake-mode-map
@@ -183,6 +189,7 @@
 (use-package yasnippet
   :ensure t
   :commands (yas-global-mode yas-minor-mode yas-reload-all)
+  :diminish (yas-minor-mode)
   :custom
   (yas-visit-from-menu t)
   (yas-prompt-functions

@@ -31,7 +31,7 @@
   (diminish 'eldoc-mode))
 
 
-(use-package monokai-theme
+(use-package monokai-pro-theme
   :ensure t)
 
 

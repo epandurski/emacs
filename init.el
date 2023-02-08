@@ -13,13 +13,15 @@
 (setq custom-file "~/src/emacs/custom.el")
 (load custom-file 'noerror nil t)
 
+(if (display-graphic-p)
+    (customize-set-variable 'custom-enabled-themes '(my-light)))
+
 (defalias 'yes-or-no-p 'y-or-n-p)
 (require 'uniquify)
 (recentf-mode t)
 (savehist-mode t)
 (electric-pair-mode 1)
 (global-auto-revert-mode 1)
-(global-hl-line-mode 1)
 (minibuffer-depth-indicate-mode)
 (setq-default dired-omit-mode t)
 (setq-default abbrev-mode t)
@@ -28,9 +30,6 @@
 (setq default-frame-alist '((width . 80) (height . 0.8)))
 (add-to-list 'load-path "~/src/emacs")
 (byte-recompile-directory "~/src/emacs" 0)
-
-(if (display-graphic-p)
-    (customize-set-variable 'custom-enabled-themes '(my-light)))
 
 ;; Show line number for programs.
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)

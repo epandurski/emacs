@@ -283,6 +283,7 @@
   (mu4e-update-interval (* 5 60))
   (mu4e-confirm-quit nil)
   (mu4e-attachment-dir "~/Downloads")
+  (mu4e-headers-include-related nil)
   (mu4e-view-html-plaintext-ratio-heuristic 5)
   (mu4e-get-mail-command "mbsync -a")
   (mu4e-refile-folder "/Archive")

@@ -280,6 +280,7 @@
   (mu4e-hide-index-messages t)
   (mu4e-compose-format-flowed t)
   (mu4e-compose-in-new-frame t)
+  (mu4e-view-show-addresses t)
   (mu4e-update-interval (* 5 60))
   (mu4e-confirm-quit nil)
   (mu4e-attachment-dir "~/Downloads")

@@ -169,6 +169,7 @@
 (define-key my-commands-keymap (kbd "l b") 'ispell-buffer)
 (define-key my-commands-keymap (kbd "l r") 'ispell-region)
 (define-key my-commands-keymap (kbd "l s") 'ispell-comments-and-strings)
+(define-key my-commands-keymap (kbd "l m") 'ispell-message)
 (define-key my-commands-keymap (kbd "l c") 'ispell-continue)
 (define-key my-commands-keymap (kbd "l k") 'ispell-kill-ispell)
 (define-key my-commands-keymap (kbd "l d") 'ispell-change-dictionary)

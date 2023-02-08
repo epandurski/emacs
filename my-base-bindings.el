@@ -99,7 +99,7 @@
 (global-set-key (kbd "M-M") 'list-buffers)
 (global-set-key (kbd "C-o") 'find-file)
 (global-set-key (kbd "C-s") 'my-save-buffer)
-(global-set-key (kbd "C-w") 'kill-this-buffer)
+(global-set-key (kbd "C-w") 'kill-current-buffer)
 (global-set-key (kbd "C-r") 'revert-buffer)
 (global-set-key (kbd "<f5>") 'server-edit)
 

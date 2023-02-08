@@ -31,6 +31,10 @@
   (diminish 'eldoc-mode))
 
 
+(use-package monokai-theme
+  :ensure t)
+
+
 (use-package flyspell
   :diminish 'flyspell-mode
   :hook

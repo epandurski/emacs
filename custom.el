@@ -25,7 +25,7 @@
  '(cua-remap-control-v nil)
  '(custom-enabled-themes nil)
  '(custom-safe-themes
-   '("3c821498a7f319c7cd3a8848f2511dc723a22be89c95bd5acdb78b8eb5180cc1" default))
+   '("9abe2b502db3ed511fea7ab84b62096ba15a3a71cdb106fd989afa179ff8ab8d" "3c821498a7f319c7cd3a8848f2511dc723a22be89c95bd5acdb78b8eb5180cc1" default))
  '(default-input-method "bulgarian-phonetic")
  '(describe-bindings-outline t)
  '(dired-dwim-target 'dired-dwim-target-next)

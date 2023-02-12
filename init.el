@@ -9,7 +9,7 @@
 (defvar my-emacs-load-start (current-time))
 
 ;; Set and load the custom configurations file.
-(setq custom-theme-directory "~/src/emacs")
+(setq custom-theme-directory "~/src/emacs/themes")
 (setq custom-file "~/src/emacs/custom.el")
 (load custom-file 'noerror nil t)
 
@@ -28,8 +28,9 @@
 (setq read-process-output-max (* 256 1024)) ; 256kb
 (setq nobreak-char-ascii-display t)
 (setq default-frame-alist '((width . 80) (height . 0.8)))
-(add-to-list 'load-path "~/src/emacs")
-(byte-recompile-directory "~/src/emacs" 0)
+(add-to-list 'load-path "~/src/emacs/lisp")
+(byte-recompile-directory "~/src/emacs/lisp" 0)
+(byte-recompile-directory "~/src/emacs/themes" 0)
 
 ;; Show line number for programs.
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
@@ -56,7 +57,7 @@
       '(("gnu" . "https://elpa.gnu.org/packages/")
         ("melpa-stable" . "https://stable.melpa.org/packages/")
         ("melpa" . "https://melpa.org/packages/")
-        ("myelpa" . "~/myelpa/")))
+        ("myelpa" . "~/src/emacs/myelpa/")))
 (setq package-archive-priorities
       '(("myelpa" . 15)
         ("melpa-stable" . 10)

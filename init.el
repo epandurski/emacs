@@ -24,7 +24,7 @@
 (global-auto-revert-mode 1)
 (minibuffer-depth-indicate-mode)
 (setq-default dired-omit-mode t)
-(setq-default abbrev-mode t)
+(setq-default abbrev-mode nil)
 (setq read-process-output-max (* 256 1024)) ; 256kb
 (setq nobreak-char-ascii-display t)
 (setq default-frame-alist '((width . 80) (height . 0.8)))

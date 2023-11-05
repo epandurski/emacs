@@ -144,6 +144,11 @@
   :commands (dockerfile-mode))
 
 
+(use-package cython-mode
+  :ensure t
+  :commands (cython-mode))
+
+
 (provide 'my-lang-packages)
 
 ;;; my-lang-packages.el ends here

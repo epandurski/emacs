@@ -257,6 +257,7 @@
   :hook
   (svelte-mode . eglot-ensure)
   (python-mode . eglot-ensure)
+  (go-mode . eglot-ensure)
   (typescript-mode . eglot-ensure))
 
 ;; NOTE:
@@ -269,6 +270,9 @@
 ;;
 ;; * Run 'npm install svelte-language-server' to install the svelteserver
 ;;   server for Svelte.
+;;
+;; * Run 'go install golang.org/x/tools/gopls@latest' to install the
+;;   gopls server for Go.
 
 
 (use-package mu4e

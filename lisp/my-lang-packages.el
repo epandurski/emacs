@@ -149,6 +149,14 @@
   :commands (cython-mode))
 
 
+(use-package go-mode
+  :ensure t
+  :commands (go-mode)
+  :mode "\\.go\\'"
+  :config
+  (add-hook 'go-mode-hook 'my-go-mode-hook))
+
+
 (provide 'my-lang-packages)
 
 ;;; my-lang-packages.el ends here

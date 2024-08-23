@@ -10,6 +10,7 @@
  (flx . [(0 6 1) ((cl-lib (0 3))) "fuzzy matching with good sorting" tar])
  (flx-ido . [(0 6 1) ((flx (0 1)) (cl-lib (0 3))) "flx integration for ido" tar])
  (git-commit . [(3 3 0) ((emacs (25 1)) (dash (2 19 1)) (transient (0 3 6)) (with-editor (3 0 5))) "Edit Git commit messages." tar])
+ (go-mode . [(1 6 0) ((emacs (26 1))) "Major mode for the Go programming language" tar])
  (inheritenv . [(0 1) ((emacs (24 4))) "Make temp buffers inherit buffer-local environment variables" tar])
  (jinja2-mode . [(0 2) nil "A major mode for jinja2" tar])
  (json-mode . [(1 8 0) ((json-snatcher (1 0 0)) (emacs (24 4))) "Major mode for editing JSON files." tar])

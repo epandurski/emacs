@@ -66,7 +66,7 @@
  '(next-error-message-highlight t)
  '(only-global-abbrevs t)
  '(package-selected-packages
-   '(cython-mode rust-mode dockerfile-mode yaml-mode json-mode markdown-mode svelte-mode jinja2-mode typescript-mode eglot yasnippet magit envrc company flx-ido monokai-pro-theme diminish which-key use-package))
+   '(go-mode cython-mode rust-mode dockerfile-mode yaml-mode json-mode markdown-mode svelte-mode jinja2-mode typescript-mode eglot yasnippet magit envrc company flx-ido monokai-pro-theme diminish which-key use-package))
  '(read-extended-command-predicate 'command-completion-default-include-p)
  '(read-minibuffer-restore-windows nil)
  '(recentf-max-saved-items 100)

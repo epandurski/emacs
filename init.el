@@ -106,6 +106,7 @@
 (require 'my-base-bindings)
 (require 'my-base-packages)
 (require 'my-lang-packages)
+(require 'my-project-customizations)
 
 ;; Abbrev-expand only in non-prog-modes, or in strings and comments.
 (setq abbrev-expand-function 'my-abbrev-expand-function)

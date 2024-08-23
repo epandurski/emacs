@@ -285,6 +285,27 @@ server."
   (unless (mml-secure-is-encrypted-p)
     (mml-secure-message-sign-pgpmime)))
 
+(defun my-go-mode-hook ()
+  "Configure go-mode."
+  (setq tab-width 2)
+  (setq standard-indent 2)
+  (setq indent-tabs-mode nil)
+
+  ;; Optional: install eglot-format-buffer as a save hook. The depth
+  ;; of -10 places this before eglot's willSave notification, so that
+  ;; that notification reports the actual contents that will be saved.
+  (add-hook 'before-save-hook #'eglot-format-buffer -10 t)
+
+  ;; Optional: automatically organize imports before saving. Note that
+  ;; when this is enabled, the previous "eglot-format-buffer" hook is
+  ;; probably not needed.
+  ;;
+  ;; (add-hook 'before-save-hook
+  ;;           (lambda ()
+  ;;             (call-interactively 'eglot-code-action-organize-imports))
+  ;;           nil t))
+  )
+
 (provide 'my-util-funcs)
 
 ;;; my-util-funcs.el ends here

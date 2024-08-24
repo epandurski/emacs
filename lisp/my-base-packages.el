@@ -239,6 +239,7 @@
   (rst-mode . yas-minor-mode)
   (svelte-mode . yas-minor-mode)
   (js-mode . yas-minor-mode)
+  (go-mode . yas-minor-mode)
   (typescript-mode . yas-minor-mode))
 
 

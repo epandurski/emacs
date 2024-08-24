@@ -122,6 +122,7 @@
          ("o f" . project-find-file)
          ("M-o" . project-find-file)
          ("M-p" . project-switch-project)
+         ("M-c" . project-compile)
          :map project-prefix-map
          ("C-b" . nil)
          ("m" . my-magit-project-status)

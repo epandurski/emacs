@@ -311,6 +311,13 @@
   (define-key html-mode-map (kbd "M-o") 'forward-word)
   ))
 
+(eval-after-load "xref" (lambda ()
+  "My keybindings for the xref buffer mode."
+  ;; xref buffer mode binds "C-o" to `xref-show-location-at-point', which
+  ;; is not very useful. Make it do what it is supposed to do.
+  (define-key xref--xref-buffer-mode-map (kbd "C-o") 'ido-find-file)
+  ))
+
 (provide 'my-base-bindings)
 
 ;;; my-base-bindings.el ends here

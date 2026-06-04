@@ -1,4 +1,4 @@
-;; -*-no-byte-compile: t; -*-
+;; -*-no-byte-compile: t; lexical-binding: t; -*-
 
 ;;; my-base-packages.el --- Ensure the most basic packages are
 ;;; installed and configured.

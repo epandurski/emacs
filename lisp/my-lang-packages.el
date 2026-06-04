@@ -1,4 +1,4 @@
-;; -*-no-byte-compile: t; -*-
+;; -*-no-byte-compile: t; lexical-binding: t; -*-
 
 ;;; my-lang-packages.el --- Ensure the packages supporting differnet
 ;;; language formats are installed and configured.

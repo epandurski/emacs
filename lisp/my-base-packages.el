@@ -284,6 +284,7 @@
   :defer 20 ; Wait until 20 seconds after startup
   :custom
   (read-mail-command 'mu4e)
+  (mml-secure-openpgp-encrypt-to-self t)
   (mu4e-date-format-long "%F")
   (mu4e-headers-date-format "%F")
   (mu4e-change-filenames-when-moving t)

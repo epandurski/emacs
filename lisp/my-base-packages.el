@@ -361,6 +361,10 @@
                  :name "Spam messages"
                  :key ?s))
   (add-to-list 'mu4e-bookmarks
+               '(:query "flag:flagged"
+                 :name "Flagged messages"
+                 :key ?f))
+  (add-to-list 'mu4e-bookmarks
                '(:query "m:/Gmail/Inbox OR \"m:/Gmail/[Gmail]/Sent Mail\" OR m:/Swaptacular/Inbox OR m:/Swaptacular/Sent"
                  :name "All messages"
                  :key ?a))

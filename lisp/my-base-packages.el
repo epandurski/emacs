@@ -289,7 +289,6 @@
   (mu4e-headers-date-format "%F")
   (mu4e-change-filenames-when-moving t)
   (mu4e-hide-index-messages t)
-  (mu4e-compose-format-flowed t)
   (mu4e-compose-in-new-frame t)
   (mu4e-view-show-addresses t)
   (mu4e-update-interval (* 5 60))
@@ -298,29 +297,69 @@
   (mu4e-headers-include-related nil)
   (mu4e-view-html-plaintext-ratio-heuristic 5)
   (mu4e-get-mail-command "mbsync -a")
-  (mu4e-refile-folder "/Archive")
-  (mu4e-drafts-folder "/[Gmail]/Drafts")
-  (mu4e-trash-folder "/[Gmail]/Trash")
-  (mu4e-sent-folder "/[Gmail]/Sent Mail")
-  (mu4e-maildir-shortcuts
-      '(("/Inbox" . ?i)
-        ("/Archive" . ?a)
-        ("/[Gmail]/Drafts" . ?d)
-        ("/[Gmail]/Trash" . ?t)
-        ("/[Gmail]/Sent Mail" . ?s)
-        ("/[Gmail]/Spam" . ?j)))
-  (mu4e-compose-signature (concat
-     "Evgeni Pandurski\n"
-     "Github: https://github.com/epandurski | PGP public key:\n"
-     "https://raw.githubusercontent.com/epandurski/myfiles/master/public.asc\n"))
+  (mu4e-context-policy 'pick-first)
   :config
   (add-hook 'kill-emacs-hook 'my-mu4e-exit)
-  (add-hook 'message-send-hook 'my-sign-message)
   (setq mu4e-headers-show-threads nil)
   (setq mail-user-agent 'mu4e-user-agent)
   (setq mu4e-maildir "~/Mail")
+  (setq mu4e-contexts
+        (list
+         (make-mu4e-context
+          :name "Gmail"
+          :match-func
+          (lambda (msg)
+            (when msg
+              (string-prefix-p "/Gmail" (mu4e-message-field msg :maildir))))
+          :vars '(
+                  (user-full-name . "Evgeni Pandurski")
+                  (user-mail-address . "epandurski@gmail.com")
+                  (mu4e-compose-signature . (concat
+                    "Evgeni Pandurski\n"
+                    "Github: https://github.com/epandurski | PGP public key:\n"
+                    "https://raw.githubusercontent.com/epandurski/myfiles/master/public.asc\n"))
+                  (mu4e-refile-folder . "/Gmail/Archive")
+                  (mu4e-drafts-folder . "/Gmail/[Gmail]/Drafts")
+                  (mu4e-trash-folder .  "/Gmail/[Gmail]/Trash")
+                  (mu4e-sent-folder . "/Gmail/[Gmail]/Sent Mail")
+                  (mu4e-maildir-shortcuts . (("/Gmail/Inbox" . ?i)
+                                             ("/Gmail/Archive" . ?a)
+                                             ("/Gmail/[Gmail]/Drafts" . ?d)
+                                             ("/Gmail/[Gmail]/Trash" . ?t)
+                                             ("/Gmail/[Gmail]/Sent Mail" . ?s)
+                                             ("/Gmail/[Gmail]/Spam" . ?j)))))
+         (make-mu4e-context
+          :name "Swaptacular"
+          :match-func
+          (lambda (msg)
+            (when msg
+              (string-prefix-p "/Swaptacular" (mu4e-message-field msg :maildir))))
+          :vars '(
+                  (user-full-name . "Evgeni Pandurski")
+                  (user-mail-address . "epandurski@swaptacular.org")
+                  (mu4e-compose-signature . (concat
+                    "Evgeni Pandurski\n"
+                    "https://swaptacular.github.io\n"))
+                  (mu4e-refile-folder . "/Swaptacular/Archive")
+                  (mu4e-drafts-folder . "/Swaptacular/Drafts")
+                  (mu4e-trash-folder .  "/Swaptacular/Trash")
+                  (mu4e-sent-folder . "/Swaptacular/Sent")
+                  (mu4e-maildir-shortcuts . (("/Swaptacular/Inbox" . ?i)
+                                             ("/Swaptacular/Archive" . ?a)
+                                             ("/Swaptacular/Drafts" . ?d)
+                                             ("/Swaptacular/Trash" . ?t)
+                                             ("/Swaptacular/Sent" . ?s)
+                                             ("/Swaptacular/spambucket" . ?j)))))))
   (add-to-list 'mu4e-view-actions
                '("View in Browser" . mu4e-action-view-in-browser) t)
+  (add-to-list 'mu4e-bookmarks
+               '(:query "m:/Gmail/[Gmail]/Spam OR m:/Swaptacular/spambucket"
+                 :name "Spam messages"
+                 :key ?s))
+  (add-to-list 'mu4e-bookmarks
+               '(:query "m:/Gmail/Inbox OR \"m:/Gmail/[Gmail]/Sent Mail\" OR m:/Swaptacular/Inbox OR m:/Swaptacular/Sent"
+                 :name "All messages"
+                 :key ?a))
   :bind (:map my-commands-keymap
          ("m m" . mu4e)
          ("M-m" . mu4e)))
@@ -329,7 +368,8 @@
 ;; should be installed with "apt install isync", and then a ~/.mbsyncrc
 ;; configuration file should be created, and "mbsync -a" executed. At the
 ;; end, the mu-index directory should be initialized with "mu init
-;; --maildir=~/Mail --my-address=epandurski@gmail.com".
+;; --maildir=~/Mail --my-address=epandurski@swaptacular.org
+;; --my-address=epandurski@gmail.com".
 
 
 (provide 'my-base-packages)

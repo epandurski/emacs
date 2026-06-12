@@ -314,6 +314,8 @@
           :vars '(
                   (user-full-name . "Evgeni Pandurski")
                   (user-mail-address . "epandurski@gmail.com")
+                  (smtpmail-smtp-server . "smtp.gmail.com")
+                  (smtpmail-smtp-service . 465)
                   (mu4e-compose-signature . (concat
                     "Evgeni Pandurski\n"
                     "Github: https://github.com/epandurski | PGP public key:\n"
@@ -337,6 +339,8 @@
           :vars '(
                   (user-full-name . "Evgeni Pandurski")
                   (user-mail-address . "epandurski@swaptacular.org")
+                  (smtpmail-smtp-server . "mail.your-server.de")
+                  (smtpmail-smtp-service . 465)
                   (mu4e-compose-signature . (concat
                     "Evgeni Pandurski\n"
                     "https://swaptacular.github.io\n"))

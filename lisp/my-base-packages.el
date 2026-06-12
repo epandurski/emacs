@@ -357,17 +357,21 @@
   (add-to-list 'mu4e-view-actions
                '("View in Browser" . mu4e-action-view-in-browser) t)
   (add-to-list 'mu4e-bookmarks
-               '(:query "m:/Gmail/[Gmail]/Spam OR m:/Swaptacular/spambucket"
-                 :name "Spam messages"
-                 :key ?s))
-  (add-to-list 'mu4e-bookmarks
                '(:query "flag:flagged"
                  :name "Flagged messages"
                  :key ?f))
   (add-to-list 'mu4e-bookmarks
+               '(:query "m:/Gmail/[Gmail]/Spam OR m:/Swaptacular/spambucket"
+                 :name "Junk messages"
+                 :key ?j))
+  (add-to-list 'mu4e-bookmarks
+               '(:query "\"m:/Gmail/[Gmail]/Sent Mail\" OR m:/Swaptacular/Sent"
+                 :name "Sent messages"
+                 :key ?s))
+  (add-to-list 'mu4e-bookmarks
                '(:query "m:/Gmail/Inbox OR \"m:/Gmail/[Gmail]/Sent Mail\" OR m:/Swaptacular/Inbox OR m:/Swaptacular/Sent"
-                 :name "All messages"
-                 :key ?a))
+                 :name "Both received and sent"
+                 :key ?b))
   :bind (:map my-commands-keymap
          ("m m" . mu4e)
          ("M-m" . mu4e)))
